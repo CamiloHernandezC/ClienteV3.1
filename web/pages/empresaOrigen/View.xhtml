@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="EmpresaOrigenViewDlg" widgetVar="EmpresaOrigenViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewEmpresaOrigenTitle}">
+            <h:form id="EmpresaOrigenViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{empresaOrigenController.selected != null}">
+                        <h:outputText value="#{bundle.ViewEmpresaOrigenLabel_idEmpresaOrigen}"/>
+                        <h:outputText value="#{empresaOrigenController.selected.idEmpresaOrigen}" title="#{bundle.ViewEmpresaOrigenTitle_idEmpresaOrigen}"/>
+                        <h:outputText value="#{bundle.ViewEmpresaOrigenLabel_nit}"/>
+                        <h:outputText value="#{empresaOrigenController.selected.nit}" title="#{bundle.ViewEmpresaOrigenTitle_nit}"/>
+                        <h:outputText value="#{bundle.ViewEmpresaOrigenLabel_nombre1}"/>
+                        <h:outputText value="#{empresaOrigenController.selected.nombre1}" title="#{bundle.ViewEmpresaOrigenTitle_nombre1}"/>
+                        <h:outputText value="#{bundle.ViewEmpresaOrigenLabel_nombre2}"/>
+                        <h:outputText value="#{empresaOrigenController.selected.nombre2}" title="#{bundle.ViewEmpresaOrigenTitle_nombre2}"/>
+                        <h:outputText value="#{bundle.ViewEmpresaOrigenLabel_direccion}"/>
+                        <h:outputText value="#{empresaOrigenController.selected.direccion}" title="#{bundle.ViewEmpresaOrigenTitle_direccion}"/>
+                        <h:outputText value="#{bundle.ViewEmpresaOrigenLabel_telefono}"/>
+                        <h:outputText value="#{empresaOrigenController.selected.telefono}" title="#{bundle.ViewEmpresaOrigenTitle_telefono}"/>
+                        <h:outputText value="#{bundle.ViewEmpresaOrigenLabel_fecha}"/>
+                        <h:outputText value="#{empresaOrigenController.selected.fecha}" title="#{bundle.ViewEmpresaOrigenTitle_fecha}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewEmpresaOrigenLabel_usuario}"/>
+                        <h:outputText value="#{empresaOrigenController.selected.usuario}" title="#{bundle.ViewEmpresaOrigenTitle_usuario}"/>
+                        <h:outputText value="#{bundle.ViewEmpresaOrigenLabel_pais}"/>
+                        <h:outputText value="#{empresaOrigenController.selected.pais}" title="#{bundle.ViewEmpresaOrigenTitle_pais}"/>
+                        <h:outputText value="#{bundle.ViewEmpresaOrigenLabel_departamento}"/>
+                        <h:outputText value="#{empresaOrigenController.selected.departamento}" title="#{bundle.ViewEmpresaOrigenTitle_departamento}"/>
+                        <h:outputText value="#{bundle.ViewEmpresaOrigenLabel_municipio}"/>
+                        <h:outputText value="#{empresaOrigenController.selected.municipio}" title="#{bundle.ViewEmpresaOrigenTitle_municipio}"/>
+                        <h:outputText value="#{bundle.ViewEmpresaOrigenLabel_estado}"/>
+                        <h:outputText value="#{empresaOrigenController.selected.estado}" title="#{bundle.ViewEmpresaOrigenTitle_estado}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="EmpresaOrigenViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

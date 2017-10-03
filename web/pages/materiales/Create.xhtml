@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="MaterialesCreateDlg" widgetVar="MaterialesCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateMaterialesTitle}">
+            <h:form id="MaterialesCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{materialesController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateMaterialesLabel_idMaterial}" for="idMaterial" />
+                        <p:inputText id="idMaterial" value="#{materialesController.selected.idMaterial}" title="#{bundle.CreateMaterialesTitle_idMaterial}" required="true" requiredMessage="#{bundle.CreateMaterialesRequiredMessage_idMaterial}"/>
+                        <p:outputLabel value="#{bundle.CreateMaterialesLabel_IDExterno}" for="IDExterno" />
+                        <p:inputText id="IDExterno" value="#{materialesController.selected.IDExterno}" title="#{bundle.CreateMaterialesTitle_IDExterno}" />
+                        <p:outputLabel value="#{bundle.CreateMaterialesLabel_descripcion}" for="descripcion" />
+                        <p:inputText id="descripcion" value="#{materialesController.selected.descripcion}" title="#{bundle.CreateMaterialesTitle_descripcion}" required="true" requiredMessage="#{bundle.CreateMaterialesRequiredMessage_descripcion}"/>
+                        <p:outputLabel value="#{bundle.CreateMaterialesLabel_fecha}" for="fecha" />
+                        <p:calendar id="fecha" pattern="MM/dd/yyyy HH:mm:ss" value="#{materialesController.selected.fecha}" title="#{bundle.EditMaterialesTitle_fecha}" required="true" requiredMessage="#{bundle.EditMaterialesRequiredMessage_fecha}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateMaterialesLabel_usuario}" for="usuario" />
+                        <p:selectOneMenu id="usuario" value="#{materialesController.selected.usuario}" required="true" requiredMessage="#{bundle.EditMaterialesRequiredMessage_usuario}">
+                            <f:selectItems value="#{personasController.itemsAvailableSelectOne}"
+                                           var="usuarioItem"
+                                           itemValue="#{usuarioItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateMaterialesLabel_unidad}" for="unidad" />
+                        <p:selectOneMenu id="unidad" value="#{materialesController.selected.unidad}" required="true" requiredMessage="#{bundle.EditMaterialesRequiredMessage_unidad}">
+                            <f:selectItems value="#{unidadesController.itemsAvailableSelectOne}"
+                                           var="unidadItem"
+                                           itemValue="#{unidadItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{materialesController.create}" value="#{bundle.Save}" update="display,:MaterialesListForm:datalist,:growl" oncomplete="handleSubmit(args,'MaterialesCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="MaterialesCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

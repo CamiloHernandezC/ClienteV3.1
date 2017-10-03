@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="SucursalesEditDlg" widgetVar="SucursalesEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditSucursalesTitle}">
+            <h:form id="SucursalesEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{sucursalesController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditSucursalesLabel_idSucursal}" for="idSucursal" />
+                        <p:inputText id="idSucursal" value="#{sucursalesController.selected.idSucursal}" title="#{bundle.EditSucursalesTitle_idSucursal}" required="true" requiredMessage="#{bundle.EditSucursalesRequiredMessage_idSucursal}"/>
+                        <p:outputLabel value="#{bundle.EditSucursalesLabel_nombre}" for="nombre" />
+                        <p:inputText id="nombre" value="#{sucursalesController.selected.nombre}" title="#{bundle.EditSucursalesTitle_nombre}" required="true" requiredMessage="#{bundle.EditSucursalesRequiredMessage_nombre}"/>
+                        <p:outputLabel value="#{bundle.EditSucursalesLabel_direccion}" for="direccion" />
+                        <p:inputText id="direccion" value="#{sucursalesController.selected.direccion}" title="#{bundle.EditSucursalesTitle_direccion}" />
+                        <p:outputLabel value="#{bundle.EditSucursalesLabel_telefono}" for="telefono" />
+                        <p:inputText id="telefono" value="#{sucursalesController.selected.telefono}" title="#{bundle.EditSucursalesTitle_telefono}" />
+                        <p:outputLabel value="#{bundle.EditSucursalesLabel_cliente}" for="cliente" />
+                        <p:selectOneMenu id="cliente" value="#{sucursalesController.selected.cliente}" required="true" requiredMessage="#{bundle.EditSucursalesRequiredMessage_cliente}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{clientesController.itemsAvailableSelectOne}"
+                                           var="clienteItem"
+                                           itemValue="#{clienteItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditSucursalesLabel_pais}" for="pais" />
+                        <p:selectOneMenu id="pais" value="#{sucursalesController.selected.pais}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{paisesController.itemsAvailableSelectOne}"
+                                           var="paisItem"
+                                           itemValue="#{paisItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditSucursalesLabel_departamento}" for="departamento" />
+                        <p:selectOneMenu id="departamento" value="#{sucursalesController.selected.departamento}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{departamentosController.itemsAvailableSelectOne}"
+                                           var="departamentoItem"
+                                           itemValue="#{departamentoItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditSucursalesLabel_municipio}" for="municipio" />
+                        <p:selectOneMenu id="municipio" value="#{sucursalesController.selected.municipio}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{municipiosController.itemsAvailableSelectOne}"
+                                           var="municipioItem"
+                                           itemValue="#{municipioItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{sucursalesController.update}" value="#{bundle.Save}" update="display,:SucursalesListForm:datalist,:growl" oncomplete="handleSubmit(args, 'SucursalesEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="SucursalesEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

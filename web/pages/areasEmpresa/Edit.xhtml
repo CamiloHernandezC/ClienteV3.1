@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="AreasEmpresaEditDlg" widgetVar="AreasEmpresaEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditAreasEmpresaTitle}">
+            <h:form id="AreasEmpresaEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{areasEmpresaController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditAreasEmpresaLabel_idAreaEmpresa}" for="idAreaEmpresa" />
+                        <p:inputText id="idAreaEmpresa" value="#{areasEmpresaController.selected.idAreaEmpresa}" title="#{bundle.EditAreasEmpresaTitle_idAreaEmpresa}" required="true" requiredMessage="#{bundle.EditAreasEmpresaRequiredMessage_idAreaEmpresa}"/>
+                        <p:outputLabel value="#{bundle.EditAreasEmpresaLabel_descripcion}" for="descripcion" />
+                        <p:inputText id="descripcion" value="#{areasEmpresaController.selected.descripcion}" title="#{bundle.EditAreasEmpresaTitle_descripcion}" required="true" requiredMessage="#{bundle.EditAreasEmpresaRequiredMessage_descripcion}"/>
+                        <p:outputLabel value="#{bundle.EditAreasEmpresaLabel_sucursal}" for="sucursal" />
+                        <p:selectOneMenu id="sucursal" value="#{areasEmpresaController.selected.sucursal}" required="true" requiredMessage="#{bundle.EditAreasEmpresaRequiredMessage_sucursal}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{sucursalesController.itemsAvailableSelectOne}"
+                                           var="sucursalItem"
+                                           itemValue="#{sucursalItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{areasEmpresaController.update}" value="#{bundle.Save}" update="display,:AreasEmpresaListForm:datalist,:growl" oncomplete="handleSubmit(args, 'AreasEmpresaEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="AreasEmpresaEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

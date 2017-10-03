@@ -1,0 +1,75 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>ACTIV-ONE</title>
+            </f:facet>
+        </h:head>
+
+        <!--***************Código para evitar que pueda ir hacia atras***********-->
+        <meta http-equiv="Expires" content="0" /> 
+        <meta http-equiv="Pragma" content="no-cache" />
+        <script type="text/javascript">
+            if (history.forward(1)) {
+                location.replace(history.forward(1));
+            }
+        </script>
+        <!--*********************************************************************-->
+
+        <h:body id="body">
+            <!--top menu ove*************************************************-->
+            <style>
+                #top {z-index:2 !important; }
+                #top div{overflow:visible;}
+            </style>
+            <!--*************************************************************-->
+
+            <!--Test for unique actived session******************************-->
+            <c:if test="#{loginBean.validSession()}"/>
+            <!--*************************************************************-->
+
+            <p:layout fullPage="true">
+
+                <p:layoutUnit position="north" size="10%" id="top">
+                    <p:growl id="growl" sticky="true" />
+                    <p:menubar model="#{menuBean.menu}" style="display: inline-block"/>
+
+                    <div style="float: right">
+
+                        <h:form id="formBranchOffice">
+                            <h:panelGrid columns="2">
+                                <p:outputLabel value="#{bundle.CreatePersonasCliLabel_idSucursal}" for="branchOffice" rendered="#{branchOfficeBean.showBranchOffice}"/>
+                                <p:selectOneMenu id="branchOffice" value="#{branchOfficeBean.selectedBranchOffice}" rendered="#{branchOfficeBean.showBranchOffice}" disabled="#{masterDataPersonBean.disableBranchOffice}" required="true" requiredMessage="#{bundle.EditPersonasCliRequiredMessage_idSucursal}" onchange="submit()" widgetVar="branchOffice">
+                                    <f:selectItem itemLabel="#{bundle.SelectOneMessage}" itemValue="#{null}"/>
+                                    <f:selectItems value="#{branchOfficeBean.branchOffices}" var="branchOffice" itemValue="#{branchOffice}" itemLabel="#{branchOffice.nombre}"/>
+                                </p:selectOneMenu>
+                                <p:panelGrid/>
+                                <p:commandButton value="#{bundle.CloseSession}" action="#{loginBean.logout()}" immediate="true"/>
+                            </h:panelGrid>
+                        </h:form>
+                    </div>
+
+                </p:layoutUnit>
+
+                <p:layoutUnit position="south" size="10%" closable="true" collapsible="true">
+                    DEVELOPED BY MAILO INNOVATION
+                </p:layoutUnit>
+
+                <p:layoutUnit position="center" size="80%" id="centerLU">
+                    <ui:insert name="content"/>
+                </p:layoutUnit>
+
+            </p:layout>
+
+        </h:body>
+
+    </f:view>
+</html>
+

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PorteriasSucursalEditDlg" widgetVar="PorteriasSucursalEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditPorteriasSucursalTitle}">
+            <h:form id="PorteriasSucursalEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{porteriasSucursalController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditPorteriasSucursalLabel_campo}" for="campo" />
+                        <p:inputText id="campo" value="#{porteriasSucursalController.selected.campo}" title="#{bundle.EditPorteriasSucursalTitle_campo}" />
+                        <p:outputLabel value="#{bundle.EditPorteriasSucursalLabel_porterias}" for="porterias" />
+                        <p:selectOneMenu id="porterias" value="#{porteriasSucursalController.selected.porterias}" required="true" requiredMessage="#{bundle.EditPorteriasSucursalRequiredMessage_porterias}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{porteriasController.itemsAvailableSelectOne}"
+                                           var="porteriasItem"
+                                           itemValue="#{porteriasItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditPorteriasSucursalLabel_sucursales}" for="sucursales" />
+                        <p:selectOneMenu id="sucursales" value="#{porteriasSucursalController.selected.sucursales}" required="true" requiredMessage="#{bundle.EditPorteriasSucursalRequiredMessage_sucursales}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{sucursalesController.itemsAvailableSelectOne}"
+                                           var="sucursalesItem"
+                                           itemValue="#{sucursalesItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{porteriasSucursalController.update}" value="#{bundle.Save}" update="display,:PorteriasSucursalListForm:datalist,:growl" oncomplete="handleSubmit(args, 'PorteriasSucursalEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="PorteriasSucursalEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

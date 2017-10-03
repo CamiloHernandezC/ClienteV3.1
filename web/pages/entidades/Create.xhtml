@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="EntidadesCreateDlg" widgetVar="EntidadesCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateEntidadesTitle}">
+            <h:form id="EntidadesCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{entidadesController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateEntidadesLabel_idEntidad}" for="idEntidad" />
+                        <p:inputText id="idEntidad" value="#{entidadesController.selected.idEntidad}" title="#{bundle.CreateEntidadesTitle_idEntidad}" required="true" requiredMessage="#{bundle.CreateEntidadesRequiredMessage_idEntidad}"/>
+                        <p:outputLabel value="#{bundle.CreateEntidadesLabel_descripcion}" for="descripcion" />
+                        <p:inputText id="descripcion" value="#{entidadesController.selected.descripcion}" title="#{bundle.CreateEntidadesTitle_descripcion}" required="true" requiredMessage="#{bundle.CreateEntidadesRequiredMessage_descripcion}"/>
+                        <p:outputLabel value="#{bundle.CreateEntidadesLabel_categoria}" for="categoria" />
+                        <p:selectOneMenu id="categoria" value="#{entidadesController.selected.categoria}" required="true" requiredMessage="#{bundle.EditEntidadesRequiredMessage_categoria}">
+                            <f:selectItems value="#{categoriasController.itemsAvailableSelectOne}"
+                                           var="categoriaItem"
+                                           itemValue="#{categoriaItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{entidadesController.create}" value="#{bundle.Save}" update="display,:EntidadesListForm:datalist,:growl" oncomplete="handleSubmit(args,'EntidadesCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="EntidadesCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

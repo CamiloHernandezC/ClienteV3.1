@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ObjetosEditDlg" widgetVar="ObjetosEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditObjetosTitle}">
+            <h:form id="ObjetosEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{objetosController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditObjetosLabel_idObjeto}" for="idObjeto" />
+                        <p:inputText id="idObjeto" value="#{objetosController.selected.idObjeto}" title="#{bundle.EditObjetosTitle_idObjeto}" required="true" requiredMessage="#{bundle.EditObjetosRequiredMessage_idObjeto}"/>
+                        <p:outputLabel value="#{bundle.EditObjetosLabel_serial}" for="serial" />
+                        <p:inputText id="serial" value="#{objetosController.selected.serial}" title="#{bundle.EditObjetosTitle_serial}" required="true" requiredMessage="#{bundle.EditObjetosRequiredMessage_serial}"/>
+                        <p:outputLabel value="#{bundle.EditObjetosLabel_idExterno}" for="idExterno" />
+                        <p:inputText id="idExterno" value="#{objetosController.selected.idExterno}" title="#{bundle.EditObjetosTitle_idExterno}" />
+                        <p:outputLabel value="#{bundle.EditObjetosLabel_descripcion}" for="descripcion" />
+                        <p:inputText id="descripcion" value="#{objetosController.selected.descripcion}" title="#{bundle.EditObjetosTitle_descripcion}" />
+                        <p:outputLabel value="#{bundle.EditObjetosLabel_color1}" for="color1" />
+                        <p:inputText id="color1" value="#{objetosController.selected.color1}" title="#{bundle.EditObjetosTitle_color1}" />
+                        <p:outputLabel value="#{bundle.EditObjetosLabel_color2}" for="color2" />
+                        <p:inputText id="color2" value="#{objetosController.selected.color2}" title="#{bundle.EditObjetosTitle_color2}" />
+                        <p:outputLabel value="#{bundle.EditObjetosLabel_color3}" for="color3" />
+                        <p:inputText id="color3" value="#{objetosController.selected.color3}" title="#{bundle.EditObjetosTitle_color3}" />
+                        <p:outputLabel value="#{bundle.EditObjetosLabel_unidadPeso}" for="unidadPeso" />
+                        <p:inputText id="unidadPeso" value="#{objetosController.selected.unidadPeso}" title="#{bundle.EditObjetosTitle_unidadPeso}" />
+                        <p:outputLabel value="#{bundle.EditObjetosLabel_peso}" for="peso" />
+                        <p:inputText id="peso" value="#{objetosController.selected.peso}" title="#{bundle.EditObjetosTitle_peso}" />
+                        <p:outputLabel value="#{bundle.EditObjetosLabel_unidadVolumen}" for="unidadVolumen" />
+                        <p:inputText id="unidadVolumen" value="#{objetosController.selected.unidadVolumen}" title="#{bundle.EditObjetosTitle_unidadVolumen}" />
+                        <p:outputLabel value="#{bundle.EditObjetosLabel_volumen}" for="volumen" />
+                        <p:inputText id="volumen" value="#{objetosController.selected.volumen}" title="#{bundle.EditObjetosTitle_volumen}" />
+                        <p:outputLabel value="#{bundle.EditObjetosLabel_fecha}" for="fecha" />
+                        <p:calendar id="fecha" pattern="MM/dd/yyyy HH:mm:ss" value="#{objetosController.selected.fecha}" title="#{bundle.EditObjetosTitle_fecha}" required="true" requiredMessage="#{bundle.EditObjetosRequiredMessage_fecha}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditObjetosLabel_usuario}" for="usuario" />
+                        <p:selectOneMenu id="usuario" value="#{objetosController.selected.usuario}" required="true" requiredMessage="#{bundle.EditObjetosRequiredMessage_usuario}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{personasController.itemsAvailableSelectOne}"
+                                           var="usuarioItem"
+                                           itemValue="#{usuarioItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditObjetosLabel_sucursal}" for="sucursal" />
+                        <p:selectOneMenu id="sucursal" value="#{objetosController.selected.sucursal}" required="true" requiredMessage="#{bundle.EditObjetosRequiredMessage_sucursal}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{sucursalesController.itemsAvailableSelectOne}"
+                                           var="sucursalItem"
+                                           itemValue="#{sucursalItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditObjetosLabel_entidad}" for="entidad" />
+                        <p:selectOneMenu id="entidad" value="#{objetosController.selected.entidad}" required="true" requiredMessage="#{bundle.EditObjetosRequiredMessage_entidad}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{entidadesController.itemsAvailableSelectOne}"
+                                           var="entidadItem"
+                                           itemValue="#{entidadItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditObjetosLabel_marca}" for="marca" />
+                        <p:selectOneMenu id="marca" value="#{objetosController.selected.marca}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{marcasController.itemsAvailableSelectOne}"
+                                           var="marcaItem"
+                                           itemValue="#{marcaItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditObjetosLabel_pais}" for="pais" />
+                        <p:selectOneMenu id="pais" value="#{objetosController.selected.pais}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{paisesController.itemsAvailableSelectOne}"
+                                           var="paisItem"
+                                           itemValue="#{paisItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditObjetosLabel_departamento}" for="departamento" />
+                        <p:selectOneMenu id="departamento" value="#{objetosController.selected.departamento}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{departamentosController.itemsAvailableSelectOne}"
+                                           var="departamentoItem"
+                                           itemValue="#{departamentoItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditObjetosLabel_municipio}" for="municipio" />
+                        <p:selectOneMenu id="municipio" value="#{objetosController.selected.municipio}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{municipiosController.itemsAvailableSelectOne}"
+                                           var="municipioItem"
+                                           itemValue="#{municipioItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditObjetosLabel_estado}" for="estado" />
+                        <p:selectOneMenu id="estado" value="#{objetosController.selected.estado}" required="true" requiredMessage="#{bundle.EditObjetosRequiredMessage_estado}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{estadosController.itemsAvailableSelectOne}"
+                                           var="estadoItem"
+                                           itemValue="#{estadoItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{objetosController.update}" value="#{bundle.Save}" update="display,:ObjetosListForm:datalist,:growl" oncomplete="handleSubmit(args, 'ObjetosEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ObjetosEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

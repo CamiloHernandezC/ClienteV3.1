@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="MarcasCreateDlg" widgetVar="MarcasCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateMarcasTitle}">
+            <h:form id="MarcasCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{marcasController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateMarcasLabel_idMarca}" for="idMarca" />
+                        <p:inputText id="idMarca" value="#{marcasController.selected.idMarca}" title="#{bundle.CreateMarcasTitle_idMarca}" required="true" requiredMessage="#{bundle.CreateMarcasRequiredMessage_idMarca}"/>
+                        <p:outputLabel value="#{bundle.CreateMarcasLabel_descripcion}" for="descripcion" />
+                        <p:inputText id="descripcion" value="#{marcasController.selected.descripcion}" title="#{bundle.CreateMarcasTitle_descripcion}" required="true" requiredMessage="#{bundle.CreateMarcasRequiredMessage_descripcion}"/>
+                        <p:outputLabel value="#{bundle.CreateMarcasLabel_categoria}" for="categoria" />
+                        <p:selectOneMenu id="categoria" value="#{marcasController.selected.categoria}" required="true" requiredMessage="#{bundle.EditMarcasRequiredMessage_categoria}">
+                            <f:selectItems value="#{categoriasController.itemsAvailableSelectOne}"
+                                           var="categoriaItem"
+                                           itemValue="#{categoriaItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{marcasController.create}" value="#{bundle.Save}" update="display,:MarcasListForm:datalist,:growl" oncomplete="handleSubmit(args,'MarcasCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="MarcasCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

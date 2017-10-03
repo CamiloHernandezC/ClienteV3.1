@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="MovMaterialesCreateDlg" widgetVar="MovMaterialesCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateMovMaterialesTitle}">
+            <h:form id="MovMaterialesCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{movMaterialesController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateMovMaterialesLabel_idMovimientoMaterial}" for="idMovimientoMaterial" />
+                        <p:inputText id="idMovimientoMaterial" value="#{movMaterialesController.selected.idMovimientoMaterial}" title="#{bundle.CreateMovMaterialesTitle_idMovimientoMaterial}" required="true" requiredMessage="#{bundle.CreateMovMaterialesRequiredMessage_idMovimientoMaterial}"/>
+                        <p:outputLabel value="#{bundle.CreateMovMaterialesLabel_fechaMovimiento}" for="fechaMovimiento" />
+                        <p:calendar id="fechaMovimiento" pattern="MM/dd/yyyy" value="#{movMaterialesController.selected.fechaMovimiento}" title="#{bundle.EditMovMaterialesTitle_fechaMovimiento}" required="true" requiredMessage="#{bundle.EditMovMaterialesRequiredMessage_fechaMovimiento}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateMovMaterialesLabel_horaMovimiento}" for="horaMovimiento" />
+                        <p:calendar id="horaMovimiento" pattern="HH:mm:ss" value="#{movMaterialesController.selected.horaMovimiento}" title="#{bundle.EditMovMaterialesTitle_horaMovimiento}" required="true" requiredMessage="#{bundle.EditMovMaterialesRequiredMessage_horaMovimiento}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateMovMaterialesLabel_cantida}" for="cantida" />
+                        <p:inputText id="cantida" value="#{movMaterialesController.selected.cantida}" title="#{bundle.CreateMovMaterialesTitle_cantida}" required="true" requiredMessage="#{bundle.CreateMovMaterialesRequiredMessage_cantida}"/>
+                        <p:outputLabel value="#{bundle.CreateMovMaterialesLabel_observacion}" for="observacion" />
+                        <p:inputText id="observacion" value="#{movMaterialesController.selected.observacion}" title="#{bundle.CreateMovMaterialesTitle_observacion}" />
+                        <p:outputLabel value="#{bundle.CreateMovMaterialesLabel_tipoEvento}" for="tipoEvento" />
+                        <p:selectBooleanCheckbox id="tipoEvento" value="#{movMaterialesController.selected.tipoEvento}" required="true" requiredMessage="#{bundle.EditMovMaterialesRequiredMessage_tipoEvento}"/>
+                        <p:outputLabel value="#{bundle.CreateMovMaterialesLabel_fecha}" for="fecha" />
+                        <p:calendar id="fecha" pattern="MM/dd/yyyy HH:mm:ss" value="#{movMaterialesController.selected.fecha}" title="#{bundle.EditMovMaterialesTitle_fecha}" required="true" requiredMessage="#{bundle.EditMovMaterialesRequiredMessage_fecha}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateMovMaterialesLabel_usuario}" for="usuario" />
+                        <p:selectOneMenu id="usuario" value="#{movMaterialesController.selected.usuario}" required="true" requiredMessage="#{bundle.EditMovMaterialesRequiredMessage_usuario}">
+                            <f:selectItems value="#{personasController.itemsAvailableSelectOne}"
+                                           var="usuarioItem"
+                                           itemValue="#{usuarioItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateMovMaterialesLabel_sucursal}" for="sucursal" />
+                        <p:selectOneMenu id="sucursal" value="#{movMaterialesController.selected.sucursal}" required="true" requiredMessage="#{bundle.EditMovMaterialesRequiredMessage_sucursal}">
+                            <f:selectItems value="#{sucursalesController.itemsAvailableSelectOne}"
+                                           var="sucursalItem"
+                                           itemValue="#{sucursalItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateMovMaterialesLabel_movimientoPersona}" for="movimientoPersona" />
+                        <p:selectOneMenu id="movimientoPersona" value="#{movMaterialesController.selected.movimientoPersona}" required="true" requiredMessage="#{bundle.EditMovMaterialesRequiredMessage_movimientoPersona}">
+                            <f:selectItems value="#{movPersonasController.itemsAvailableSelectOne}"
+                                           var="movimientoPersonaItem"
+                                           itemValue="#{movimientoPersonaItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateMovMaterialesLabel_idMaterial}" for="idMaterial" />
+                        <p:selectOneMenu id="idMaterial" value="#{movMaterialesController.selected.idMaterial}" required="true" requiredMessage="#{bundle.EditMovMaterialesRequiredMessage_idMaterial}">
+                            <f:selectItems value="#{materialesController.itemsAvailableSelectOne}"
+                                           var="idMaterialItem"
+                                           itemValue="#{idMaterialItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateMovMaterialesLabel_idMovimientoDocumento}" for="idMovimientoDocumento" />
+                        <p:selectOneMenu id="idMovimientoDocumento" value="#{movMaterialesController.selected.idMovimientoDocumento}" required="true" requiredMessage="#{bundle.EditMovMaterialesRequiredMessage_idMovimientoDocumento}">
+                            <f:selectItems value="#{movDocumentosController.itemsAvailableSelectOne}"
+                                           var="idMovimientoDocumentoItem"
+                                           itemValue="#{idMovimientoDocumentoItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{movMaterialesController.create}" value="#{bundle.Save}" update="display,:MovMaterialesListForm:datalist,:growl" oncomplete="handleSubmit(args,'MovMaterialesCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="MovMaterialesCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

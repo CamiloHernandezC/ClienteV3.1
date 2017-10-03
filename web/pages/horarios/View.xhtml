@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="HorariosViewDlg" widgetVar="HorariosViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewHorariosTitle}">
+            <h:form id="HorariosViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{horariosController.selected != null}">
+                        <h:outputText value="#{bundle.ViewHorariosLabel_idHorario}"/>
+                        <h:outputText value="#{horariosController.selected.idHorario}" title="#{bundle.ViewHorariosTitle_idHorario}"/>
+                        <h:outputText value="#{bundle.ViewHorariosLabel_nombre}"/>
+                        <h:outputText value="#{horariosController.selected.nombre}" title="#{bundle.ViewHorariosTitle_nombre}"/>
+                        <h:outputText value="#{bundle.ViewHorariosLabel_lunes}"/>
+                        <p:selectBooleanCheckbox value="#{horariosController.selected.lunes}" disabled="true"/>
+                        <h:outputText value="#{bundle.ViewHorariosLabel_horaIngresoL}"/>
+                        <h:outputText value="#{horariosController.selected.horaIngresoL}" title="#{bundle.ViewHorariosTitle_horaIngresoL}">
+                            <f:convertDateTime pattern="HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewHorariosLabel_horaSalidaL}"/>
+                        <h:outputText value="#{horariosController.selected.horaSalidaL}" title="#{bundle.ViewHorariosTitle_horaSalidaL}">
+                            <f:convertDateTime pattern="HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewHorariosLabel_martes}"/>
+                        <p:selectBooleanCheckbox value="#{horariosController.selected.martes}" disabled="true"/>
+                        <h:outputText value="#{bundle.ViewHorariosLabel_horaIngresoM}"/>
+                        <h:outputText value="#{horariosController.selected.horaIngresoM}" title="#{bundle.ViewHorariosTitle_horaIngresoM}">
+                            <f:convertDateTime pattern="HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewHorariosLabel_horaSalidaM}"/>
+                        <h:outputText value="#{horariosController.selected.horaSalidaM}" title="#{bundle.ViewHorariosTitle_horaSalidaM}">
+                            <f:convertDateTime pattern="HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewHorariosLabel_miercoles}"/>
+                        <p:selectBooleanCheckbox value="#{horariosController.selected.miercoles}" disabled="true"/>
+                        <h:outputText value="#{bundle.ViewHorariosLabel_horaIngresoW}"/>
+                        <h:outputText value="#{horariosController.selected.horaIngresoW}" title="#{bundle.ViewHorariosTitle_horaIngresoW}">
+                            <f:convertDateTime pattern="HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewHorariosLabel_horaSalidaW}"/>
+                        <h:outputText value="#{horariosController.selected.horaSalidaW}" title="#{bundle.ViewHorariosTitle_horaSalidaW}">
+                            <f:convertDateTime pattern="HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewHorariosLabel_jueves}"/>
+                        <p:selectBooleanCheckbox value="#{horariosController.selected.jueves}" disabled="true"/>
+                        <h:outputText value="#{bundle.ViewHorariosLabel_horaIngresoJ}"/>
+                        <h:outputText value="#{horariosController.selected.horaIngresoJ}" title="#{bundle.ViewHorariosTitle_horaIngresoJ}">
+                            <f:convertDateTime pattern="HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewHorariosLabel_horaSalidaJ}"/>
+                        <h:outputText value="#{horariosController.selected.horaSalidaJ}" title="#{bundle.ViewHorariosTitle_horaSalidaJ}">
+                            <f:convertDateTime pattern="HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewHorariosLabel_viernes}"/>
+                        <p:selectBooleanCheckbox value="#{horariosController.selected.viernes}" disabled="true"/>
+                        <h:outputText value="#{bundle.ViewHorariosLabel_horaIngresoV}"/>
+                        <h:outputText value="#{horariosController.selected.horaIngresoV}" title="#{bundle.ViewHorariosTitle_horaIngresoV}">
+                            <f:convertDateTime pattern="HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewHorariosLabel_horaSalidaV}"/>
+                        <h:outputText value="#{horariosController.selected.horaSalidaV}" title="#{bundle.ViewHorariosTitle_horaSalidaV}">
+                            <f:convertDateTime pattern="HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewHorariosLabel_sabado}"/>
+                        <p:selectBooleanCheckbox value="#{horariosController.selected.sabado}" disabled="true"/>
+                        <h:outputText value="#{bundle.ViewHorariosLabel_horaIngresoS}"/>
+                        <h:outputText value="#{horariosController.selected.horaIngresoS}" title="#{bundle.ViewHorariosTitle_horaIngresoS}">
+                            <f:convertDateTime pattern="HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewHorariosLabel_horaSalidaS}"/>
+                        <h:outputText value="#{horariosController.selected.horaSalidaS}" title="#{bundle.ViewHorariosTitle_horaSalidaS}">
+                            <f:convertDateTime pattern="HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewHorariosLabel_domingo}"/>
+                        <p:selectBooleanCheckbox value="#{horariosController.selected.domingo}" disabled="true"/>
+                        <h:outputText value="#{bundle.ViewHorariosLabel_horaIngresoD}"/>
+                        <h:outputText value="#{horariosController.selected.horaIngresoD}" title="#{bundle.ViewHorariosTitle_horaIngresoD}">
+                            <f:convertDateTime pattern="HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewHorariosLabel_horaSalidaD}"/>
+                        <h:outputText value="#{horariosController.selected.horaSalidaD}" title="#{bundle.ViewHorariosTitle_horaSalidaD}">
+                            <f:convertDateTime pattern="HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewHorariosLabel_fecha}"/>
+                        <h:outputText value="#{horariosController.selected.fecha}" title="#{bundle.ViewHorariosTitle_fecha}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewHorariosLabel_usuario}"/>
+                        <h:outputText value="#{horariosController.selected.usuario}" title="#{bundle.ViewHorariosTitle_usuario}"/>
+                        <h:outputText value="#{bundle.ViewHorariosLabel_sucursal}"/>
+                        <h:outputText value="#{horariosController.selected.sucursal}" title="#{bundle.ViewHorariosTitle_sucursal}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="HorariosViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ArlEditDlg" widgetVar="ArlEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditArlTitle}">
+            <h:form id="ArlEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{arlController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditArlLabel_arl}" for="arl" />
+                        <p:inputText id="arl" value="#{arlController.selected.arl}" title="#{bundle.EditArlTitle_arl}" required="true" requiredMessage="#{bundle.EditArlRequiredMessage_arl}"/>
+                        <p:outputLabel value="#{bundle.EditArlLabel_codigo}" for="codigo" />
+                        <p:inputText id="codigo" value="#{arlController.selected.codigo}" title="#{bundle.EditArlTitle_codigo}" required="true" requiredMessage="#{bundle.EditArlRequiredMessage_codigo}"/>
+                        <p:outputLabel value="#{bundle.EditArlLabel_nombre}" for="nombre" />
+                        <p:inputText id="nombre" value="#{arlController.selected.nombre}" title="#{bundle.EditArlTitle_nombre}" required="true" requiredMessage="#{bundle.EditArlRequiredMessage_nombre}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{arlController.update}" value="#{bundle.Save}" update="display,:ArlListForm:datalist,:growl" oncomplete="handleSubmit(args, 'ArlEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ArlEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

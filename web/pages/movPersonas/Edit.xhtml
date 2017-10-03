@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="MovPersonasEditDlg" widgetVar="MovPersonasEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditMovPersonasTitle}">
+            <h:form id="MovPersonasEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{movPersonasController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditMovPersonasLabel_idMovPersona}" for="idMovPersona" />
+                        <p:inputText id="idMovPersona" value="#{movPersonasController.selected.idMovPersona}" title="#{bundle.EditMovPersonasTitle_idMovPersona}" required="true" requiredMessage="#{bundle.EditMovPersonasRequiredMessage_idMovPersona}"/>
+                        <p:outputLabel value="#{bundle.EditMovPersonasLabel_momentoEntrada}" for="momentoEntrada" />
+                        <p:calendar id="momentoEntrada" pattern="MM/dd/yyyy HH:mm:ss" value="#{movPersonasController.selected.momentoEntrada}" title="#{bundle.EditMovPersonasTitle_momentoEntrada}" required="true" requiredMessage="#{bundle.EditMovPersonasRequiredMessage_momentoEntrada}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditMovPersonasLabel_metodoEntrada}" for="metodoEntrada" />
+                        <p:inputText id="metodoEntrada" value="#{movPersonasController.selected.metodoEntrada}" title="#{bundle.EditMovPersonasTitle_metodoEntrada}" required="true" requiredMessage="#{bundle.EditMovPersonasRequiredMessage_metodoEntrada}"/>
+                        <p:outputLabel value="#{bundle.EditMovPersonasLabel_momentoSalida}" for="momentoSalida" />
+                        <p:calendar id="momentoSalida" pattern="MM/dd/yyyy HH:mm:ss" value="#{movPersonasController.selected.momentoSalida}" title="#{bundle.EditMovPersonasTitle_momentoSalida}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditMovPersonasLabel_metodoSalida}" for="metodoSalida" />
+                        <p:inputText id="metodoSalida" value="#{movPersonasController.selected.metodoSalida}" title="#{bundle.EditMovPersonasTitle_metodoSalida}" />
+                        <p:outputLabel value="#{bundle.EditMovPersonasLabel_salidaForzosa}" for="salidaForzosa" />
+                        <p:selectBooleanCheckbox id="salidaForzosa" value="#{movPersonasController.selected.salidaForzosa}" required="true" requiredMessage="#{bundle.EditMovPersonasRequiredMessage_salidaForzosa}"/>
+                        <p:outputLabel value="#{bundle.EditMovPersonasLabel_ingresoForzado}" for="ingresoForzado" />
+                        <p:selectBooleanCheckbox id="ingresoForzado" value="#{movPersonasController.selected.ingresoForzado}" required="true" requiredMessage="#{bundle.EditMovPersonasRequiredMessage_ingresoForzado}"/>
+                        <p:outputLabel value="#{bundle.EditMovPersonasLabel_fecha}" for="fecha" />
+                        <p:calendar id="fecha" pattern="MM/dd/yyyy HH:mm:ss" value="#{movPersonasController.selected.fecha}" title="#{bundle.EditMovPersonasTitle_fecha}" required="true" requiredMessage="#{bundle.EditMovPersonasRequiredMessage_fecha}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditMovPersonasLabel_fechaEntrada}" for="fechaEntrada" />
+                        <p:calendar id="fechaEntrada" pattern="MM/dd/yyyy" value="#{movPersonasController.selected.fechaEntrada}" title="#{bundle.EditMovPersonasTitle_fechaEntrada}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditMovPersonasLabel_horaEntrada}" for="horaEntrada" />
+                        <p:calendar id="horaEntrada" pattern="HH:mm:ss" value="#{movPersonasController.selected.horaEntrada}" title="#{bundle.EditMovPersonasTitle_horaEntrada}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditMovPersonasLabel_fechaSalida}" for="fechaSalida" />
+                        <p:calendar id="fechaSalida" pattern="MM/dd/yyyy" value="#{movPersonasController.selected.fechaSalida}" title="#{bundle.EditMovPersonasTitle_fechaSalida}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditMovPersonasLabel_horaSalida}" for="horaSalida" />
+                        <p:calendar id="horaSalida" pattern="HH:mm:ss" value="#{movPersonasController.selected.horaSalida}" title="#{bundle.EditMovPersonasTitle_horaSalida}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditMovPersonasLabel_usuario}" for="usuario" />
+                        <p:selectOneMenu id="usuario" value="#{movPersonasController.selected.usuario}" required="true" requiredMessage="#{bundle.EditMovPersonasRequiredMessage_usuario}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{personasController.itemsAvailableSelectOne}"
+                                           var="usuarioItem"
+                                           itemValue="#{usuarioItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditMovPersonasLabel_area}" for="area" />
+                        <p:selectOneMenu id="area" value="#{movPersonasController.selected.area}" required="true" requiredMessage="#{bundle.EditMovPersonasRequiredMessage_area}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{areasEmpresaController.itemsAvailableSelectOne}"
+                                           var="areaItem"
+                                           itemValue="#{areaItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditMovPersonasLabel_personaAutoriza}" for="personaAutoriza" />
+                        <p:selectOneMenu id="personaAutoriza" value="#{movPersonasController.selected.personaAutoriza}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{personasController.itemsAvailableSelectOne}"
+                                           var="personaAutorizaItem"
+                                           itemValue="#{personaAutorizaItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditMovPersonasLabel_idPersona}" for="idPersona" />
+                        <p:selectOneMenu id="idPersona" value="#{movPersonasController.selected.idPersona}" required="true" requiredMessage="#{bundle.EditMovPersonasRequiredMessage_idPersona}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{personasSucursalController.itemsAvailableSelectOne}"
+                                           var="idPersonaItem"
+                                           itemValue="#{idPersonaItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditMovPersonasLabel_sucursal}" for="sucursal" />
+                        <p:selectOneMenu id="sucursal" value="#{movPersonasController.selected.sucursal}" required="true" requiredMessage="#{bundle.EditMovPersonasRequiredMessage_sucursal}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{personasSucursalController.itemsAvailableSelectOne}"
+                                           var="sucursalItem"
+                                           itemValue="#{sucursalItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditMovPersonasLabel_porteria}" for="porteria" />
+                        <p:selectOneMenu id="porteria" value="#{movPersonasController.selected.porteria}" required="true" requiredMessage="#{bundle.EditMovPersonasRequiredMessage_porteria}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{porteriasController.itemsAvailableSelectOne}"
+                                           var="porteriaItem"
+                                           itemValue="#{porteriaItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{movPersonasController.update}" value="#{bundle.Save}" update="display,:MovPersonasListForm:datalist,:growl" oncomplete="handleSubmit(args, 'MovPersonasEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="MovPersonasEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

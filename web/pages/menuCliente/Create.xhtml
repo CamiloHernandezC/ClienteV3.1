@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="MenuClienteCreateDlg" widgetVar="MenuClienteCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateMenuClienteTitle}">
+            <h:form id="MenuClienteCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{menuClienteController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateMenuClienteLabel_codigo}" for="codigo" />
+                        <p:inputText id="codigo" value="#{menuClienteController.selected.codigo}" title="#{bundle.CreateMenuClienteTitle_codigo}" required="true" requiredMessage="#{bundle.CreateMenuClienteRequiredMessage_codigo}"/>
+                        <p:outputLabel value="#{bundle.CreateMenuClienteLabel_nombre}" for="nombre" />
+                        <p:inputText id="nombre" value="#{menuClienteController.selected.nombre}" title="#{bundle.CreateMenuClienteTitle_nombre}" required="true" requiredMessage="#{bundle.CreateMenuClienteRequiredMessage_nombre}"/>
+                        <p:outputLabel value="#{bundle.CreateMenuClienteLabel_url}" for="url" />
+                        <p:inputText id="url" value="#{menuClienteController.selected.url}" title="#{bundle.CreateMenuClienteTitle_url}" />
+                        <p:outputLabel value="#{bundle.CreateMenuClienteLabel_tipo}" for="tipo" />
+                        <p:inputText id="tipo" value="#{menuClienteController.selected.tipo}" title="#{bundle.CreateMenuClienteTitle_tipo}" required="true" requiredMessage="#{bundle.CreateMenuClienteRequiredMessage_tipo}"/>
+                        <p:outputLabel value="#{bundle.CreateMenuClienteLabel_nivel}" for="nivel" />
+                        <p:inputText id="nivel" value="#{menuClienteController.selected.nivel}" title="#{bundle.CreateMenuClienteTitle_nivel}" required="true" requiredMessage="#{bundle.CreateMenuClienteRequiredMessage_nivel}"/>
+                        <p:outputLabel value="#{bundle.CreateMenuClienteLabel_padre}" for="padre" />
+                        <p:inputText id="padre" value="#{menuClienteController.selected.padre}" title="#{bundle.CreateMenuClienteTitle_padre}" />
+                        <p:outputLabel value="#{bundle.CreateMenuClienteLabel_estado}" for="estado" />
+                        <p:selectBooleanCheckbox id="estado" value="#{menuClienteController.selected.estado}" required="true" requiredMessage="#{bundle.EditMenuClienteRequiredMessage_estado}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{menuClienteController.create}" value="#{bundle.Save}" update="display,:MenuClienteListForm:datalist,:growl" oncomplete="handleSubmit(args,'MenuClienteCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="MenuClienteCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

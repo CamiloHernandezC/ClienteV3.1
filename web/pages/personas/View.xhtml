@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PersonasViewDlg" widgetVar="PersonasViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewPersonasTitle}">
+            <h:form id="PersonasViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{personasController.selected != null}">
+                        <h:outputText value="#{bundle.ViewPersonasLabel_idPersona}"/>
+                        <h:outputText value="#{personasController.selected.idPersona}" title="#{bundle.ViewPersonasTitle_idPersona}"/>
+                        <h:outputText value="#{bundle.ViewPersonasLabel_numeroDocumento}"/>
+                        <h:outputText value="#{personasController.selected.numeroDocumento}" title="#{bundle.ViewPersonasTitle_numeroDocumento}"/>
+                        <h:outputText value="#{bundle.ViewPersonasLabel_nombre1}"/>
+                        <h:outputText value="#{personasController.selected.nombre1}" title="#{bundle.ViewPersonasTitle_nombre1}"/>
+                        <h:outputText value="#{bundle.ViewPersonasLabel_nombre2}"/>
+                        <h:outputText value="#{personasController.selected.nombre2}" title="#{bundle.ViewPersonasTitle_nombre2}"/>
+                        <h:outputText value="#{bundle.ViewPersonasLabel_apellido1}"/>
+                        <h:outputText value="#{personasController.selected.apellido1}" title="#{bundle.ViewPersonasTitle_apellido1}"/>
+                        <h:outputText value="#{bundle.ViewPersonasLabel_apellido2}"/>
+                        <h:outputText value="#{personasController.selected.apellido2}" title="#{bundle.ViewPersonasTitle_apellido2}"/>
+                        <h:outputText value="#{bundle.ViewPersonasLabel_direccion}"/>
+                        <h:outputText value="#{personasController.selected.direccion}" title="#{bundle.ViewPersonasTitle_direccion}"/>
+                        <h:outputText value="#{bundle.ViewPersonasLabel_telefono}"/>
+                        <h:outputText value="#{personasController.selected.telefono}" title="#{bundle.ViewPersonasTitle_telefono}"/>
+                        <h:outputText value="#{bundle.ViewPersonasLabel_celular}"/>
+                        <h:outputText value="#{personasController.selected.celular}" title="#{bundle.ViewPersonasTitle_celular}"/>
+                        <h:outputText value="#{bundle.ViewPersonasLabel_mail}"/>
+                        <h:outputText value="#{personasController.selected.mail}" title="#{bundle.ViewPersonasTitle_mail}"/>
+                        <h:outputText value="#{bundle.ViewPersonasLabel_personaContacto}"/>
+                        <h:outputText value="#{personasController.selected.personaContacto}" title="#{bundle.ViewPersonasTitle_personaContacto}"/>
+                        <h:outputText value="#{bundle.ViewPersonasLabel_telPersonaContacto}"/>
+                        <h:outputText value="#{personasController.selected.telPersonaContacto}" title="#{bundle.ViewPersonasTitle_telPersonaContacto}"/>
+                        <h:outputText value="#{bundle.ViewPersonasLabel_fechaVigenciaSS}"/>
+                        <h:outputText value="#{personasController.selected.fechaVigenciaSS}" title="#{bundle.ViewPersonasTitle_fechaVigenciaSS}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewPersonasLabel_sexo}"/>
+                        <p:selectBooleanCheckbox value="#{personasController.selected.sexo}" disabled="true"/>
+                        <h:outputText value="#{bundle.ViewPersonasLabel_rh}"/>
+                        <h:outputText value="#{personasController.selected.rh}" title="#{bundle.ViewPersonasTitle_rh}"/>
+                        <h:outputText value="#{bundle.ViewPersonasLabel_fechaNacimiento}"/>
+                        <h:outputText value="#{personasController.selected.fechaNacimiento}" title="#{bundle.ViewPersonasTitle_fechaNacimiento}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewPersonasLabel_usuario}"/>
+                        <h:outputText value="#{personasController.selected.usuario}" title="#{bundle.ViewPersonasTitle_usuario}"/>
+                        <h:outputText value="#{bundle.ViewPersonasLabel_fecha}"/>
+                        <h:outputText value="#{personasController.selected.fecha}" title="#{bundle.ViewPersonasTitle_fecha}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewPersonasLabel_tipoDocumento}"/>
+                        <h:outputText value="#{personasController.selected.tipoDocumento}" title="#{bundle.ViewPersonasTitle_tipoDocumento}"/>
+                        <h:outputText value="#{bundle.ViewPersonasLabel_empresaOrigen}"/>
+                        <h:outputText value="#{personasController.selected.empresaOrigen}" title="#{bundle.ViewPersonasTitle_empresaOrigen}"/>
+                        <h:outputText value="#{bundle.ViewPersonasLabel_pais}"/>
+                        <h:outputText value="#{personasController.selected.pais}" title="#{bundle.ViewPersonasTitle_pais}"/>
+                        <h:outputText value="#{bundle.ViewPersonasLabel_departamento}"/>
+                        <h:outputText value="#{personasController.selected.departamento}" title="#{bundle.ViewPersonasTitle_departamento}"/>
+                        <h:outputText value="#{bundle.ViewPersonasLabel_municipio}"/>
+                        <h:outputText value="#{personasController.selected.municipio}" title="#{bundle.ViewPersonasTitle_municipio}"/>
+                        <h:outputText value="#{bundle.ViewPersonasLabel_eps}"/>
+                        <h:outputText value="#{personasController.selected.eps}" title="#{bundle.ViewPersonasTitle_eps}"/>
+                        <h:outputText value="#{bundle.ViewPersonasLabel_arl}"/>
+                        <h:outputText value="#{personasController.selected.arl}" title="#{bundle.ViewPersonasTitle_arl}"/>
+                        <h:outputText value="#{bundle.ViewPersonasLabel_estado}"/>
+                        <h:outputText value="#{personasController.selected.estado}" title="#{bundle.ViewPersonasTitle_estado}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="PersonasViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

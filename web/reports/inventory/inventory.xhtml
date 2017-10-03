@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./../reportTemplate.xhtml"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="report">
+
+        <!-- Movement Details dialog -->
+        <p:dialog id="materialMovements" widgetVar="dialogmaterialMovements" header="#{bundle.materialMovements}"
+                  closable="true" showEffect="fade" hideEffect="fade" modal="true" appendTo="body"
+                  resizable="false">
+            <h:form id="formMovements">
+                <p:dataTable id="datalist" value="#{cardexController.items}" var="item"
+                             selectionMode="single" selection="#{cardexController.selected}"
+                             paginator="true"
+                             rowKey="#{item.materialesSucursal.materiales.descripcion}"
+                             rows="10"
+                             rowsPerPageTemplate="10,20,30,40,50"
+                             >
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.Material}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.materialesSucursal.materiales.descripcion}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.MovementType}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.remision.movementType()}"/>
+                    </p:column>    
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListCardexTitle_cantida}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.cantida}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListCardexTitle_fechaMovimiento}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.fechaMovimiento}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                    </p:column>
+                    
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListCardexTitle_observacion}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.observacion}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListCardexTitle_cantidadActual}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.cantidadActual}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListCardexTitle_sucursal}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.materialesSucursal.sucursales.nombre}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListCardexTitle_almacen}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.almacen.descripcion}"/>
+                    </p:column>
+                    <p:column>
+                        <p:barcode value="#{String.valueOf(item.materialesSucursal.materiales.idMaterial)}" type="ean13"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.Options}"/>
+                        </f:facet>
+                        <p:commandButton value="#{bundle.seeRemission}" action="#{remisionesController.seeRemission(item.remision)}"/>
+                    </p:column>
+                    
+                </p:dataTable>
+            </h:form>
+        </p:dialog>
+
+
+        <h1>#{bundle.ListCardexTitle}"</h1>
+
+        <h:form id="CardexListForm">
+            <p:panel header="#{bundle.ListCardexTitle}">
+                <p:dataTable id="datalist" value="#{inventarioController.itemsByBranchOffice}" var="item"
+                             selectionMode="single" selection="#{inventarioController.selected}"
+                             paginator="true"
+                             rowKey="#{item.materialesSucursal.materiales.descripcion}"
+                             rows="10"
+                             rowsPerPageTemplate="10,20,30,40,50"
+                             >
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.Material}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.materialesSucursal.materiales.descripcion}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListCardexTitle_cantida}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.cantidad}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListCardexTitle_almacen}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.almacen.descripcion}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.Options}"/>
+                        </f:facet>
+                        <p:commandButton value="#{bundle.SeeMovements}" action="#{cardexController.seeMovements(item)}" ajax="false"/>
+                    </p:column>
+
+
+                </p:dataTable>
+            </p:panel>
+        </h:form>
+    </ui:define>
+
+</ui:composition>

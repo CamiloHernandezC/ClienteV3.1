@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="EmpresaOrigenCreateDlg" widgetVar="EmpresaOrigenCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateEmpresaOrigenTitle}">
+            <h:form id="EmpresaOrigenCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{empresaOrigenController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateEmpresaOrigenLabel_idEmpresaOrigen}" for="idEmpresaOrigen" />
+                        <p:inputText id="idEmpresaOrigen" value="#{empresaOrigenController.selected.idEmpresaOrigen}" title="#{bundle.CreateEmpresaOrigenTitle_idEmpresaOrigen}" required="true" requiredMessage="#{bundle.CreateEmpresaOrigenRequiredMessage_idEmpresaOrigen}"/>
+                        <p:outputLabel value="#{bundle.CreateEmpresaOrigenLabel_nit}" for="nit" />
+                        <p:inputText id="nit" value="#{empresaOrigenController.selected.nit}" title="#{bundle.CreateEmpresaOrigenTitle_nit}" />
+                        <p:outputLabel value="#{bundle.CreateEmpresaOrigenLabel_nombre1}" for="nombre1" />
+                        <p:inputText id="nombre1" value="#{empresaOrigenController.selected.nombre1}" title="#{bundle.CreateEmpresaOrigenTitle_nombre1}" required="true" requiredMessage="#{bundle.CreateEmpresaOrigenRequiredMessage_nombre1}"/>
+                        <p:outputLabel value="#{bundle.CreateEmpresaOrigenLabel_nombre2}" for="nombre2" />
+                        <p:inputText id="nombre2" value="#{empresaOrigenController.selected.nombre2}" title="#{bundle.CreateEmpresaOrigenTitle_nombre2}" />
+                        <p:outputLabel value="#{bundle.CreateEmpresaOrigenLabel_direccion}" for="direccion" />
+                        <p:inputText id="direccion" value="#{empresaOrigenController.selected.direccion}" title="#{bundle.CreateEmpresaOrigenTitle_direccion}" />
+                        <p:outputLabel value="#{bundle.CreateEmpresaOrigenLabel_telefono}" for="telefono" />
+                        <p:inputText id="telefono" value="#{empresaOrigenController.selected.telefono}" title="#{bundle.CreateEmpresaOrigenTitle_telefono}" />
+                        <p:outputLabel value="#{bundle.CreateEmpresaOrigenLabel_fecha}" for="fecha" />
+                        <p:calendar id="fecha" pattern="MM/dd/yyyy HH:mm:ss" value="#{empresaOrigenController.selected.fecha}" title="#{bundle.EditEmpresaOrigenTitle_fecha}" required="true" requiredMessage="#{bundle.EditEmpresaOrigenRequiredMessage_fecha}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateEmpresaOrigenLabel_usuario}" for="usuario" />
+                        <p:selectOneMenu id="usuario" value="#{empresaOrigenController.selected.usuario}" required="true" requiredMessage="#{bundle.EditEmpresaOrigenRequiredMessage_usuario}">
+                            <f:selectItems value="#{personasController.itemsAvailableSelectOne}"
+                                           var="usuarioItem"
+                                           itemValue="#{usuarioItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateEmpresaOrigenLabel_pais}" for="pais" />
+                        <p:selectOneMenu id="pais" value="#{empresaOrigenController.selected.pais}" >
+                            <f:selectItems value="#{paisesController.itemsAvailableSelectOne}"
+                                           var="paisItem"
+                                           itemValue="#{paisItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateEmpresaOrigenLabel_departamento}" for="departamento" />
+                        <p:selectOneMenu id="departamento" value="#{empresaOrigenController.selected.departamento}" >
+                            <f:selectItems value="#{departamentosController.itemsAvailableSelectOne}"
+                                           var="departamentoItem"
+                                           itemValue="#{departamentoItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateEmpresaOrigenLabel_municipio}" for="municipio" />
+                        <p:selectOneMenu id="municipio" value="#{empresaOrigenController.selected.municipio}" >
+                            <f:selectItems value="#{municipiosController.itemsAvailableSelectOne}"
+                                           var="municipioItem"
+                                           itemValue="#{municipioItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateEmpresaOrigenLabel_estado}" for="estado" />
+                        <p:selectOneMenu id="estado" value="#{empresaOrigenController.selected.estado}" required="true" requiredMessage="#{bundle.EditEmpresaOrigenRequiredMessage_estado}">
+                            <f:selectItems value="#{estadosController.itemsAvailableSelectOne}"
+                                           var="estadoItem"
+                                           itemValue="#{estadoItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{empresaOrigenController.create}" value="#{bundle.Save}" update="display,:EmpresaOrigenListForm:datalist,:growl" oncomplete="handleSubmit(args,'EmpresaOrigenCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="EmpresaOrigenCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="MenuClienteViewDlg" widgetVar="MenuClienteViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewMenuClienteTitle}">
+            <h:form id="MenuClienteViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{menuClienteController.selected != null}">
+                        <h:outputText value="#{bundle.ViewMenuClienteLabel_codigo}"/>
+                        <h:outputText value="#{menuClienteController.selected.codigo}" title="#{bundle.ViewMenuClienteTitle_codigo}"/>
+                        <h:outputText value="#{bundle.ViewMenuClienteLabel_nombre}"/>
+                        <h:outputText value="#{menuClienteController.selected.nombre}" title="#{bundle.ViewMenuClienteTitle_nombre}"/>
+                        <h:outputText value="#{bundle.ViewMenuClienteLabel_url}"/>
+                        <h:outputText value="#{menuClienteController.selected.url}" title="#{bundle.ViewMenuClienteTitle_url}"/>
+                        <h:outputText value="#{bundle.ViewMenuClienteLabel_tipo}"/>
+                        <h:outputText value="#{menuClienteController.selected.tipo}" title="#{bundle.ViewMenuClienteTitle_tipo}"/>
+                        <h:outputText value="#{bundle.ViewMenuClienteLabel_nivel}"/>
+                        <h:outputText value="#{menuClienteController.selected.nivel}" title="#{bundle.ViewMenuClienteTitle_nivel}"/>
+                        <h:outputText value="#{bundle.ViewMenuClienteLabel_padre}"/>
+                        <h:outputText value="#{menuClienteController.selected.padre}" title="#{bundle.ViewMenuClienteTitle_padre}"/>
+                        <h:outputText value="#{bundle.ViewMenuClienteLabel_estado}"/>
+                        <p:selectBooleanCheckbox value="#{menuClienteController.selected.estado}" disabled="true"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="MenuClienteViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

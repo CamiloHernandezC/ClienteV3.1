@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+
+
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListMovPersonasTitle}"></h:outputText>
+        </ui:define>
+
+        <ui:define name="body">
+            <h:form id="MovPersonasListForm">
+                <p:panel header="#{bundle.ListMovPersonasTitle}">
+                    <p:dataTable id="datalist" value="#{movPersonasController.items}" var="item"
+                                 selectionMode="single" selection="#{movPersonasController.selected}"
+                                 paginator="true"
+                                 rowKey="#{item.idMovPersona}"
+                                 rows="10"
+                                 rowsPerPageTemplate="10,20,30,40,50"
+                                 >
+
+                        <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                        <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListMovPersonasTitle_idMovPersona}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idMovPersona}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListMovPersonasTitle_momentoEntrada}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.momentoEntrada}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListMovPersonasTitle_metodoEntrada}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.metodoEntrada}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListMovPersonasTitle_momentoSalida}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.momentoSalida}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListMovPersonasTitle_metodoSalida}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.metodoSalida}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListMovPersonasTitle_salidaForzosa}"/>
+                            </f:facet>
+                            <p:selectBooleanCheckbox value="#{item.salidaForzosa}" disabled="true"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListMovPersonasTitle_ingresoForzado}"/>
+                            </f:facet>
+                            <p:selectBooleanCheckbox value="#{item.ingresoForzado}" disabled="true"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListMovPersonasTitle_fecha}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fecha}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListMovPersonasTitle_fechaEntrada}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fechaEntrada}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListMovPersonasTitle_horaEntrada}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.horaEntrada}">
+                                <f:convertDateTime pattern="HH:mm:ss" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListMovPersonasTitle_fechaSalida}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fechaSalida}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListMovPersonasTitle_horaSalida}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.horaSalida}">
+                                <f:convertDateTime pattern="HH:mm:ss" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListMovPersonasTitle_usuario}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.usuario}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListMovPersonasTitle_area}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.area}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListMovPersonasTitle_personaAutoriza}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.personaAutoriza}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListMovPersonasTitle_idPersona}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idPersona}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListMovPersonasTitle_sucursal}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.sucursal}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListMovPersonasTitle_porteria}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.porteria}"/>
+                        </p:column>
+                        <f:facet name="footer">
+                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{movPersonasController.prepareCreate}" update=":MovPersonasCreateForm" oncomplete="PF('MovPersonasCreateDialog').show()"/>
+                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":MovPersonasViewForm" oncomplete="PF('MovPersonasViewDialog').show()" disabled="#{empty movPersonasController.selected}"/>
+                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":MovPersonasEditForm" oncomplete="PF('MovPersonasEditDialog').show()" disabled="#{empty movPersonasController.selected}"/>
+                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{movPersonasController.destroy}" update=":growl,datalist" disabled="#{empty movPersonasController.selected}"/>
+                        </f:facet>
+                    </p:dataTable>
+                </p:panel>
+            </h:form>
+
+            <ui:include src="Create.xhtml"/>
+            <ui:include src="Edit.xhtml"/>
+            <ui:include src="View.xhtml"/>
+        </ui:define>
+    </ui:composition>
+
+</html>

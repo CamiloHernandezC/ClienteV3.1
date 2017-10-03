@@ -1,0 +1,310 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./../masterDataTemplate.xhtml"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="masterData">
+
+        <!-- Upload File -->
+        <h:form id="formLoadFile">
+            <p:dialog id="load" widgetVar="dialogLoad" header="#{bundle.LoadFile}"
+                      closable="true" showEffect="fade" hideEffect="fade" modal="true" appendTo="body"
+                      resizable="false">
+                <p:fileUpload fileUploadListener="#{masterDataPersonBean.handleFileUpload}"
+                              mode="advanced" dragDropSupport="false"  update="@this,:PersonasCliListForm, growl, :formActions, :dialogErrorList"
+                              sizeLimit="1000000" fileLimit="1"
+                              allowTypes="/(\.|\/)(txt|xlsx)$/" label="#{constantes.CHOOSE}" cancelLabel="#{constantes.CANCEL}" uploadLabel="#{constantes.UPLOAD}"/>
+            </p:dialog>
+        </h:form>
+
+        <!-- Dialog to active person-->
+        <p:confirmDialog id="inactiveDialog" appendTo="@(body)" message="#{bundle.ActivePerson}" severity="alert" showEffect="fade" hideEffect="fade" widgetVar="inactiveDialog" closable="false">
+            <h:form>
+                <h:panelGrid columns="2">
+                    <p:commandButton id="confirm" value="#{bundle.Accept}" onclick="PF('dialogDelete').hide();" action="#{masterDataPersonBean.activePerson}" ajax="false"/>
+                    <p:commandButton id="decline" value="#{bundle.Cancel}" onclick="PF('dialogDelete').hide();"/>
+                </h:panelGrid>
+            </h:form>
+        </p:confirmDialog>
+        <!--*****************************************************************-->
+
+        <!-- Search To Create -->
+
+        <p:dialog id="searchToCreate" widgetVar="dialogSearchToCreate" header="#{bundle.VerificationDialog}"
+                  closable="true" showEffect="fade" hideEffect="fade" modal="true" appendTo="body"
+                  resizable="false">
+            <h:form id="formSearchToCreate">
+                <h:panelGrid columns="2">
+                    <p:outputLabel for="tipoDoc" value="#{bundle.CreatePersonasCliLabel_tipoDocumento}" />
+                    <p:selectOneMenu id="tipoDoc" value="#{masterDataPersonBean.person.tipoDocumento}" disabled="#{personFormEntry.disableNoEditableField}" required="true" requiredMessage="#{bundle.CreatePersonasCliRequiredMessage_tipoDocumento}" filter="true" filterMatchMode="contains" autoWidth="false" style=" width: 170px" widgetVar="tipoDoc">
+                        <f:selectItem itemLabel="#{bundle.SelectOneMessage}" itemValue="#{null}"/>
+                        <f:selectItems  value="#{generalViewBean.tiposDocumento}" var="tipoDocItem" itemLabel="#{tipoDocItem.descripcion}" itemValue="#{tipoDocItem}"/>
+                    </p:selectOneMenu>
+
+                    <p:outputLabel for="numDocum" value="#{bundle.CreatePersonasCliLabel_numDocumento}"   style="width: 200px"/>
+                    <p:inputText id="numDocum" value="#{masterDataPersonBean.person.numeroDocumento}" required="true" requiredMessage="#{bundle.CreatePersonasCliRequiredMessage_numDocumento}" style="text-transform:uppercase;width: 200px" maxlength="20"/>
+
+                    <p:outputLabel value="#{bundle.CreatePersonasCliLabel_idSucursal}" for="branchOffice" rendered="#{branchOfficeBean.showBranchOffice}"/>
+                    <p:selectOneMenu id="branchOffice" value="#{branchOfficeBean.selectedBranchOffice}" rendered="#{branchOfficeBean.showBranchOffice}" required="true" requiredMessage="#{bundle.EditPersonasCliRequiredMessage_idSucursal}">
+                        <f:selectItem itemLabel="#{bundle.SelectOneMessage}" itemValue="#{null}"/>
+                        <f:selectItems value="#{branchOfficeBean.branchOffices}" var="branchOffice" itemValue="#{branchOffice}" itemLabel="#{branchOffice.nombre}"/>
+                    </p:selectOneMenu>
+                </h:panelGrid>
+                <p:commandButton action="#{masterDataPersonBean.searchToCreate()}"  value="#{bundle.Save}" update=":growl formSearchToCreate"/>
+                <p:commandButton value="#{bundle.Cancel}" immediate="true" ajax="false" onclick="PF('dialogSearchToCreate').hide();"/>
+            </h:form>
+        </p:dialog>
+
+
+        <!-- Download excel template, this dialog is shown or not depending on selectBranchOfficeToDownload() method-->
+
+        <p:dialog id="load" widgetVar="dialogDownloadTemplate" header="#{bundle.ChooseBranchOfficeToDownload}"
+                  closable="true" showEffect="fade" hideEffect="fade" modal="true" appendTo="body"
+                  resizable="false">
+            <h:form>
+                <h:panelGrid columns="3">
+                    <p:outputLabel value="#{bundle.CreatePersonasCliLabel_idSucursal}" for="branchOffice"/>
+                    <p:selectOneMenu id="branchOffice" value="#{branchOfficeBean.selectedBranchOffice}" required="true" requiredMessage="#{bundle.EditPersonasCliRequiredMessage_idSucursal}">
+                        <f:selectItem itemLabel="#{bundle.SelectOneMessage}" itemValue="#{null}"/>
+                        <f:selectItems value="#{branchOfficeBean.branchOffices}" var="branchOffice" itemValue="#{branchOffice}" itemLabel="#{branchOffice.nombre}"/>
+                    </p:selectOneMenu>
+                    <p:commandButton value="#{bundle.Download}" action="#{masterDataPersonBean.downloadTemplate()}" ajax="false" onclick="PF('dialogDownloadTemplate').hide();"/>
+                </h:panelGrid>
+            </h:form>
+        </p:dialog>
+
+
+
+        <!--Top Menu-->
+        <h:form id="formActions" style="margin: 0px;">            
+            #{bundle.MasterDataPersonTitle}
+            <h:panelGrid columns="5" cellpadding="50">	
+
+                <p:commandLink action="#{masterDataPersonBean.selectBranchOfficeToDownload()}" ajax="false">
+                    <h:outputText value="#{bundle.DownloadTemplate}" />                   
+                </p:commandLink>
+
+                <p:commandLink onsuccess="PF('dialogLoad').show();">
+                    <h:outputText value="#{bundle.MasterDataLoadFromFile}" />                   
+                </p:commandLink>
+
+                <p:commandLink onsuccess="PF('dialogSearchToCreate').show();">
+                    <h:outputText value="#{bundle.MasterDataCreateFromForm}" />
+                </p:commandLink>
+
+                <p:commandLink onsuccess="PF('dialogErrorList').show();" rendered="#{masterDataPersonBean.hasErrorLoadingFile}">
+                    <h:outputText value="#{bundle.MaterDataShowError}"/>
+                </p:commandLink>
+
+            </h:panelGrid>           
+        </h:form>
+
+        <!--PERSON LIST-->
+        <h:form id="PersonasCliListForm">
+
+            <p:dataTable id="datalist" value="#{masterDataPersonBean.personsByBranchOffice}" var="item"
+                         paginator="true"
+                         rowKey="#{item.personas.apellido1}"
+                         rows="10"
+                         rowsPerPageTemplate="10,20,30,40,50"
+                         tableStyle="width:auto"
+                         >
+                <f:facet name="header">
+                    List of Persons
+                    <div align="right">
+                        <p:commandButton id="toggler" type="button" value="Columns"
+                                         icon="ui-icon-calculator" />
+                        <p:columnToggler datasource="datalist" trigger="toggler" />
+                    </div>
+                </f:facet>
+
+                <p:column headerText="#{bundle.ListPersonasCliTitle_numDocumento}">
+                    <h:outputText value="#{item.personas.numeroDocumento}"/>
+                </p:column>
+                <p:column filterBy="#{item.personas.nombre1}" headerText="#{bundle.ListPersonasCliTitle_nombre1}" filterMatchMode="contains">
+                    <h:outputText value="#{item.personas.nombre1}"/>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListPersonasCliTitle_nombre2}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.personas.nombre2}"/>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListPersonasCliTitle_apellido1}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.personas.apellido1}"/>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListPersonasCliTitle_apellido2}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.personas.apellido2}"/>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListPersonasCliTitle_direccion}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.personas.direccion}"/>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListPersonasCliTitle_telefono}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.personas.telefono}"/>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListPersonasCliTitle_celular}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.personas.celular}"/>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListPersonasCliTitle_mail}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.personas.mail}"/>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListPersonasCliTitle_personaContacto}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.personas.personaContacto}"/>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListPersonasCliTitle_telPersonaContacto}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.personas.telPersonaContacto}"/>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListPersonasCliTitle_fechavigenciaSS}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.personas.fechaVigenciaSS}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListPersonasCliTitle_sexo}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.personas.sexoString}"/>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListPersonasCliTitle_rh}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.personas.rh}"/>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListPersonasCliTitle_fechaNacimiento}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.personas.fechaNacimiento}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListPersonasCliTitle_fecha}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.personas.fecha}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListPersonasCliTitle_arl}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.personas.arl.nombre}"/>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListPersonasCliTitle_idDepartamento}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.personas.departamento.nombre}"/>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListPersonasCliTitle_idEmpresaOrigen}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.personas.empresaOrigen.nombre1}"/>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListPersonasCliTitle_eps}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.personas.eps.nombre}"/>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListPersonasCliTitle_idMunicipio}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.personas.municipio.nombre}"/>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListPersonasCliTitle_idPais}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.personas.pais.nombre}"/>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListPersonasCliTitle_tipoDocumento}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.personas.tipoDocumento.descripcion}"/>
+                </p:column>
+                <p:column headerText="#{bundle.Options}" styleClass="centerElem" id="columA" exportable="false" toggleable="false">
+                    <h:panelGroup style="white-space: nowrap">
+                        <p:commandButton id="editButtonn" resetValues="true" action="#{masterDataPersonBean.preEdit(item)}" icon="ui-icon-pencil" />
+                        <p:commandButton id="blockButton" rendered="#{!item.locked}" resetValues="true" actionListener="#{masterDataPersonBean.blockPerson(item)}" icon="ui-icon-locked" ajax="false" />
+                        <p:commandButton id="unlockButton" rendered="#{item.locked}" resetValues="true" actionListener="#{masterDataPersonBean.activePerson(item)}" icon="ui-icon-unlocked" ajax="false" />
+                        <p:commandButton id="deleteButton" resetValues="true" actionListener="#{masterDataPersonBean.disablePerson(item)}" icon="ui-icon-trash" ajax="false" />
+                    </h:panelGroup>
+                </p:column>
+                <f:facet name="footer">
+                    <!--In total there are {fn:length(masterDataPersonBean.personsByBranchOffice)} persons.-->
+                </f:facet>
+            </p:dataTable>
+        </h:form>
+
+
+        <!--ERROR UPLOADING FILE LIST-->
+        <p:dialog id="dialogErrorList" widgetVar="dialogErrorList" header="#{bundle.ErrorList}"
+                  closable="true" showEffect="fade" hideEffect="fade" modal="true" appendTo="body"
+                  resizable="false">
+
+            <h:form>
+
+                <p:dataTable id="datalist" value="#{masterDataPersonBean.uploadedFileErrorList}" var="error"
+                             paginator="true"
+                             rowKey="#{error.personas.apellido1}"
+                             rows="10"
+                             rowsPerPageTemplate="10,20,30,40,50"
+                             tableStyle="width:auto"
+                             >
+                    <f:facet name="header">
+                        List of Persons
+                    </f:facet>
+                    <p:column headerText="#{bundle.ListPersonasCliTitle_numDocumento}">
+                        <h:outputText value="#{error.personas.numeroDocumento}"/>
+                    </p:column>
+                    <p:column headerText="#{bundle.ErrorObservation}">
+                        <h:outputText value="#{error.errorObservation}"/>
+                    </p:column>
+                    <f:facet name="footer">
+                        <!--In total there are {fn:length(masterDataPersonBean.personsByBranchOffice)} persons.-->
+                    </f:facet>
+                </p:dataTable>
+            </h:form>
+        </p:dialog>
+
+    </ui:define>
+
+</ui:composition>

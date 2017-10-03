@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="MovDocumentosViewDlg" widgetVar="MovDocumentosViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewMovDocumentosTitle}">
+            <h:form id="MovDocumentosViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{movDocumentosController.selected != null}">
+                        <h:outputText value="#{bundle.ViewMovDocumentosLabel_idMovDocumento}"/>
+                        <h:outputText value="#{movDocumentosController.selected.idMovDocumento}" title="#{bundle.ViewMovDocumentosTitle_idMovDocumento}"/>
+                        <h:outputText value="#{bundle.ViewMovDocumentosLabel_IDDocumento}"/>
+                        <h:outputText value="#{movDocumentosController.selected.IDDocumento}" title="#{bundle.ViewMovDocumentosTitle_IDDocumento}"/>
+                        <h:outputText value="#{bundle.ViewMovDocumentosLabel_fechaMovimiento}"/>
+                        <h:outputText value="#{movDocumentosController.selected.fechaMovimiento}" title="#{bundle.ViewMovDocumentosTitle_fechaMovimiento}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewMovDocumentosLabel_horaMovimiento}"/>
+                        <h:outputText value="#{movDocumentosController.selected.horaMovimiento}" title="#{bundle.ViewMovDocumentosTitle_horaMovimiento}">
+                            <f:convertDateTime pattern="HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewMovDocumentosLabel_tipoEvento}"/>
+                        <p:selectBooleanCheckbox value="#{movDocumentosController.selected.tipoEvento}" disabled="true"/>
+                        <h:outputText value="#{bundle.ViewMovDocumentosLabel_observacion}"/>
+                        <h:outputText value="#{movDocumentosController.selected.observacion}" title="#{bundle.ViewMovDocumentosTitle_observacion}"/>
+                        <h:outputText value="#{bundle.ViewMovDocumentosLabel_fecha}"/>
+                        <h:outputText value="#{movDocumentosController.selected.fecha}" title="#{bundle.ViewMovDocumentosTitle_fecha}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewMovDocumentosLabel_usuario}"/>
+                        <h:outputText value="#{movDocumentosController.selected.usuario}" title="#{bundle.ViewMovDocumentosTitle_usuario}"/>
+                        <h:outputText value="#{bundle.ViewMovDocumentosLabel_sucursal}"/>
+                        <h:outputText value="#{movDocumentosController.selected.sucursal}" title="#{bundle.ViewMovDocumentosTitle_sucursal}"/>
+                        <h:outputText value="#{bundle.ViewMovDocumentosLabel_entidad}"/>
+                        <h:outputText value="#{movDocumentosController.selected.entidad}" title="#{bundle.ViewMovDocumentosTitle_entidad}"/>
+                        <h:outputText value="#{bundle.ViewMovDocumentosLabel_movimientoPersona}"/>
+                        <h:outputText value="#{movDocumentosController.selected.movimientoPersona}" title="#{bundle.ViewMovDocumentosTitle_movimientoPersona}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="MovDocumentosViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

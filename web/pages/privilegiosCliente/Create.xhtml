@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PrivilegiosClienteCreateDlg" widgetVar="PrivilegiosClienteCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreatePrivilegiosClienteTitle}">
+            <h:form id="PrivilegiosClienteCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{privilegiosClienteController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreatePrivilegiosClienteLabel_idPrivilegiosCliente}" for="idPrivilegiosCliente" />
+                        <p:inputText id="idPrivilegiosCliente" value="#{privilegiosClienteController.selected.idPrivilegiosCliente}" title="#{bundle.CreatePrivilegiosClienteTitle_idPrivilegiosCliente}" required="true" requiredMessage="#{bundle.CreatePrivilegiosClienteRequiredMessage_idPrivilegiosCliente}"/>
+                        <p:outputLabel value="#{bundle.CreatePrivilegiosClienteLabel_ver}" for="ver" />
+                        <p:selectBooleanCheckbox id="ver" value="#{privilegiosClienteController.selected.ver}" required="true" requiredMessage="#{bundle.EditPrivilegiosClienteRequiredMessage_ver}"/>
+                        <p:outputLabel value="#{bundle.CreatePrivilegiosClienteLabel_codigoMenu}" for="codigoMenu" />
+                        <p:selectOneMenu id="codigoMenu" value="#{privilegiosClienteController.selected.codigoMenu}" required="true" requiredMessage="#{bundle.EditPrivilegiosClienteRequiredMessage_codigoMenu}">
+                            <f:selectItems value="#{menuClienteController.itemsAvailableSelectOne}"
+                                           var="codigoMenuItem"
+                                           itemValue="#{codigoMenuItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreatePrivilegiosClienteLabel_usuario}" for="usuario" />
+                        <p:selectOneMenu id="usuario" value="#{privilegiosClienteController.selected.usuario}" required="true" requiredMessage="#{bundle.EditPrivilegiosClienteRequiredMessage_usuario}">
+                            <f:selectItems value="#{usuariosController.itemsAvailableSelectOne}"
+                                           var="usuarioItem"
+                                           itemValue="#{usuarioItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{privilegiosClienteController.create}" value="#{bundle.Save}" update="display,:PrivilegiosClienteListForm:datalist,:growl" oncomplete="handleSubmit(args,'PrivilegiosClienteCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="PrivilegiosClienteCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="MovDocumentosEditDlg" widgetVar="MovDocumentosEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditMovDocumentosTitle}">
+            <h:form id="MovDocumentosEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{movDocumentosController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditMovDocumentosLabel_idMovDocumento}" for="idMovDocumento" />
+                        <p:inputText id="idMovDocumento" value="#{movDocumentosController.selected.idMovDocumento}" title="#{bundle.EditMovDocumentosTitle_idMovDocumento}" required="true" requiredMessage="#{bundle.EditMovDocumentosRequiredMessage_idMovDocumento}"/>
+                        <p:outputLabel value="#{bundle.EditMovDocumentosLabel_IDDocumento}" for="IDDocumento" />
+                        <p:inputText id="IDDocumento" value="#{movDocumentosController.selected.IDDocumento}" title="#{bundle.EditMovDocumentosTitle_IDDocumento}" required="true" requiredMessage="#{bundle.EditMovDocumentosRequiredMessage_IDDocumento}"/>
+                        <p:outputLabel value="#{bundle.EditMovDocumentosLabel_fechaMovimiento}" for="fechaMovimiento" />
+                        <p:calendar id="fechaMovimiento" pattern="MM/dd/yyyy" value="#{movDocumentosController.selected.fechaMovimiento}" title="#{bundle.EditMovDocumentosTitle_fechaMovimiento}" required="true" requiredMessage="#{bundle.EditMovDocumentosRequiredMessage_fechaMovimiento}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditMovDocumentosLabel_horaMovimiento}" for="horaMovimiento" />
+                        <p:calendar id="horaMovimiento" pattern="HH:mm:ss" value="#{movDocumentosController.selected.horaMovimiento}" title="#{bundle.EditMovDocumentosTitle_horaMovimiento}" required="true" requiredMessage="#{bundle.EditMovDocumentosRequiredMessage_horaMovimiento}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditMovDocumentosLabel_tipoEvento}" for="tipoEvento" />
+                        <p:selectBooleanCheckbox id="tipoEvento" value="#{movDocumentosController.selected.tipoEvento}" required="true" requiredMessage="#{bundle.EditMovDocumentosRequiredMessage_tipoEvento}"/>
+                        <p:outputLabel value="#{bundle.EditMovDocumentosLabel_observacion}" for="observacion" />
+                        <p:inputText id="observacion" value="#{movDocumentosController.selected.observacion}" title="#{bundle.EditMovDocumentosTitle_observacion}" />
+                        <p:outputLabel value="#{bundle.EditMovDocumentosLabel_fecha}" for="fecha" />
+                        <p:calendar id="fecha" pattern="MM/dd/yyyy HH:mm:ss" value="#{movDocumentosController.selected.fecha}" title="#{bundle.EditMovDocumentosTitle_fecha}" required="true" requiredMessage="#{bundle.EditMovDocumentosRequiredMessage_fecha}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditMovDocumentosLabel_usuario}" for="usuario" />
+                        <p:selectOneMenu id="usuario" value="#{movDocumentosController.selected.usuario}" required="true" requiredMessage="#{bundle.EditMovDocumentosRequiredMessage_usuario}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{personasController.itemsAvailableSelectOne}"
+                                           var="usuarioItem"
+                                           itemValue="#{usuarioItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditMovDocumentosLabel_sucursal}" for="sucursal" />
+                        <p:selectOneMenu id="sucursal" value="#{movDocumentosController.selected.sucursal}" required="true" requiredMessage="#{bundle.EditMovDocumentosRequiredMessage_sucursal}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{sucursalesController.itemsAvailableSelectOne}"
+                                           var="sucursalItem"
+                                           itemValue="#{sucursalItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditMovDocumentosLabel_entidad}" for="entidad" />
+                        <p:selectOneMenu id="entidad" value="#{movDocumentosController.selected.entidad}" required="true" requiredMessage="#{bundle.EditMovDocumentosRequiredMessage_entidad}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{entidadesController.itemsAvailableSelectOne}"
+                                           var="entidadItem"
+                                           itemValue="#{entidadItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditMovDocumentosLabel_movimientoPersona}" for="movimientoPersona" />
+                        <p:selectOneMenu id="movimientoPersona" value="#{movDocumentosController.selected.movimientoPersona}" required="true" requiredMessage="#{bundle.EditMovDocumentosRequiredMessage_movimientoPersona}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{movPersonasController.itemsAvailableSelectOne}"
+                                           var="movimientoPersonaItem"
+                                           itemValue="#{movimientoPersonaItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{movDocumentosController.update}" value="#{bundle.Save}" update="display,:MovDocumentosListForm:datalist,:growl" oncomplete="handleSubmit(args, 'MovDocumentosEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="MovDocumentosEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

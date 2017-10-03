@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+
+
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListHorariosTitle}"></h:outputText>
+        </ui:define>
+
+        <ui:define name="body">
+            <h:form id="HorariosListForm">
+                <p:panel header="#{bundle.ListHorariosTitle}">
+                    <p:dataTable id="datalist" value="#{horariosController.items}" var="item"
+                                 selectionMode="single" selection="#{horariosController.selected}"
+                                 paginator="true"
+                                 rowKey="#{item.idHorario}"
+                                 rows="10"
+                                 rowsPerPageTemplate="10,20,30,40,50"
+                                 >
+
+                        <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                        <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListHorariosTitle_idHorario}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idHorario}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListHorariosTitle_nombre}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nombre}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListHorariosTitle_lunes}"/>
+                            </f:facet>
+                            <p:selectBooleanCheckbox value="#{item.lunes}" disabled="true"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListHorariosTitle_horaIngresoL}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.horaIngresoL}">
+                                <f:convertDateTime pattern="HH:mm:ss" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListHorariosTitle_horaSalidaL}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.horaSalidaL}">
+                                <f:convertDateTime pattern="HH:mm:ss" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListHorariosTitle_martes}"/>
+                            </f:facet>
+                            <p:selectBooleanCheckbox value="#{item.martes}" disabled="true"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListHorariosTitle_horaIngresoM}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.horaIngresoM}">
+                                <f:convertDateTime pattern="HH:mm:ss" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListHorariosTitle_horaSalidaM}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.horaSalidaM}">
+                                <f:convertDateTime pattern="HH:mm:ss" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListHorariosTitle_miercoles}"/>
+                            </f:facet>
+                            <p:selectBooleanCheckbox value="#{item.miercoles}" disabled="true"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListHorariosTitle_horaIngresoW}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.horaIngresoW}">
+                                <f:convertDateTime pattern="HH:mm:ss" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListHorariosTitle_horaSalidaW}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.horaSalidaW}">
+                                <f:convertDateTime pattern="HH:mm:ss" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListHorariosTitle_jueves}"/>
+                            </f:facet>
+                            <p:selectBooleanCheckbox value="#{item.jueves}" disabled="true"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListHorariosTitle_horaIngresoJ}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.horaIngresoJ}">
+                                <f:convertDateTime pattern="HH:mm:ss" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListHorariosTitle_horaSalidaJ}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.horaSalidaJ}">
+                                <f:convertDateTime pattern="HH:mm:ss" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListHorariosTitle_viernes}"/>
+                            </f:facet>
+                            <p:selectBooleanCheckbox value="#{item.viernes}" disabled="true"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListHorariosTitle_horaIngresoV}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.horaIngresoV}">
+                                <f:convertDateTime pattern="HH:mm:ss" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListHorariosTitle_horaSalidaV}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.horaSalidaV}">
+                                <f:convertDateTime pattern="HH:mm:ss" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListHorariosTitle_sabado}"/>
+                            </f:facet>
+                            <p:selectBooleanCheckbox value="#{item.sabado}" disabled="true"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListHorariosTitle_horaIngresoS}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.horaIngresoS}">
+                                <f:convertDateTime pattern="HH:mm:ss" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListHorariosTitle_horaSalidaS}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.horaSalidaS}">
+                                <f:convertDateTime pattern="HH:mm:ss" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListHorariosTitle_domingo}"/>
+                            </f:facet>
+                            <p:selectBooleanCheckbox value="#{item.domingo}" disabled="true"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListHorariosTitle_horaIngresoD}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.horaIngresoD}">
+                                <f:convertDateTime pattern="HH:mm:ss" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListHorariosTitle_horaSalidaD}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.horaSalidaD}">
+                                <f:convertDateTime pattern="HH:mm:ss" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListHorariosTitle_fecha}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fecha}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListHorariosTitle_usuario}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.usuario}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListHorariosTitle_sucursal}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.sucursal}"/>
+                        </p:column>
+                        <f:facet name="footer">
+                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{horariosController.prepareCreate}" update=":HorariosCreateForm" oncomplete="PF('HorariosCreateDialog').show()"/>
+                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":HorariosViewForm" oncomplete="PF('HorariosViewDialog').show()" disabled="#{empty horariosController.selected}"/>
+                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":HorariosEditForm" oncomplete="PF('HorariosEditDialog').show()" disabled="#{empty horariosController.selected}"/>
+                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{horariosController.destroy}" update=":growl,datalist" disabled="#{empty horariosController.selected}"/>
+                        </f:facet>
+                    </p:dataTable>
+                </p:panel>
+            </h:form>
+
+            <ui:include src="Create.xhtml"/>
+            <ui:include src="Edit.xhtml"/>
+            <ui:include src="View.xhtml"/>
+        </ui:define>
+    </ui:composition>
+
+</html>

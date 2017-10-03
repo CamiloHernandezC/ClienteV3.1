@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PrivilegiosClienteViewDlg" widgetVar="PrivilegiosClienteViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewPrivilegiosClienteTitle}">
+            <h:form id="PrivilegiosClienteViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{privilegiosClienteController.selected != null}">
+                        <h:outputText value="#{bundle.ViewPrivilegiosClienteLabel_idPrivilegiosCliente}"/>
+                        <h:outputText value="#{privilegiosClienteController.selected.idPrivilegiosCliente}" title="#{bundle.ViewPrivilegiosClienteTitle_idPrivilegiosCliente}"/>
+                        <h:outputText value="#{bundle.ViewPrivilegiosClienteLabel_ver}"/>
+                        <p:selectBooleanCheckbox value="#{privilegiosClienteController.selected.ver}" disabled="true"/>
+                        <h:outputText value="#{bundle.ViewPrivilegiosClienteLabel_codigoMenu}"/>
+                        <h:outputText value="#{privilegiosClienteController.selected.codigoMenu}" title="#{bundle.ViewPrivilegiosClienteTitle_codigoMenu}"/>
+                        <h:outputText value="#{bundle.ViewPrivilegiosClienteLabel_usuario}"/>
+                        <h:outputText value="#{privilegiosClienteController.selected.usuario}" title="#{bundle.ViewPrivilegiosClienteTitle_usuario}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="PrivilegiosClienteViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

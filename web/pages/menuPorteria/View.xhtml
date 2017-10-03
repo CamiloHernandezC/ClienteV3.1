@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="MenuPorteriaViewDlg" widgetVar="MenuPorteriaViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewMenuPorteriaTitle}">
+            <h:form id="MenuPorteriaViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{menuPorteriaController.selected != null}">
+                        <h:outputText value="#{bundle.ViewMenuPorteriaLabel_codigo}"/>
+                        <h:outputText value="#{menuPorteriaController.selected.codigo}" title="#{bundle.ViewMenuPorteriaTitle_codigo}"/>
+                        <h:outputText value="#{bundle.ViewMenuPorteriaLabel_nombre}"/>
+                        <h:outputText value="#{menuPorteriaController.selected.nombre}" title="#{bundle.ViewMenuPorteriaTitle_nombre}"/>
+                        <h:outputText value="#{bundle.ViewMenuPorteriaLabel_url}"/>
+                        <h:outputText value="#{menuPorteriaController.selected.url}" title="#{bundle.ViewMenuPorteriaTitle_url}"/>
+                        <h:outputText value="#{bundle.ViewMenuPorteriaLabel_tipo}"/>
+                        <h:outputText value="#{menuPorteriaController.selected.tipo}" title="#{bundle.ViewMenuPorteriaTitle_tipo}"/>
+                        <h:outputText value="#{bundle.ViewMenuPorteriaLabel_nivel}"/>
+                        <h:outputText value="#{menuPorteriaController.selected.nivel}" title="#{bundle.ViewMenuPorteriaTitle_nivel}"/>
+                        <h:outputText value="#{bundle.ViewMenuPorteriaLabel_padre}"/>
+                        <h:outputText value="#{menuPorteriaController.selected.padre}" title="#{bundle.ViewMenuPorteriaTitle_padre}"/>
+                        <h:outputText value="#{bundle.ViewMenuPorteriaLabel_estado}"/>
+                        <p:selectBooleanCheckbox value="#{menuPorteriaController.selected.estado}" disabled="true"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="MenuPorteriaViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

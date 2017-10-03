@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="MovObjetosViewDlg" widgetVar="MovObjetosViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewMovObjetosTitle}">
+            <h:form id="MovObjetosViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{movObjetosController.selected != null}">
+                        <h:outputText value="#{bundle.ViewMovObjetosLabel_idMovimiento}"/>
+                        <h:outputText value="#{movObjetosController.selected.idMovimiento}" title="#{bundle.ViewMovObjetosTitle_idMovimiento}"/>
+                        <h:outputText value="#{bundle.ViewMovObjetosLabel_idObjeto}"/>
+                        <h:outputText value="#{movObjetosController.selected.idObjeto}" title="#{bundle.ViewMovObjetosTitle_idObjeto}"/>
+                        <h:outputText value="#{bundle.ViewMovObjetosLabel_fechaEntrada}"/>
+                        <h:outputText value="#{movObjetosController.selected.fechaEntrada}" title="#{bundle.ViewMovObjetosTitle_fechaEntrada}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewMovObjetosLabel_horaEntrada}"/>
+                        <h:outputText value="#{movObjetosController.selected.horaEntrada}" title="#{bundle.ViewMovObjetosTitle_horaEntrada}">
+                            <f:convertDateTime pattern="HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewMovObjetosLabel_fechaSalida}"/>
+                        <h:outputText value="#{movObjetosController.selected.fechaSalida}" title="#{bundle.ViewMovObjetosTitle_fechaSalida}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewMovObjetosLabel_horaSalida}"/>
+                        <h:outputText value="#{movObjetosController.selected.horaSalida}" title="#{bundle.ViewMovObjetosTitle_horaSalida}">
+                            <f:convertDateTime pattern="HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewMovObjetosLabel_observacionEntrada}"/>
+                        <h:outputText value="#{movObjetosController.selected.observacionEntrada}" title="#{bundle.ViewMovObjetosTitle_observacionEntrada}"/>
+                        <h:outputText value="#{bundle.ViewMovObjetosLabel_observacionSalida}"/>
+                        <h:outputText value="#{movObjetosController.selected.observacionSalida}" title="#{bundle.ViewMovObjetosTitle_observacionSalida}"/>
+                        <h:outputText value="#{bundle.ViewMovObjetosLabel_salidaForzada}"/>
+                        <p:selectBooleanCheckbox value="#{movObjetosController.selected.salidaForzada}" disabled="true"/>
+                        <h:outputText value="#{bundle.ViewMovObjetosLabel_ingresoForzado}"/>
+                        <p:selectBooleanCheckbox value="#{movObjetosController.selected.ingresoForzado}" disabled="true"/>
+                        <h:outputText value="#{bundle.ViewMovObjetosLabel_fecha}"/>
+                        <h:outputText value="#{movObjetosController.selected.fecha}" title="#{bundle.ViewMovObjetosTitle_fecha}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewMovObjetosLabel_usuario}"/>
+                        <h:outputText value="#{movObjetosController.selected.usuario}" title="#{bundle.ViewMovObjetosTitle_usuario}"/>
+                        <h:outputText value="#{bundle.ViewMovObjetosLabel_sucursal}"/>
+                        <h:outputText value="#{movObjetosController.selected.sucursal}" title="#{bundle.ViewMovObjetosTitle_sucursal}"/>
+                        <h:outputText value="#{bundle.ViewMovObjetosLabel_movPersonaEntrada}"/>
+                        <h:outputText value="#{movObjetosController.selected.movPersonaEntrada}" title="#{bundle.ViewMovObjetosTitle_movPersonaEntrada}"/>
+                        <h:outputText value="#{bundle.ViewMovObjetosLabel_movPersonaSalida}"/>
+                        <h:outputText value="#{movObjetosController.selected.movPersonaSalida}" title="#{bundle.ViewMovObjetosTitle_movPersonaSalida}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="MovObjetosViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

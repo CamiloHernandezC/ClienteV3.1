@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="MenuPorteriaEditDlg" widgetVar="MenuPorteriaEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditMenuPorteriaTitle}">
+            <h:form id="MenuPorteriaEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{menuPorteriaController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditMenuPorteriaLabel_codigo}" for="codigo" />
+                        <p:inputText id="codigo" value="#{menuPorteriaController.selected.codigo}" title="#{bundle.EditMenuPorteriaTitle_codigo}" required="true" requiredMessage="#{bundle.EditMenuPorteriaRequiredMessage_codigo}"/>
+                        <p:outputLabel value="#{bundle.EditMenuPorteriaLabel_nombre}" for="nombre" />
+                        <p:inputText id="nombre" value="#{menuPorteriaController.selected.nombre}" title="#{bundle.EditMenuPorteriaTitle_nombre}" required="true" requiredMessage="#{bundle.EditMenuPorteriaRequiredMessage_nombre}"/>
+                        <p:outputLabel value="#{bundle.EditMenuPorteriaLabel_url}" for="url" />
+                        <p:inputText id="url" value="#{menuPorteriaController.selected.url}" title="#{bundle.EditMenuPorteriaTitle_url}" />
+                        <p:outputLabel value="#{bundle.EditMenuPorteriaLabel_tipo}" for="tipo" />
+                        <p:inputText id="tipo" value="#{menuPorteriaController.selected.tipo}" title="#{bundle.EditMenuPorteriaTitle_tipo}" required="true" requiredMessage="#{bundle.EditMenuPorteriaRequiredMessage_tipo}"/>
+                        <p:outputLabel value="#{bundle.EditMenuPorteriaLabel_nivel}" for="nivel" />
+                        <p:inputText id="nivel" value="#{menuPorteriaController.selected.nivel}" title="#{bundle.EditMenuPorteriaTitle_nivel}" required="true" requiredMessage="#{bundle.EditMenuPorteriaRequiredMessage_nivel}"/>
+                        <p:outputLabel value="#{bundle.EditMenuPorteriaLabel_padre}" for="padre" />
+                        <p:inputText id="padre" value="#{menuPorteriaController.selected.padre}" title="#{bundle.EditMenuPorteriaTitle_padre}" />
+                        <p:outputLabel value="#{bundle.EditMenuPorteriaLabel_estado}" for="estado" />
+                        <p:selectBooleanCheckbox id="estado" value="#{menuPorteriaController.selected.estado}" required="true" requiredMessage="#{bundle.EditMenuPorteriaRequiredMessage_estado}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{menuPorteriaController.update}" value="#{bundle.Save}" update="display,:MenuPorteriaListForm:datalist,:growl" oncomplete="handleSubmit(args, 'MenuPorteriaEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="MenuPorteriaEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

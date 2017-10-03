@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="EpsCreateDlg" widgetVar="EpsCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateEpsTitle}">
+            <h:form id="EpsCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{epsController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateEpsLabel_eps}" for="eps" />
+                        <p:inputText id="eps" value="#{epsController.selected.eps}" title="#{bundle.CreateEpsTitle_eps}" required="true" requiredMessage="#{bundle.CreateEpsRequiredMessage_eps}"/>
+                        <p:outputLabel value="#{bundle.CreateEpsLabel_codigo}" for="codigo" />
+                        <p:inputText id="codigo" value="#{epsController.selected.codigo}" title="#{bundle.CreateEpsTitle_codigo}" required="true" requiredMessage="#{bundle.CreateEpsRequiredMessage_codigo}"/>
+                        <p:outputLabel value="#{bundle.CreateEpsLabel_nombre}" for="nombre" />
+                        <p:inputText id="nombre" value="#{epsController.selected.nombre}" title="#{bundle.CreateEpsTitle_nombre}" required="true" requiredMessage="#{bundle.CreateEpsRequiredMessage_nombre}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{epsController.create}" value="#{bundle.Save}" update="display,:EpsListForm:datalist,:growl" oncomplete="handleSubmit(args,'EpsCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="EpsCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

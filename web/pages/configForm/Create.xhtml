@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ConfigFormCreateDlg" widgetVar="ConfigFormCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateConfigFormTitle}">
+            <h:form id="ConfigFormCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{configFormController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateConfigFormLabel_idConfigForm}" for="idConfigForm" />
+                        <p:inputText id="idConfigForm" value="#{configFormController.selected.idConfigForm}" title="#{bundle.CreateConfigFormTitle_idConfigForm}" required="true" requiredMessage="#{bundle.CreateConfigFormRequiredMessage_idConfigForm}"/>
+                        <p:outputLabel value="#{bundle.CreateConfigFormLabel_formulario}" for="formulario" />
+                        <p:inputText id="formulario" value="#{configFormController.selected.formulario}" title="#{bundle.CreateConfigFormTitle_formulario}" required="true" requiredMessage="#{bundle.CreateConfigFormRequiredMessage_formulario}"/>
+                        <p:outputLabel value="#{bundle.CreateConfigFormLabel_campo}" for="campo" />
+                        <p:inputText id="campo" value="#{configFormController.selected.campo}" title="#{bundle.CreateConfigFormTitle_campo}" required="true" requiredMessage="#{bundle.CreateConfigFormRequiredMessage_campo}"/>
+                        <p:outputLabel value="#{bundle.CreateConfigFormLabel_mostrar}" for="mostrar" />
+                        <p:selectBooleanCheckbox id="mostrar" value="#{configFormController.selected.mostrar}" required="true" requiredMessage="#{bundle.EditConfigFormRequiredMessage_mostrar}"/>
+                        <p:outputLabel value="#{bundle.CreateConfigFormLabel_porteria}" for="porteria" />
+                        <p:selectOneMenu id="porteria" value="#{configFormController.selected.porteria}" required="true" requiredMessage="#{bundle.EditConfigFormRequiredMessage_porteria}">
+                            <f:selectItems value="#{porteriasController.itemsAvailableSelectOne}"
+                                           var="porteriaItem"
+                                           itemValue="#{porteriaItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{configFormController.create}" value="#{bundle.Save}" update="display,:ConfigFormListForm:datalist,:growl" oncomplete="handleSubmit(args,'ConfigFormCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ConfigFormCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

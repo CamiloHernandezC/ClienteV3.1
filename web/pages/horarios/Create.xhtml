@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="HorariosCreateDlg" widgetVar="HorariosCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateHorariosTitle}">
+            <h:form id="HorariosCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{horariosController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateHorariosLabel_idHorario}" for="idHorario" />
+                        <p:inputText id="idHorario" value="#{horariosController.selected.idHorario}" title="#{bundle.CreateHorariosTitle_idHorario}" required="true" requiredMessage="#{bundle.CreateHorariosRequiredMessage_idHorario}"/>
+                        <p:outputLabel value="#{bundle.CreateHorariosLabel_nombre}" for="nombre" />
+                        <p:inputText id="nombre" value="#{horariosController.selected.nombre}" title="#{bundle.CreateHorariosTitle_nombre}" required="true" requiredMessage="#{bundle.CreateHorariosRequiredMessage_nombre}"/>
+                        <p:outputLabel value="#{bundle.CreateHorariosLabel_lunes}" for="lunes" />
+                        <p:selectBooleanCheckbox id="lunes" value="#{horariosController.selected.lunes}" required="true" requiredMessage="#{bundle.EditHorariosRequiredMessage_lunes}"/>
+                        <p:outputLabel value="#{bundle.CreateHorariosLabel_horaIngresoL}" for="horaIngresoL" />
+                        <p:calendar id="horaIngresoL" pattern="HH:mm:ss" value="#{horariosController.selected.horaIngresoL}" title="#{bundle.EditHorariosTitle_horaIngresoL}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateHorariosLabel_horaSalidaL}" for="horaSalidaL" />
+                        <p:calendar id="horaSalidaL" pattern="HH:mm:ss" value="#{horariosController.selected.horaSalidaL}" title="#{bundle.EditHorariosTitle_horaSalidaL}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateHorariosLabel_martes}" for="martes" />
+                        <p:selectBooleanCheckbox id="martes" value="#{horariosController.selected.martes}" required="true" requiredMessage="#{bundle.EditHorariosRequiredMessage_martes}"/>
+                        <p:outputLabel value="#{bundle.CreateHorariosLabel_horaIngresoM}" for="horaIngresoM" />
+                        <p:calendar id="horaIngresoM" pattern="HH:mm:ss" value="#{horariosController.selected.horaIngresoM}" title="#{bundle.EditHorariosTitle_horaIngresoM}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateHorariosLabel_horaSalidaM}" for="horaSalidaM" />
+                        <p:calendar id="horaSalidaM" pattern="HH:mm:ss" value="#{horariosController.selected.horaSalidaM}" title="#{bundle.EditHorariosTitle_horaSalidaM}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateHorariosLabel_miercoles}" for="miercoles" />
+                        <p:selectBooleanCheckbox id="miercoles" value="#{horariosController.selected.miercoles}" required="true" requiredMessage="#{bundle.EditHorariosRequiredMessage_miercoles}"/>
+                        <p:outputLabel value="#{bundle.CreateHorariosLabel_horaIngresoW}" for="horaIngresoW" />
+                        <p:calendar id="horaIngresoW" pattern="HH:mm:ss" value="#{horariosController.selected.horaIngresoW}" title="#{bundle.EditHorariosTitle_horaIngresoW}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateHorariosLabel_horaSalidaW}" for="horaSalidaW" />
+                        <p:calendar id="horaSalidaW" pattern="HH:mm:ss" value="#{horariosController.selected.horaSalidaW}" title="#{bundle.EditHorariosTitle_horaSalidaW}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateHorariosLabel_jueves}" for="jueves" />
+                        <p:selectBooleanCheckbox id="jueves" value="#{horariosController.selected.jueves}" required="true" requiredMessage="#{bundle.EditHorariosRequiredMessage_jueves}"/>
+                        <p:outputLabel value="#{bundle.CreateHorariosLabel_horaIngresoJ}" for="horaIngresoJ" />
+                        <p:calendar id="horaIngresoJ" pattern="HH:mm:ss" value="#{horariosController.selected.horaIngresoJ}" title="#{bundle.EditHorariosTitle_horaIngresoJ}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateHorariosLabel_horaSalidaJ}" for="horaSalidaJ" />
+                        <p:calendar id="horaSalidaJ" pattern="HH:mm:ss" value="#{horariosController.selected.horaSalidaJ}" title="#{bundle.EditHorariosTitle_horaSalidaJ}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateHorariosLabel_viernes}" for="viernes" />
+                        <p:selectBooleanCheckbox id="viernes" value="#{horariosController.selected.viernes}" required="true" requiredMessage="#{bundle.EditHorariosRequiredMessage_viernes}"/>
+                        <p:outputLabel value="#{bundle.CreateHorariosLabel_horaIngresoV}" for="horaIngresoV" />
+                        <p:calendar id="horaIngresoV" pattern="HH:mm:ss" value="#{horariosController.selected.horaIngresoV}" title="#{bundle.EditHorariosTitle_horaIngresoV}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateHorariosLabel_horaSalidaV}" for="horaSalidaV" />
+                        <p:calendar id="horaSalidaV" pattern="HH:mm:ss" value="#{horariosController.selected.horaSalidaV}" title="#{bundle.EditHorariosTitle_horaSalidaV}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateHorariosLabel_sabado}" for="sabado" />
+                        <p:selectBooleanCheckbox id="sabado" value="#{horariosController.selected.sabado}" required="true" requiredMessage="#{bundle.EditHorariosRequiredMessage_sabado}"/>
+                        <p:outputLabel value="#{bundle.CreateHorariosLabel_horaIngresoS}" for="horaIngresoS" />
+                        <p:calendar id="horaIngresoS" pattern="HH:mm:ss" value="#{horariosController.selected.horaIngresoS}" title="#{bundle.EditHorariosTitle_horaIngresoS}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateHorariosLabel_horaSalidaS}" for="horaSalidaS" />
+                        <p:calendar id="horaSalidaS" pattern="HH:mm:ss" value="#{horariosController.selected.horaSalidaS}" title="#{bundle.EditHorariosTitle_horaSalidaS}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateHorariosLabel_domingo}" for="domingo" />
+                        <p:selectBooleanCheckbox id="domingo" value="#{horariosController.selected.domingo}" required="true" requiredMessage="#{bundle.EditHorariosRequiredMessage_domingo}"/>
+                        <p:outputLabel value="#{bundle.CreateHorariosLabel_horaIngresoD}" for="horaIngresoD" />
+                        <p:calendar id="horaIngresoD" pattern="HH:mm:ss" value="#{horariosController.selected.horaIngresoD}" title="#{bundle.EditHorariosTitle_horaIngresoD}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateHorariosLabel_horaSalidaD}" for="horaSalidaD" />
+                        <p:calendar id="horaSalidaD" pattern="HH:mm:ss" value="#{horariosController.selected.horaSalidaD}" title="#{bundle.EditHorariosTitle_horaSalidaD}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateHorariosLabel_fecha}" for="fecha" />
+                        <p:calendar id="fecha" pattern="MM/dd/yyyy HH:mm:ss" value="#{horariosController.selected.fecha}" title="#{bundle.EditHorariosTitle_fecha}" required="true" requiredMessage="#{bundle.EditHorariosRequiredMessage_fecha}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateHorariosLabel_usuario}" for="usuario" />
+                        <p:selectOneMenu id="usuario" value="#{horariosController.selected.usuario}" required="true" requiredMessage="#{bundle.EditHorariosRequiredMessage_usuario}">
+                            <f:selectItems value="#{personasController.itemsAvailableSelectOne}"
+                                           var="usuarioItem"
+                                           itemValue="#{usuarioItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateHorariosLabel_sucursal}" for="sucursal" />
+                        <p:selectOneMenu id="sucursal" value="#{horariosController.selected.sucursal}" required="true" requiredMessage="#{bundle.EditHorariosRequiredMessage_sucursal}">
+                            <f:selectItems value="#{sucursalesController.itemsAvailableSelectOne}"
+                                           var="sucursalItem"
+                                           itemValue="#{sucursalItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{horariosController.create}" value="#{bundle.Save}" update="display,:HorariosListForm:datalist,:growl" oncomplete="handleSubmit(args,'HorariosCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="HorariosCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

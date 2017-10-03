@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PersonasSucursalCreateDlg" widgetVar="PersonasSucursalCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreatePersonasSucursalTitle}">
+            <h:form id="PersonasSucursalCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{personasSucursalController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreatePersonasSucursalLabel_idExterno}" for="idExterno" />
+                        <p:inputText id="idExterno" value="#{personasSucursalController.selected.idExterno}" title="#{bundle.CreatePersonasSucursalTitle_idExterno}" />
+                        <p:outputLabel value="#{bundle.CreatePersonasSucursalLabel_fecha}" for="fecha" />
+                        <p:calendar id="fecha" pattern="MM/dd/yyyy HH:mm:ss" value="#{personasSucursalController.selected.fecha}" title="#{bundle.EditPersonasSucursalTitle_fecha}" required="true" requiredMessage="#{bundle.EditPersonasSucursalRequiredMessage_fecha}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreatePersonasSucursalLabel_usuario}" for="usuario" />
+                        <p:selectOneMenu id="usuario" value="#{personasSucursalController.selected.usuario}" required="true" requiredMessage="#{bundle.EditPersonasSucursalRequiredMessage_usuario}">
+                            <f:selectItems value="#{personasController.itemsAvailableSelectOne}"
+                                           var="usuarioItem"
+                                           itemValue="#{usuarioItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreatePersonasSucursalLabel_personas}" for="personas" />
+                        <p:selectOneMenu id="personas" value="#{personasSucursalController.selected.personas}" required="true" requiredMessage="#{bundle.EditPersonasSucursalRequiredMessage_personas}">
+                            <f:selectItems value="#{personasController.itemsAvailableSelectOne}"
+                                           var="personasItem"
+                                           itemValue="#{personasItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreatePersonasSucursalLabel_sucursales}" for="sucursales" />
+                        <p:selectOneMenu id="sucursales" value="#{personasSucursalController.selected.sucursales}" required="true" requiredMessage="#{bundle.EditPersonasSucursalRequiredMessage_sucursales}">
+                            <f:selectItems value="#{sucursalesController.itemsAvailableSelectOne}"
+                                           var="sucursalesItem"
+                                           itemValue="#{sucursalesItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreatePersonasSucursalLabel_entidad}" for="entidad" />
+                        <p:selectOneMenu id="entidad" value="#{personasSucursalController.selected.entidad}" required="true" requiredMessage="#{bundle.EditPersonasSucursalRequiredMessage_entidad}">
+                            <f:selectItems value="#{entidadesController.itemsAvailableSelectOne}"
+                                           var="entidadItem"
+                                           itemValue="#{entidadItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreatePersonasSucursalLabel_estado}" for="estado" />
+                        <p:selectOneMenu id="estado" value="#{personasSucursalController.selected.estado}" required="true" requiredMessage="#{bundle.EditPersonasSucursalRequiredMessage_estado}">
+                            <f:selectItems value="#{estadosController.itemsAvailableSelectOne}"
+                                           var="estadoItem"
+                                           itemValue="#{estadoItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreatePersonasSucursalLabel_area}" for="area" />
+                        <p:selectOneMenu id="area" value="#{personasSucursalController.selected.area}" required="true" requiredMessage="#{bundle.EditPersonasSucursalRequiredMessage_area}">
+                            <f:selectItems value="#{areasEmpresaController.itemsAvailableSelectOne}"
+                                           var="areaItem"
+                                           itemValue="#{areaItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreatePersonasSucursalLabel_horario}" for="horario" />
+                        <p:selectOneMenu id="horario" value="#{personasSucursalController.selected.horario}" >
+                            <f:selectItems value="#{horariosController.itemsAvailableSelectOne}"
+                                           var="horarioItem"
+                                           itemValue="#{horarioItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{personasSucursalController.create}" value="#{bundle.Save}" update="display,:PersonasSucursalListForm:datalist,:growl" oncomplete="handleSubmit(args,'PersonasSucursalCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="PersonasSucursalCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
