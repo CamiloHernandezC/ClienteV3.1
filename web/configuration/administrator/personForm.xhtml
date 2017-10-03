@@ -1,0 +1,86 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./../../template.xhtml"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns="http://www.w3.org/1999/xhtml">
+
+    <ui:define name="content">
+
+        <p:dialog modal="true" appendTo="@(body)" id="dialogConfirmCancel" widgetVar="dialogConfirmCancel" header="#{bundle.Confirm_Cancel}">
+            <h:form>
+                <h:panelGrid columns="1">
+                    <h:outputText value="#{bundle.Confirm_Cancel_Message}"/>
+                </h:panelGrid>
+                <p:commandButton id="accept" value="#{bundle.Accept}" action="#{configFormsBean.cancel()}" style="margin-top: 2%"/>
+                <p:commandButton id="decline" value="#{bundle.Cancel}" onclick="PF('dialogConfirmCancel').hide();"/>
+            </h:form>
+        </p:dialog>
+
+        <h:form>
+            <h1>#{bundle.Configuration_Person_Form}</h1>
+            
+            <h3>#{bundle.Select_Fields_Person_Form}</h3>
+            <h:panelGrid columns="4" cellpadding="5" >
+
+                <h:outputText value="#{bundle.CreatePersonasCliLabel_sexo}"/>
+                <p:selectBooleanCheckbox value="#{configFormsBean.showGender}"/>
+
+                <h:outputText value="#{bundle.CreatePersonasCliLabel_fechaNacimiento}"/>
+                <p:selectBooleanCheckbox value="#{configFormsBean.showBirthDay}"/>
+
+                <h:outputText value="#{bundle.CreatePersonasCliLabel_rh}"/>
+                <p:selectBooleanCheckbox value="#{configFormsBean.showRH}"/>
+
+                <h:outputText value="#{bundle.CreatePersonasCliLabel_idPais}"/>
+                <p:selectBooleanCheckbox value="#{configFormsBean.showCountry}"/>
+
+                <h:outputText value="#{bundle.CreatePersonasCliLabel_celular}"/>
+                <p:selectBooleanCheckbox value="#{configFormsBean.showCellphone}"/>
+
+                <h:outputText value="#{bundle.CreatePersonasCliLabel_personaContacto}"/>
+                <p:selectBooleanCheckbox value="#{configFormsBean.showEmergencyContact}"/>
+
+                <h:outputText value="#{bundle.CreatePersonasCliLabel_telPersonaContacto}"/>
+                <p:selectBooleanCheckbox value="#{configFormsBean.showEmergencyPhone}"/>
+
+                <h:outputText style="width: 200px" value="#{bundle.CreatePersonasCliLabel_direccion}"/>
+                <p:selectBooleanCheckbox value="#{configFormsBean.showAddress}"/>
+
+                <h:outputText value="#{bundle.CreatePersonasCliLabel_idDepartamento}"/>
+                <p:selectBooleanCheckbox value="#{configFormsBean.showDepartment}"/>
+
+                <h:outputText value="#{bundle.CreatePersonasCliLabel_municipiosCli}"/>
+                <p:selectBooleanCheckbox value="#{configFormsBean.showMunicipaly}"/>
+
+                <h:outputText value="#{bundle.CreatePersonasCliLabel_mail}"/>
+                <p:selectBooleanCheckbox value="#{configFormsBean.showMail}"/>
+
+                <h:outputText value="#{bundle.CreatePersonasCliLabel_telefono}"/>
+                <p:selectBooleanCheckbox value="#{configFormsBean.showPhone}"/>
+
+                <h:outputText value="#{bundle.CreatePersonasCliLabel_idEmpresaOrigen}"/>
+                <p:selectBooleanCheckbox value="#{configFormsBean.showEnterprise}"/>
+
+                <h:outputText value="#{bundle.CreatePersonasCliLabel_eps}"/>
+                <p:selectBooleanCheckbox value="#{configFormsBean.showEPS}"/>
+
+                <h:outputText value="#{bundle.CreatePersonasCliLabel_fechavigenciaSS}"/>
+                <p:selectBooleanCheckbox value="#{configFormsBean.showVigencySS}"/>
+
+                <h:outputText value="#{bundle.CreatePersonasCliLabel_arl}"/>
+                <p:selectBooleanCheckbox value="#{configFormsBean.showARL}"/>
+
+                <h:outputText value="#{bundle.CreatePersonasCliLabel_idExterno}"/>
+                <p:selectBooleanCheckbox value="#{configFormsBean.showOtherID}"/>
+                
+            </h:panelGrid>    
+            <p:commandButton action="#{configFormsBean.save}" value="#{bundle.Save}" ajax="false" style="margin-top: 2%"/>
+            <p:commandButton action="PF('dialogConfirmCancel').show();" value="#{bundle.Cancel}" immediate="true" ajax="false"/>
+        </h:form>
+    </ui:define>
+
+</ui:composition>
+

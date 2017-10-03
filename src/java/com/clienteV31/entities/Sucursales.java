@@ -96,6 +96,8 @@ public class Sucursales implements Serializable {
     private List<AccesoUsuario> accesoUsuarioList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "sucursal", fetch = FetchType.LAZY)
     private List<MovVehiculos> movVehiculosList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "sucursal", fetch = FetchType.LAZY)
+    private List<ConfigFormGerencia> configFormGerenciaList;
 
     public Sucursales() {
     }
@@ -167,7 +169,7 @@ public class Sucursales implements Serializable {
     public void setAreasEmpresaList(List<AreasEmpresa> areasEmpresaList) {
         this.areasEmpresaList = areasEmpresaList;
     }
-
+    
     @XmlTransient
     public List<MaterialesSucursal> getMaterialesSucursalList() {
         return materialesSucursalList;
@@ -264,12 +266,12 @@ public class Sucursales implements Serializable {
     }
 
     @XmlTransient
-    public List<Notificaciones> getNotificacionesList() {
-        return notificacionesList;
+    public List<ConfigFormGerencia> getConfigFormGerenciaList() {
+        return configFormGerenciaList;
     }
 
-    public void setNotificacionesList(List<Notificaciones> notificacionesList) {
-        this.notificacionesList = notificacionesList;
+    public void setConfigFormGerenciaList(List<ConfigFormGerencia> configFormGerenciaList) {
+        this.configFormGerenciaList = configFormGerenciaList;
     }
 
     @XmlTransient

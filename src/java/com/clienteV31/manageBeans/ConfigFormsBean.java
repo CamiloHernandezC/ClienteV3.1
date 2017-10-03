@@ -5,8 +5,15 @@
  */
 package com.clienteV31.manageBeans;
 
+import com.clienteV31.entities.ConfigFormGerencia;
+import com.clienteV31.utils.BundleUtils;
+import com.clienteV31.utils.JsfUtil;
 import java.io.Serializable;
-import javax.enterprise.context.SessionScoped;
+import java.util.HashMap;
+import java.util.List;
+import javax.annotation.PostConstruct;
+import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 /**
@@ -14,239 +21,253 @@ import javax.inject.Named;
  * @author chernandez
  */
 @Named
-@SessionScoped
+@ViewScoped
 public class ConfigFormsBean implements Serializable{
-    @EJB
-    private ConfigFormFacade ejbFacade;
     
-    private List<ConfigForm> items = null;
-    private ConfigForm selected;
+    @Inject
+    private BranchOfficeBean branchOfficeBean;
+    private List<ConfigFormGerencia> fields;
+    private HashMap<String,ConfigFormGerencia> fieldsEntities;
+    
+    // <editor-fold desc="Render booleans" defaultstate="collapsed">
+    private boolean showARL;
+    private boolean showCellphone;
+    private boolean showDepartment;
+    private boolean showAddress;
+    private boolean showMail;
+    private boolean showEnterprise;
+    private boolean showEPS;
+    private boolean showBirthDay;
+    private boolean showFuncionario;
+    private boolean showOtherID;
+    private boolean showMunicipaly;
+    private boolean showCountry;
+    private boolean showEmergencyContact;
+    private boolean showRH;
+    private boolean showGender;
+    private boolean showEmergencyPhone;
+    private boolean showPhone;
+    private boolean showVigencySS;
 
-    //Booleanos de control Vista
-    // <editor-fold desc="Booleanos" defaultstate="collapsed">
-    private boolean mostrarARL;
-    private boolean mostrarCelular;
-    private boolean mostrarEmail;
-    private boolean mostrarDireccion;
-    private boolean mostrarEPS;
-    private boolean mostrarnacimiento;
-    private boolean mostrarFecha_vigencia_ARL;
-    private boolean mostrarFecha_vigencia_EPS;
-    private boolean mostrarDepartamento;
-    private boolean mostrarIdExterno;
-    private boolean mostrarPais;
-    private boolean mostrarMunicipio;
-    private boolean mostrarSucursal;
-    private boolean mostrarSexo;
-    private boolean mostrarTelefono;
-    private boolean mostrarTipo_sanguineo;
-    private boolean mostrarFuncionario;
-    private boolean mostrarEmpresa;
-    private boolean mostrarPersonaContacto;
-
-    public boolean isMostrarPersonaContacto() {
-        return mostrarPersonaContacto;
+    public boolean isShowARL() {
+        ConfigFormGerencia entity = fieldsEntities.get("Arl");
+        return entity != null && entity.getMostrar();
     }
 
-    public ConfigFormFacade getEjbFacade() {
-        return ejbFacade;
+    public void setShowARL(boolean showARL) {
+        this.showARL = showARL;
     }
 
-    public boolean isMostrarARL() {
-        return mostrarARL;
+    public boolean isShowCellphone() {
+        return showCellphone;
     }
 
-    public boolean isMostrarCelular() {
-        return mostrarCelular;
+    public void setShowCellphone(boolean showCellphone) {
+        this.showCellphone = showCellphone;
     }
 
-    public boolean isMostrarEmail() {
-        return mostrarEmail;
+    public boolean isShowDepartment() {
+        return showDepartment;
     }
 
-    public boolean isMostrarDireccion() {
-        return mostrarDireccion;
+    public void setShowDepartment(boolean showDepartment) {
+        this.showDepartment = showDepartment;
     }
 
-    public boolean isMostrarEPS() {
-        return mostrarEPS;
+    public boolean isShowAddress() {
+        return showAddress;
     }
 
-    public boolean isMostrarnacimiento() {
-        return mostrarnacimiento;
+    public void setShowAddress(boolean showAddress) {
+        this.showAddress = showAddress;
     }
 
-    public boolean isMostrarFecha_vigencia_ARL() {
-        return mostrarFecha_vigencia_ARL;
+    public boolean isShowMail() {
+        return showMail;
     }
 
-    public boolean isMostrarFecha_vigencia_EPS() {
-        return mostrarFecha_vigencia_EPS;
+    public void setShowMail(boolean showMail) {
+        this.showMail = showMail;
     }
 
-    public boolean isMostrarDepartamento() {
-        return mostrarDepartamento;
+    public boolean isShowEnterprise() {
+        return showEnterprise;
     }
 
-    public boolean isMostrarIdExterno() {
-        return mostrarIdExterno;
+    public void setShowEnterprise(boolean showEnterprise) {
+        this.showEnterprise = showEnterprise;
     }
 
-    public boolean isMostrarPais() {
-        return mostrarPais;
+    public boolean isShowEPS() {
+        return showEPS;
     }
 
-    public boolean isMostrarMunicipio() {
-        return mostrarMunicipio;
+    public void setShowEPS(boolean showEPS) {
+        this.showEPS = showEPS;
     }
 
-    public boolean isMostrarSucursal() {
-        PorteriasSucursalController porteriaSucursalController = JsfUtil.findBean("porteriasSucursalController");
-        PersonasSucursalController personasSucursalController = JsfUtil.findBean("personasSucursalController");
-        Result result = porteriaSucursalController.findBranchOfficeByEntry("1");
-        if (result.errorCode == Constants.NO_RESULT_EXCEPTION) {
-            JsfUtil.addErrorMessage("No se ha cargado ninguna Sucursal, Por favor contacte al servicio tecnico.");
-            return mostrarSucursal = true;
-        }
-        List<PorteriasSucursal> array = (List<PorteriasSucursal>) result.result;
-        if (array.size() == 1) {
-            personasSucursalController.getSelected().setSucursales(array.get(0).getSucursales());
-            return mostrarSucursal = false;
-        }
-        SucursalesController sucursalesController = JsfUtil.findBean("sucursalesController");
-        ArrayList<Sucursales> arraySucursales = new ArrayList<>();
-        array.forEach((array1) -> {
-            arraySucursales.add(array1.getSucursales());
-        });
-        sucursalesController.setItems(arraySucursales);
-        return mostrarSucursal = true;
+    public boolean isShowBirthDay() {
+        return showBirthDay;
     }
 
-    public boolean isMostrarSexo() {
-        return mostrarSexo;
+    public void setShowBirthDay(boolean showBirthDay) {
+        this.showBirthDay = showBirthDay;
     }
 
-    public boolean isMostrarTelefono() {
-        return mostrarTelefono;
+    public boolean isShowFuncionario() {
+        return showFuncionario;
     }
 
-    public boolean isMostrarTipo_sanguineo() {
-        return mostrarTipo_sanguineo;
+    public void setShowFuncionario(boolean showFuncionario) {
+        this.showFuncionario = showFuncionario;
     }
 
-    public boolean isMostrarFuncionario() {
-        return mostrarFuncionario;
+    public boolean isShowOtherID() {
+        return showOtherID;
     }
 
-    public boolean isMostrarEmpresa() {
-        return mostrarEmpresa;
+    public void setShowOtherID(boolean showOtherID) {
+        this.showOtherID = showOtherID;
     }
 
+    public boolean isShowMunicipaly() {
+        return showMunicipaly;
+    }
+
+    public void setShowMunicipaly(boolean showMunicipaly) {
+        this.showMunicipaly = showMunicipaly;
+    }
+
+    public boolean isShowCountry() {
+        return showCountry;
+    }
+
+    public void setShowCountry(boolean showCountry) {
+        this.showCountry = showCountry;
+    }
+
+    public boolean isShowEmergencyContact() {
+        return showEmergencyContact;
+    }
+
+    public void setShowEmergencyContact(boolean showEmergencyContact) {
+        this.showEmergencyContact = showEmergencyContact;
+    }
+
+    public boolean isShowRH() {
+        return showRH;
+    }
+
+    public void setShowRH(boolean showRH) {
+        this.showRH = showRH;
+    }
+
+    public boolean isShowGender() {
+        return showGender;
+    }
+
+    public void setShowGender(boolean showGender) {
+        this.showGender = showGender;
+    }
+
+    public boolean isShowEmergencyPhone() {
+        return showEmergencyPhone;
+    }
+
+    public void setShowEmergencyPhone(boolean showEmergencyPhone) {
+        this.showEmergencyPhone = showEmergencyPhone;
+    }
+
+    public boolean isShowPhone() {
+        return showPhone;
+    }
+
+    public void setShowPhone(boolean showPhone) {
+        this.showPhone = showPhone;
+    }
+
+    public boolean isShowVigencySS() {
+        return showVigencySS;
+    }
+
+    public void setShowVigencySS(boolean showVigencySS) {
+        this.showVigencySS = showVigencySS;
+    }
     //</editor-fold>
+
+    public void ConfigFormsBean(){}
     
-    public ConfigFormController() {
-    }
-
-    public ConfigForm getSelected() {
-        return selected;
-    }
-
-    public void setSelected(ConfigForm selected) {
-        this.selected = selected;
-    }
-
-    private ConfigFormFacade getFacade() {
-        return ejbFacade;
-    }
-
-    public List<ConfigForm> getItems() {
-        if (items == null) {
-            items = getFacade().findAll();
+    
+    @PostConstruct
+    public void loadFieldsPerson() {
+        if(branchOfficeBean.getSelectedBranchOffice()==null){
+            JsfUtil.addErrorMessage(BundleUtils.getBundleProperty("EditPersonasCliRequiredMessage_idSucursal"));
+            return;
         }
-        return items;
+        fields = branchOfficeBean.getSelectedBranchOffice().getConfigFormGerenciaList();
+        for (int i = 0; i < fields.size(); i++) {
+            ConfigFormGerencia modelo = fields.get(i);
+            fieldsEntities.put(modelo.getCampo(), modelo);
+        }
     }
-
-    public ConfigForm getConfigForm(java.lang.Integer id) {
-        return getFacade().find(id);
-    }
-
-    public List<ConfigForm> getItemsAvailableSelectMany() {
-        return getFacade().findAll();
-    }
-
-    public List<ConfigForm> getItemsAvailableSelectOne() {
-        return getFacade().findAll();
-    }
-
-    public void showFieldsPerson() {
-        List<ConfigForm> array;
-        String squery = "SELECT c FROM ConfigForm c WHERE c.formulario ='" + Constants.CONFIGPERSONSFORM + "'";
-        array = (List<ConfigForm>) ejbFacade.findByQueryArray(squery).result;
-        for (int i = 0; i < array.size(); i++) {
-            ConfigForm modelo = array.get(i);
-            String tmp = modelo.getCampo();
-            tmp = JsfUtil.quitaEspacios(tmp);
+            /*String tmp = modelo.getCampo().trim();
             switch (tmp) {
-
                 case "Arl":
-                    mostrarARL = modelo.getMostrar();
+                    showARL = modelo.getMostrar();
                     break;
                 case "Celular":
-                    mostrarCelular = modelo.getMostrar();
-                    break;
-                case "Email":
-                    mostrarEmail = modelo.getMostrar();
-                    break;
-                case "Direccion":
-                    mostrarDireccion = modelo.getMostrar();
-                    break;
-                case "Eps":
-                    mostrarEPS = modelo.getMostrar();
-                    break;
-                case "Fechanacimiento":
-                    mostrarnacimiento = modelo.getMostrar();
-                    break;
-                case "Fechaarl":
-                    mostrarFecha_vigencia_ARL = modelo.getMostrar();
-                    break;
-                case "Fechaeps":
-                    mostrarFecha_vigencia_EPS = modelo.getMostrar();
+                    showCellphone = modelo.getMostrar();
                     break;
                 case "Departamento":
-                    mostrarDepartamento = modelo.getMostrar();
+                    showDepartment = modelo.getMostrar();
                     break;
-                case "Id_externo":
-                    mostrarIdExterno = modelo.getMostrar();
-                    //limpiarIdExterno = mostrarIdExterno;
+                case "Direccion":
+                    showAddress = modelo.getMostrar();
                     break;
-                case "Municipio":
-                    mostrarMunicipio = modelo.getMostrar();
-                    break;
-                case "Pais":
-                    mostrarPais = modelo.getMostrar();
-                    break;
-                case "Sucursal":
-                    mostrarSucursal = modelo.getMostrar();
-                    break;
-                case "Sexo":
-                    mostrarSexo = modelo.getMostrar();
-                    break;
-                case "Telefono":
-                    mostrarTelefono = modelo.getMostrar();
-                    break;
-                case "Rh":
-                    mostrarTipo_sanguineo = modelo.getMostrar();
-                    break;
-                case "Funcionario":
-                    mostrarFuncionario = modelo.getMostrar();
+                case "Email":
+                    showMail = modelo.getMostrar();
                     break;
                 case "Empresa":
-                    mostrarEmpresa = modelo.getMostrar();
+                    showEnterprise = modelo.getMostrar();
+                    break;
+                case "Eps":
+                    showEPS = modelo.getMostrar();
+                    break;
+                case "Fechanacimiento":
+                    showBirthDay = modelo.getMostrar();
+                    break;
+                case "Funcionario":
+                    showFuncionario = modelo.getMostrar();
+                    break;
+                case "Idexterno":
+                    showOtherID = modelo.getMostrar();
+                    //limpiarIdExterno = showIdExterno;
+                    break;
+                case "Municipio":
+                    showMunicipaly = modelo.getMostrar();
+                    break;
+                case "Pais":
+                    showCountry = modelo.getMostrar();
                     break;
                 case "Personacontacto":
-                    mostrarPersonaContacto = modelo.getMostrar();
+                    showEmergencyContact = modelo.getMostrar();
+                    break;
+                case "Rh":
+                    showRH = modelo.getMostrar();
+                    break;
+                case "Sexo":
+                    showGender = modelo.getMostrar();
+                    break;
+                case "Telpersonacontacto":
+                    showPhone = modelo.getMostrar();
+                    break;
+                case "Telefono":
+                    showPhone = modelo.getMostrar();
+                    break;
+                case "VigenciaSS":
+                    showVigencySS = modelo.getMostrar();
                     break;
             }
         }
-    }
+    }*/
 }

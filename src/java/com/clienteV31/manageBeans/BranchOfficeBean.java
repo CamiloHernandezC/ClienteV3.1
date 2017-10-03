@@ -32,7 +32,7 @@ public class BranchOfficeBean implements Serializable{
     private AccesoUsuarioFacade ejbFacade;
     private ArrayList<Sucursales> branchOffices = null;
     private Sucursales selectedBranchOffice = null;
-
+    
     /**
      * Creates a new instance of MenuController
      */
