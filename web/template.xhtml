@@ -46,7 +46,7 @@
                         <h:form id="formBranchOffice">
                             <h:panelGrid columns="2">
                                 <p:outputLabel value="#{bundle.CreatePersonasCliLabel_idSucursal}" for="branchOffice" rendered="#{branchOfficeBean.showBranchOffice}"/>
-                                <p:selectOneMenu id="branchOffice" value="#{branchOfficeBean.selectedBranchOffice}" rendered="#{branchOfficeBean.showBranchOffice}" disabled="#{masterDataPersonBean.disableBranchOffice}" required="true" requiredMessage="#{bundle.EditPersonasCliRequiredMessage_idSucursal}" onchange="submit()" widgetVar="branchOffice">
+                                <p:selectOneMenu id="branchOffice" value="#{branchOfficeBean.selectedBranchOffice}" rendered="#{branchOfficeBean.showBranchOffice}" disabled="#{branchOfficeBean.disableBranchOffice}" requiredMessage="#{bundle.EditPersonasCliRequiredMessage_idSucursal}" widgetVar="branchOffice" onchange="submit()">
                                     <f:selectItem itemLabel="#{bundle.SelectOneMessage}" itemValue="#{null}"/>
                                     <f:selectItems value="#{branchOfficeBean.branchOffices}" var="branchOffice" itemValue="#{branchOffice}" itemLabel="#{branchOffice.nombre}"/>
                                 </p:selectOneMenu>

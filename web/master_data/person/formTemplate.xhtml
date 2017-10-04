@@ -37,16 +37,16 @@
             <f:selectItems value="#{branchOfficeBean.selectedBranchOffice.areasEmpresaList}" var="areas" itemLabel="#{areas.descripcion}" itemValue="#{areas}"/>
         </p:selectOneMenu>
 
-        <p:outputLabel for="sexo" value="#{bundle.CreatePersonasCliLabel_sexo}" rendered="#{configFormsBean.showGender}"/>
-        <p:selectOneRadio style="width: 200px" id="sexo" value="#{masterDataPersonBean.person.sexo}"  widgetVar="wv_sexo" rendered="#{configFormsBean.showGender}" required="true" requiredMessage="#{bundle.CreatePersonasCliRequiredMessage_sexo}">
+        <p:outputLabel for="sexo" value="#{bundle.CreatePersonasCliLabel_sexo}" rendered="#{configFormsAdminBean.showGender}"/>
+        <p:selectOneRadio style="width: 200px" id="sexo" value="#{masterDataPersonBean.person.sexo}"  widgetVar="wv_sexo" rendered="#{configFormsAdminBean.showGender}" required="true" requiredMessage="#{bundle.CreatePersonasCliRequiredMessage_sexo}">
             <f:selectItem itemLabel="Femenino" itemValue="false" />
             <f:selectItem itemLabel="Masculino" itemValue="true" />
         </p:selectOneRadio>
-        <p:outputLabel for="nacimiento" value="#{bundle.CreatePersonasCliLabel_fechaNacimiento}" rendered="#{configFormsBean.showBirthDay}"/>
-        <p:calendar id="nacimiento" value="#{masterDataPersonBean.person.fechaNacimiento}"   maxdate="#{generalViewControl.actualDate}" navigator="true" yearRange="c-100:c+0" style="text-transform:uppercase;width: 210px" rendered="#{configFormsBean.showBirthDay}"/>
+        <p:outputLabel for="nacimiento" value="#{bundle.CreatePersonasCliLabel_fechaNacimiento}" rendered="#{configFormsAdminBean.showBirthDay}"/>
+        <p:calendar id="nacimiento" value="#{masterDataPersonBean.person.fechaNacimiento}"   maxdate="#{generalViewControl.actualDate}" navigator="true" yearRange="c-100:c+0" style="text-transform:uppercase;width: 210px" rendered="#{configFormsAdminBean.showBirthDay}"/>
 
-        <p:outputLabel for="gsang" value="#{bundle.CreatePersonasCliLabel_rh}" rendered="#{configFormsBean.showRH}"/>
-        <p:selectOneMenu id="gsang" value="#{masterDataPersonBean.person.rh}"  autoWidth="false" style=" width: 170px" widgetVar="wv_tipoSanguineo" rendered="#{configFormsBean.showRH}">
+        <p:outputLabel for="gsang" value="#{bundle.CreatePersonasCliLabel_rh}" rendered="#{configFormsAdminBean.showRH}"/>
+        <p:selectOneMenu id="gsang" value="#{masterDataPersonBean.person.rh}"  autoWidth="false" style=" width: 170px" widgetVar="wv_tipoSanguineo" rendered="#{configFormsAdminBean.showRH}">
             <f:selectItem itemLabel="#{bundle.SelectOneMessage}" itemValue="#{null}" noSelectionOption="true" />
             <f:selectItem  itemLabel="A+" itemValue="A+"/>
             <f:selectItem  itemLabel="A-" itemValue="A-"/>
@@ -57,65 +57,65 @@
             <f:selectItem  itemLabel="O+" itemValue="O+"/>
             <f:selectItem  itemLabel="O-" itemValue="O-"/>
         </p:selectOneMenu>
-        <p:outputLabel for="idPais" value="#{bundle.CreatePersonasCliLabel_idPais}" rendered="#{configFormsBean.showCountry}"/>
-        <p:selectOneMenu id="idPais" value="#{masterDataPersonBean.person.pais}"  filter="true" filterMatchMode="contains" autoWidth="false" style=" width: 170px" widgetVar="idPais" rendered="#{configFormsBean.showCountry}">
+        <p:outputLabel for="idPais" value="#{bundle.CreatePersonasCliLabel_idPais}" rendered="#{configFormsAdminBean.showCountry}"/>
+        <p:selectOneMenu id="idPais" value="#{masterDataPersonBean.person.pais}"  filter="true" filterMatchMode="contains" autoWidth="false" style=" width: 170px" widgetVar="idPais" rendered="#{configFormsAdminBean.showCountry}">
             <f:selectItem itemLabel="#{bundle.SelectOneMessage}"  noSelectionOption="true" itemValue="#{null}"/>
             <f:selectItems  value="#{generalViewBean.countries}" var="pais" itemLabel="#{pais.nombre}" itemValue="#{pais}" />
         </p:selectOneMenu>
 
-        <p:outputLabel for="cel" value="#{bundle.CreatePersonasCliLabel_celular}" rendered="#{configFormsBean.showCellphone}"/>
-        <p:inputText id="cel" value="#{masterDataPersonBean.person.celular}" style="text-transform:uppercase; width: 200px" maxlength="15" rendered="#{configFormsBean.showCellphone}"/>
-        <p:outputLabel  for="contactPerson" value="#{bundle.CreatePersonasCliLabel_personaContacto}" rendered="#{configFormsBean.showEmergencyContact}"/>
-        <p:inputText id="contactPerson" value="#{masterDataPersonBean.person.personaContacto}" style="text-transform:uppercase;width: 200px" maxlength="15" rendered="#{configFormsBean.showEmergencyContact}"/>
+        <p:outputLabel for="cel" value="#{bundle.CreatePersonasCliLabel_celular}" rendered="#{configFormsAdminBean.showCellphone}"/>
+        <p:inputText id="cel" value="#{masterDataPersonBean.person.celular}" style="text-transform:uppercase; width: 200px" maxlength="15" rendered="#{configFormsAdminBean.showCellphone}"/>
+        <p:outputLabel  for="contactPerson" value="#{bundle.CreatePersonasCliLabel_personaContacto}" rendered="#{configFormsAdminBean.showEmergencyContact}"/>
+        <p:inputText id="contactPerson" value="#{masterDataPersonBean.person.personaContacto}" style="text-transform:uppercase;width: 200px" maxlength="15" rendered="#{configFormsAdminBean.showEmergencyContact}"/>
 
-        <p:outputLabel for="phoneContactPerson" value="#{bundle.CreatePersonasCliLabel_telPersonaContacto}" rendered="#{configFormsBean.showEmergencyPhone}"/>
-        <p:inputText id="phoneContactPerson" value="#{masterDataPersonBean.person.telPersonaContacto}"  style="text-transform:uppercase; width: 200px" maxlength="15" rendered="#{configFormsBean.showEmergencyPhone}"/>
-        <p:outputLabel style="width: 200px" value="#{bundle.CreatePersonasCliLabel_direccion}" for="address" rendered="#{configFormsBean.showAddress}"/>
-        <p:inputText  id="address" value="#{masterDataPersonBean.person.direccion}" style="text-transform:uppercase;width: 200px" maxlength="120" rendered="#{configFormsBean.showAddress}"/>
+        <p:outputLabel for="phoneContactPerson" value="#{bundle.CreatePersonasCliLabel_telPersonaContacto}" rendered="#{configFormsAdminBean.showEmergencyPhone}"/>
+        <p:inputText id="phoneContactPerson" value="#{masterDataPersonBean.person.telPersonaContacto}"  style="text-transform:uppercase; width: 200px" maxlength="15" rendered="#{configFormsAdminBean.showEmergencyPhone}"/>
+        <p:outputLabel style="width: 200px" value="#{bundle.CreatePersonasCliLabel_direccion}" for="address" rendered="#{configFormsAdminBean.showAddress}"/>
+        <p:inputText  id="address" value="#{masterDataPersonBean.person.direccion}" style="text-transform:uppercase;width: 200px" maxlength="120" rendered="#{configFormsAdminBean.showAddress}"/>
 
-        <p:outputLabel for="idDepartamento" value="#{bundle.CreatePersonasCliLabel_idDepartamento}" rendered="#{configFormsBean.showDepartment}"/>
-        <p:selectOneMenu id="idDepartamento" value="#{masterDataPersonBean.person.departamento}" filter="true" filterMatchMode="contains" autoWidth="false" style=" width: 170px" widgetVar="idDepartamento" rendered="#{configFormsBean.showDepartment}">
+        <p:outputLabel for="idDepartamento" value="#{bundle.CreatePersonasCliLabel_idDepartamento}" rendered="#{configFormsAdminBean.showDepartment}"/>
+        <p:selectOneMenu id="idDepartamento" value="#{masterDataPersonBean.person.departamento}" filter="true" filterMatchMode="contains" autoWidth="false" style=" width: 170px" widgetVar="idDepartamento" rendered="#{configFormsAdminBean.showDepartment}">
             <p:ajax  update="idMunicipio" />
             <f:selectItem itemLabel="#{bundle.SelectOneMessage}"  noSelectionOption="true" itemValue="#{null}"/>
             <f:selectItems  value="#{generalViewBean.departments}" var="depto" itemLabel="#{depto.nombre}" itemValue="#{depto}" />
         </p:selectOneMenu>
 
-        <p:outputLabel for="idMunicipio" value="#{bundle.CreatePersonasCliLabel_municipiosCli}" rendered="#{configFormsBean.showMunicipaly}"/>
-        <p:selectOneMenu id="idMunicipio" value="#{masterDataPersonBean.person.municipio}" filter="true" filterMatchMode="contains" autoWidth="false" style=" width: 170px" widgetVar="idMunicipio" rendered="#{configFormsBean.showMunicipaly}">
+        <p:outputLabel for="idMunicipio" value="#{bundle.CreatePersonasCliLabel_municipiosCli}" rendered="#{configFormsAdminBean.showMunicipaly}"/>
+        <p:selectOneMenu id="idMunicipio" value="#{masterDataPersonBean.person.municipio}" filter="true" filterMatchMode="contains" autoWidth="false" style=" width: 170px" widgetVar="idMunicipio" rendered="#{configFormsAdminBean.showMunicipaly}">
             <f:selectItem itemLabel="#{bundle.SelectOneMessage}"  noSelectionOption="true" itemValue="#{null}"/>
             <f:selectItems  value="#{masterDataPersonBean.person.departamento.municipiosList}" var="muni" itemLabel="#{muni.nombre}" itemValue="#{muni}"/>
         </p:selectOneMenu>
 
-        <p:outputLabel for="email" value="#{bundle.CreatePersonasCliLabel_mail}" rendered="#{configFormsBean.showMail}"/>
-        <p:inputText id="email" value="#{masterDataPersonBean.person.mail}" style="text-transform:uppercase;width: 200px" maxlength="60" rendered="#{configFormsBean.showMail}"/>
-        <p:outputLabel for="tel" value="#{bundle.CreatePersonasCliLabel_telefono}" rendered="#{configFormsBean.showPhone}"/>
-        <p:inputText id="tel" value="#{masterDataPersonBean.person.telefono}" style="text-transform:uppercase;width: 200px" maxlength="15" rendered="#{configFormsBean.showPhone}"/>
+        <p:outputLabel for="email" value="#{bundle.CreatePersonasCliLabel_mail}" rendered="#{configFormsAdminBean.showMail}"/>
+        <p:inputText id="email" value="#{masterDataPersonBean.person.mail}" style="text-transform:uppercase;width: 200px" maxlength="60" rendered="#{configFormsAdminBean.showMail}"/>
+        <p:outputLabel for="tel" value="#{bundle.CreatePersonasCliLabel_telefono}" rendered="#{configFormsAdminBean.showPhone}"/>
+        <p:inputText id="tel" value="#{masterDataPersonBean.person.telefono}" style="text-transform:uppercase;width: 200px" maxlength="15" rendered="#{configFormsAdminBean.showPhone}"/>
 
-        <p:outputLabel for="empresas" value="#{bundle.CreatePersonasCliLabel_idEmpresaOrigen}" rendered="#{configFormsBean.showEnterprise}"/>
-        <p:selectOneMenu  id="empresas" value="#{masterDataPersonBean.person.empresaOrigen}"  filter="true" filterMatchMode="contains" autoWidth="false" style=" width: 170px" rendered="#{configFormsBean.showEnterprise}">
+        <p:outputLabel for="empresas" value="#{bundle.CreatePersonasCliLabel_idEmpresaOrigen}" rendered="#{configFormsAdminBean.showEnterprise}"/>
+        <p:selectOneMenu  id="empresas" value="#{masterDataPersonBean.person.empresaOrigen}"  filter="true" filterMatchMode="contains" autoWidth="false" style=" width: 170px" rendered="#{configFormsAdminBean.showEnterprise}">
             <p:ajax update="labelNombreEmpresa nombreEmpresa"/>
             <f:selectItem  itemLabel="#{bundle.SelectOneMessage}"  noSelectionOption="true" itemValue="#{null}"/>
             <f:selectItems  value="#{generalViewBean.enterprises}" var="empresas" itemLabel="#{empresas.nombre1}" itemValue="#{empresas}"/>
         </p:selectOneMenu>
-        <p:outputLabel id="labelNombreEmpresa" value="#{bundle.CreatePersonasCliLabel_nombreEmpresa}" rendered="#{configFormsBean.showEnterprise}"/>
-        <p:inputText id="nombreEmpresa" value="#{masterDataPersonBean.otherEnterpriseName}" disabled="#{!(masterDataPersonBean.person.empresaOrigen.idEmpresaOrigen eq 1)}" required="true" requiredMessage="#{bundle.CreatePersonasCliRequiredMessage_empresa}" style="text-transform:uppercase;" maxlength="15" rendered="#{configFormsBean.showEnterprise}"/>
+        <p:outputLabel id="labelNombreEmpresa" value="#{bundle.CreatePersonasCliLabel_nombreEmpresa}" rendered="#{configFormsAdminBean.showEnterprise}"/>
+        <p:inputText id="nombreEmpresa" value="#{masterDataPersonBean.otherEnterpriseName}" disabled="#{!(masterDataPersonBean.person.empresaOrigen.idEmpresaOrigen eq 1)}" required="true" requiredMessage="#{bundle.CreatePersonasCliRequiredMessage_empresa}" style="text-transform:uppercase;" maxlength="15" rendered="#{configFormsAdminBean.showEnterprise}"/>
 
-        <p:outputLabel for="eps" value="#{bundle.CreatePersonasCliLabel_eps}" rendered="#{configFormsBean.showEPS}"/>
-        <p:selectOneMenu id="eps" value="#{masterDataPersonBean.person.eps}" filter="true" filterMatchMode="contains" autoWidth="false" style=" width: 170px" widgetVar="eps" rendered="#{configFormsBean.showEPS}">
+        <p:outputLabel for="eps" value="#{bundle.CreatePersonasCliLabel_eps}" rendered="#{configFormsAdminBean.showEPS}"/>
+        <p:selectOneMenu id="eps" value="#{masterDataPersonBean.person.eps}" filter="true" filterMatchMode="contains" autoWidth="false" style=" width: 170px" widgetVar="eps" rendered="#{configFormsAdminBean.showEPS}">
             <f:selectItem itemLabel="#{bundle.SelectOneMessage}"  noSelectionOption="true" itemValue="#{null}"/>
             <f:selectItems  value="#{generalViewBean.eps}" var="eps" itemLabel="#{eps.nombre}" itemValue="#{eps}" />
         </p:selectOneMenu>
-        <p:outputLabel for="vigenciaSS" value="#{bundle.CreatePersonasCliLabel_fechavigenciaSS}" rendered="#{configFormsBean.showVigencySS}"/>
-        <p:calendar id="vigenciaSS" value="#{masterDataPersonBean.person.fechaVigenciaSS}" style=" width: 200px" yearRange="c-100:c+0" navigator="true"  mindate="#{generalViewControl.actualDate}" rendered="#{configFormsBean.showVigencySS}"/>
+        <p:outputLabel for="vigenciaSS" value="#{bundle.CreatePersonasCliLabel_fechavigenciaSS}" rendered="#{configFormsAdminBean.showVigencySS}"/>
+        <p:calendar id="vigenciaSS" value="#{masterDataPersonBean.person.fechaVigenciaSS}" style=" width: 200px" yearRange="c-100:c+0" navigator="true"  mindate="#{generalViewControl.actualDate}" rendered="#{configFormsAdminBean.showVigencySS}"/>
 
-        <p:outputLabel for="arl" value="#{bundle.CreatePersonasCliLabel_arl}" rendered="#{configFormsBean.showARL}"/>
-        <p:selectOneMenu id="arl" value="#{masterDataPersonBean.person.arl}" filter="true" filterMatchMode="contains" widgetVar="arl" autoWidth="false" style=" width: 170px" rendered="#{configFormsBean.showARL}">
+        <p:outputLabel for="arl" value="#{bundle.CreatePersonasCliLabel_arl}" rendered="#{configFormsAdminBean.showARL}"/>
+        <p:selectOneMenu id="arl" value="#{masterDataPersonBean.person.arl}" filter="true" filterMatchMode="contains" widgetVar="arl" autoWidth="false" style=" width: 170px" rendered="#{configFormsAdminBean.showARL}">
             <f:selectItem itemLabel="#{bundle.SelectOneMessage}"  noSelectionOption="true" itemValue="#{null}"/>
             <f:selectItems  value="#{generalViewBean.arl}" var="arl" itemLabel="#{arl.nombre}" itemValue="#{arl}" />
         </p:selectOneMenu>
 
-        <p:outputLabel for="idExterno" value="#{bundle.CreatePersonasCliLabel_idExterno}" rendered="#{configFormsBean.showOtherID}"/>
-        <p:inputText id="idExterno" value="#{masterDataPersonBean.specificPerson.idExterno}" style="text-transform:uppercase;width: 200px" maxlength="15" rendered="#{configFormsBean.showOtherID}"/>
+        <p:outputLabel for="idExterno" value="#{bundle.CreatePersonasCliLabel_idExterno}" rendered="#{configFormsAdminBean.showOtherID}"/>
+        <p:inputText id="idExterno" value="#{masterDataPersonBean.specificPerson.idExterno}" style="text-transform:uppercase;width: 200px" maxlength="15" rendered="#{configFormsAdminBean.showOtherID}"/>
 
     </h:panelGrid>
 

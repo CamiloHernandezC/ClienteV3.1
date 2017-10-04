@@ -66,15 +66,10 @@ public class MasterDataPersonBean implements Serializable {
     private PersonFileUploadHandler fileUploadHandler;
     
     private String otherEnterpriseName;
-    private boolean disableBranchOffice;//disable select one menu for branch office when is creating or editing to avoid verify if person exist for selected branch office again
     private ArrayList<PersonasSucursal> uploadedFileErrorList;
 
     public ArrayList<PersonasSucursal> getUploadedFileErrorList() {
         return uploadedFileErrorList;
-    }
-
-    public boolean isDisableBranchOffice() {
-        return disableBranchOffice;
     }
 
     public String getOtherEnterpriseName() {
@@ -154,7 +149,7 @@ public class MasterDataPersonBean implements Serializable {
                 return null;
             }
         }
-        disableBranchOffice = true;
+        branchOfficeBean.setDisableBranchOffice(true);
         return Navigation.PAGE_PERSONAS_CREATE;
     }
 
@@ -236,6 +231,7 @@ public class MasterDataPersonBean implements Serializable {
      *
      */
     public List<PersonasSucursal> getPersonsByBranchOffice() {//TODO LOAD ITEMS ONCE BECAUSE WHEN CHANGE PAGE TO SEE MORE PERSONS IT WILL RELOAD, SO MAKE A BUTTON TO RELOAD OR TRY WITH C:IF WHEN PAGE IS REALOADED, MAKE C:IF ACTION SET BOOLEAN VALUE TO FALSE AND USE THAT BOOLEAN TO ASK IF RELOAD IS NEEDED LIKE VALID SESSION METHOD
+        persons = null;
         if (branchOfficeBean.getSelectedBranchOffice() != null) {
             String squery = Querys.PERSONAS_SUCURSAL_CLI_ALL + "WHERE" + Querys.PERSONAS_SUCURSAL_CLI_SUCURSAL + branchOfficeBean.getSelectedBranchOffice().getIdSucursal()
                     + "' AND" + Querys.PERSONAS_SUCURSAL_CLI_NO_ESTADO + Constants.STATUS_INACTIVE + "'";
@@ -248,7 +244,7 @@ public class MasterDataPersonBean implements Serializable {
         specificPerson = editablePerson;
         person = specificPerson.getPersonas();
         branchOfficeBean.setSelectedBranchOffice(specificPerson.getSucursales());
-        disableBranchOffice = true;
+        branchOfficeBean.setDisableBranchOffice(true);
         return Navigation.PAGE_PERSONAS_EDIT;
     }
 
@@ -306,7 +302,7 @@ public class MasterDataPersonBean implements Serializable {
     }
     
     public void clean(){
-        disableBranchOffice = false;
+        branchOfficeBean.setDisableBranchOffice(false);
         person = null;
         specificPerson = null;
     }

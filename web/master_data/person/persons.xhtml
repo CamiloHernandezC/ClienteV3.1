@@ -122,9 +122,6 @@
                     </div>
                 </f:facet>
 
-                <p:column headerText="#{bundle.ListPersonasCliTitle_numDocumento}">
-                    <h:outputText value="#{item.personas.numeroDocumento}"/>
-                </p:column>
                 <p:column filterBy="#{item.personas.nombre1}" headerText="#{bundle.ListPersonasCliTitle_nombre1}" filterMatchMode="contains">
                     <h:outputText value="#{item.personas.nombre1}"/>
                 </p:column>
@@ -148,41 +145,50 @@
                 </p:column>
                 <p:column>
                     <f:facet name="header">
+                        <h:outputText value="#{bundle.ListPersonasCliTitle_tipoDocumento}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.personas.tipoDocumento.descripcion}"/>
+                </p:column>
+                <p:column headerText="#{bundle.ListPersonasCliTitle_numDocumento}">
+                    <h:outputText value="#{item.personas.numeroDocumento}"/>
+                </p:column>
+                <p:column rendered="#{configFormsAdminBean.showAddress}">
+                    <f:facet name="header">
                         <h:outputText value="#{bundle.ListPersonasCliTitle_direccion}"/>
                     </f:facet>
                     <h:outputText value="#{item.personas.direccion}"/>
                 </p:column>
-                <p:column>
+                <p:column rendered="#{configFormsAdminBean.showPhone}">
                     <f:facet name="header">
                         <h:outputText value="#{bundle.ListPersonasCliTitle_telefono}"/>
                     </f:facet>
                     <h:outputText value="#{item.personas.telefono}"/>
                 </p:column>
-                <p:column>
+                <p:column rendered="#{configFormsAdminBean.showCellphone}">
                     <f:facet name="header">
                         <h:outputText value="#{bundle.ListPersonasCliTitle_celular}"/>
                     </f:facet>
                     <h:outputText value="#{item.personas.celular}"/>
                 </p:column>
-                <p:column>
+                <p:column rendered="#{configFormsAdminBean.showMail}">
                     <f:facet name="header">
                         <h:outputText value="#{bundle.ListPersonasCliTitle_mail}"/>
                     </f:facet>
                     <h:outputText value="#{item.personas.mail}"/>
                 </p:column>
-                <p:column>
+                <p:column rendered="#{configFormsAdminBean.showEmergencyContact}">
                     <f:facet name="header">
                         <h:outputText value="#{bundle.ListPersonasCliTitle_personaContacto}"/>
                     </f:facet>
                     <h:outputText value="#{item.personas.personaContacto}"/>
                 </p:column>
-                <p:column>
+                <p:column rendered="#{configFormsAdminBean.showEmergencyPhone}">
                     <f:facet name="header">
                         <h:outputText value="#{bundle.ListPersonasCliTitle_telPersonaContacto}"/>
                     </f:facet>
                     <h:outputText value="#{item.personas.telPersonaContacto}"/>
                 </p:column>
-                <p:column>
+                <p:column rendered="#{configFormsAdminBean.showVigencySS}">
                     <f:facet name="header">
                         <h:outputText value="#{bundle.ListPersonasCliTitle_fechavigenciaSS}"/>
                     </f:facet>
@@ -190,19 +196,19 @@
                         <f:convertDateTime pattern="MM/dd/yyyy" />
                     </h:outputText>
                 </p:column>
-                <p:column>
+                <p:column rendered="#{configFormsAdminBean.showGender}">
                     <f:facet name="header">
                         <h:outputText value="#{bundle.ListPersonasCliTitle_sexo}"/>
                     </f:facet>
                     <h:outputText value="#{item.personas.sexoString}"/>
                 </p:column>
-                <p:column>
+                <p:column rendered="#{configFormsAdminBean.showRH}">
                     <f:facet name="header">
                         <h:outputText value="#{bundle.ListPersonasCliTitle_rh}"/>
                     </f:facet>
                     <h:outputText value="#{item.personas.rh}"/>
                 </p:column>
-                <p:column>
+                <p:column rendered="#{configFormsAdminBean.showBirthDay}">
                     <f:facet name="header">
                         <h:outputText value="#{bundle.ListPersonasCliTitle_fechaNacimiento}"/>
                     </f:facet>
@@ -210,55 +216,41 @@
                         <f:convertDateTime pattern="MM/dd/yyyy" />
                     </h:outputText>
                 </p:column>
-                <p:column>
-                    <f:facet name="header">
-                        <h:outputText value="#{bundle.ListPersonasCliTitle_fecha}"/>
-                    </f:facet>
-                    <h:outputText value="#{item.personas.fecha}">
-                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                    </h:outputText>
-                </p:column>
-                <p:column>
+                <p:column rendered="#{configFormsAdminBean.showARL}">
                     <f:facet name="header">
                         <h:outputText value="#{bundle.ListPersonasCliTitle_arl}"/>
                     </f:facet>
                     <h:outputText value="#{item.personas.arl.nombre}"/>
                 </p:column>
-                <p:column>
+                <p:column rendered="#{configFormsAdminBean.showDepartment}">
                     <f:facet name="header">
                         <h:outputText value="#{bundle.ListPersonasCliTitle_idDepartamento}"/>
                     </f:facet>
                     <h:outputText value="#{item.personas.departamento.nombre}"/>
                 </p:column>
-                <p:column>
+                <p:column rendered="#{configFormsAdminBean.showEnterprise}">
                     <f:facet name="header">
                         <h:outputText value="#{bundle.ListPersonasCliTitle_idEmpresaOrigen}"/>
                     </f:facet>
                     <h:outputText value="#{item.personas.empresaOrigen.nombre1}"/>
                 </p:column>
-                <p:column>
+                <p:column rendered="#{configFormsAdminBean.showEPS}">
                     <f:facet name="header">
                         <h:outputText value="#{bundle.ListPersonasCliTitle_eps}"/>
                     </f:facet>
                     <h:outputText value="#{item.personas.eps.nombre}"/>
                 </p:column>
-                <p:column>
+                <p:column rendered="#{configFormsAdminBean.showMunicipaly}">
                     <f:facet name="header">
                         <h:outputText value="#{bundle.ListPersonasCliTitle_idMunicipio}"/>
                     </f:facet>
                     <h:outputText value="#{item.personas.municipio.nombre}"/>
                 </p:column>
-                <p:column>
+                <p:column rendered="#{configFormsAdminBean.showCountry}">
                     <f:facet name="header">
                         <h:outputText value="#{bundle.ListPersonasCliTitle_idPais}"/>
                     </f:facet>
                     <h:outputText value="#{item.personas.pais.nombre}"/>
-                </p:column>
-                <p:column>
-                    <f:facet name="header">
-                        <h:outputText value="#{bundle.ListPersonasCliTitle_tipoDocumento}"/>
-                    </f:facet>
-                    <h:outputText value="#{item.personas.tipoDocumento.descripcion}"/>
                 </p:column>
                 <p:column headerText="#{bundle.Options}" styleClass="centerElem" id="columA" exportable="false" toggleable="false">
                     <h:panelGroup style="white-space: nowrap">

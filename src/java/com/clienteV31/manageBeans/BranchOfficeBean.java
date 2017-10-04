@@ -16,6 +16,7 @@ import com.clienteV31.utils.Result;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Observable;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
@@ -26,23 +27,36 @@ import javax.inject.Named;
  */
 @Named
 @SessionScoped
-public class BranchOfficeBean implements Serializable{
+public class BranchOfficeBean extends Observable implements Serializable{
     
     @EJB
     private AccesoUsuarioFacade ejbFacade;
     private ArrayList<Sucursales> branchOffices = null;
     private Sucursales selectedBranchOffice = null;
+    private boolean disableBranchOffice;
+    /*THIS FIELD IS DISABLED WHEN:
+    disable select one menu for branch office when is creating or editing to avoid verify if person exist for selected branch office again
+    Is setting person form configuration
+    */
     
     /**
      * Creates a new instance of MenuController
      */
     public BranchOfficeBean() {
     }
+    
+    public boolean isDisableBranchOffice() {
+        return disableBranchOffice;
+    }
+
+    public void setDisableBranchOffice(boolean disableBranchOffice) {
+        this.disableBranchOffice = disableBranchOffice;
+    }
 
     public boolean isShowBranchOffice() {
         loadBranchOffices();
         if(branchOffices==null || branchOffices.isEmpty()){
-            selectedBranchOffice = new Sucursales(0);//query whit brachOffice = 0 will return no result
+            //selectedBranchOffice = new Sucursales(0);//query whit brachOffice = 0 will return no result
             return false;
         }
         if(branchOffices.size()==1){
@@ -58,6 +72,8 @@ public class BranchOfficeBean implements Serializable{
 
     public void setSelectedBranchOffice(Sucursales selectedBranchOffice) {
         this.selectedBranchOffice = selectedBranchOffice;
+        setChanged();
+        notifyObservers();
     }
 
     public ArrayList<Sucursales> getBranchOffices() {
@@ -80,6 +96,5 @@ public class BranchOfficeBean implements Serializable{
             });
         }
     }
-
     
 }

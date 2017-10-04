@@ -15,7 +15,7 @@ import javax.persistence.PersistenceContext;
  * @author chernandez
  */
 @Stateless
-public class ConfigFormGerenciaFacade extends AbstractQueryFacade<ConfigFormGerencia> {
+public class ConfigFormGerenciaFacade extends AbstractPersistenceFacade<ConfigFormGerencia> {
 
     @PersistenceContext(unitName = "ClienteV3.1PU")
     private EntityManager em;
@@ -27,6 +27,27 @@ public class ConfigFormGerenciaFacade extends AbstractQueryFacade<ConfigFormGere
 
     public ConfigFormGerenciaFacade() {
         super(ConfigFormGerencia.class);
+    }
+
+    @Override
+    public void setEmbeddableKeys() {
+        //Nothing to do here
+    }
+
+    @Override
+    public void initializeEmbeddableKey() {
+        //Nothing to do here
+    }
+
+    @Override
+    public void prepareCreate() {
+        //Can't create records
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void prepareUpdate() {
+        //Nothing to do here
     }
     
 }

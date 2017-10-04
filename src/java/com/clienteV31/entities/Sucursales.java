@@ -96,7 +96,7 @@ public class Sucursales implements Serializable {
     private List<AccesoUsuario> accesoUsuarioList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "sucursal", fetch = FetchType.LAZY)
     private List<MovVehiculos> movVehiculosList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "sucursal", fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "sucursal", fetch = FetchType.EAGER)
     private List<ConfigFormGerencia> configFormGerenciaList;
 
     public Sucursales() {
