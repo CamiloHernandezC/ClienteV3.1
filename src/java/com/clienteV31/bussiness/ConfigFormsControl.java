@@ -5,12 +5,11 @@
  */
 package com.clienteV31.bussiness;
 
-import com.clienteV31.entities.ConfigFormGerencia;
-import com.clienteV31.facades.ConfigFormGerenciaFacade;
+import com.clienteV31.entities.AbstractConfigForm;
+import com.clienteV31.facades.AbstractPersistenceFacade;
 import com.clienteV31.utils.Constants;
 import com.clienteV31.utils.Result;
 import java.util.HashMap;
-import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
 /**
@@ -18,14 +17,11 @@ import javax.ejb.Stateless;
  * @author chernandez
  */
 @Stateless
-public class ConfigFormsAdminControl {
+public class ConfigFormsControl {
     
-    @EJB
-    private ConfigFormGerenciaFacade ejbFacade;
-    
-    public Result update(HashMap<String, ConfigFormGerencia> fieldsEntities) {
-        for (ConfigFormGerencia entity : fieldsEntities.values()) {
-            Result result = ejbFacade.update(entity);
+    public Result update(HashMap<String, AbstractConfigForm> fieldsEntities, AbstractPersistenceFacade facade) {
+        for (AbstractConfigForm entity : fieldsEntities.values()) {
+            Result result = facade.update(entity);
             if(result.errorCode!=Constants.OK){
                 return result;
             }

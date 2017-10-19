@@ -1,0 +1,26 @@
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <!-- Search To Create -->
+
+        <p:dialog id="searchToCreate" widgetVar="dialogSearchToCreate" header="#{bundle.VerificationDialog}"
+                  closable="true" showEffect="fade" hideEffect="fade" modal="true" appendTo="body"
+                  resizable="false">
+            <h:form id="formSearchToCreate">
+                <h:panelGrid columns="2">
+                    <p:outputLabel for="licensePlate" value="#{bundle.placa}"   style="width: 200px"/>
+                    <p:inputText id="licensePlate" value="#{masterDataVehicleBean.vehicle.placa}" required="true" requiredMessage="#{bundle.placa_required}" style="text-transform:uppercase;width: 200px" maxlength="20"/>
+
+                    <p:outputLabel value="#{bundle.CreatePersonasCliLabel_idSucursal}" for="branchOffice" rendered="#{branchOfficeBean.showBranchOffice}"/>
+                    <p:selectOneMenu style="width: 170px" id="branchOffice" value="#{branchOfficeBean.selectedBranchOffice}" rendered="#{branchOfficeBean.showBranchOffice}" required="true" requiredMessage="#{bundle.EditPersonasCliRequiredMessage_idSucursal}">
+                        <f:selectItem itemLabel="#{bundle.SelectOneMessage}" itemValue="#{null}"/>
+                        <f:selectItems value="#{branchOfficeBean.branchOffices}" var="branchOffice" itemValue="#{branchOffice}" itemLabel="#{branchOffice.nombre}"/>
+                    </p:selectOneMenu>
+                </h:panelGrid>
+                <p:commandButton class="green" action="#{masterDataVehicleBean.searchToCreate()}"  value="#{bundle.Save}" update=":growl formSearchToCreate"/>
+                <p:commandButton class="red" value="#{bundle.Cancel}" immediate="true" ajax="false" onclick="PF('dialogSearchToCreate').hide();"/>
+            </h:form>
+        </p:dialog>
+
+</ui:composition>

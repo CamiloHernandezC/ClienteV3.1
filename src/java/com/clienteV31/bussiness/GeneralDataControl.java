@@ -18,6 +18,7 @@ import com.clienteV31.facades.EpsFacade;
 import com.clienteV31.facades.PaisesFacade;
 import com.clienteV31.facades.TiposDocumentoFacade;
 import com.clienteV31.querys.Querys;
+import com.clienteV31.utils.Constants;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -38,7 +39,8 @@ public class GeneralDataControl {
     
     @EJB
     private EntidadesFacade ejbEntidadesFacade;
-    private List<Entidades> entidades;
+    private List<Entidades> personsTypes;
+    private List<Entidades> vehiclesTypes;
     
     @EJB
     private PaisesFacade paisesFacade;
@@ -61,7 +63,7 @@ public class GeneralDataControl {
     @PostConstruct
     public void init(){
         getTiposDocumento();
-        getEntidades();
+        getPersonTypes();
         getCountries();
         getDepartments();
     }
@@ -75,11 +77,31 @@ public class GeneralDataControl {
     }
     
     @Lock(LockType.READ)
-    public List<Entidades> getEntidades() {
-        if(entidades==null){
-            entidades = ejbEntidadesFacade.findAll();
+    public List<Entidades> getPersonTypes() {
+        if(personsTypes==null){
+            StringBuilder sb = new StringBuilder();
+            sb.append(Querys.ENTIDADES_ALL);
+            sb.append(" WHERE");
+            sb.append(Querys.ENTIDADES_CATEGORIA);
+            sb.append(Constants.CATEGORY_PERSON);
+            sb.append("'");
+            personsTypes = (List<Entidades>) ejbEntidadesFacade.findByQueryArray(sb.toString()).result;
         }
-        return entidades;
+        return personsTypes;
+    }
+    
+    @Lock(LockType.READ)
+    public List<Entidades> getVehiclesTypes() {
+        if(vehiclesTypes==null){
+            StringBuilder sb = new StringBuilder();
+            sb.append(Querys.ENTIDADES_ALL);
+            sb.append(" WHERE");
+            sb.append(Querys.ENTIDADES_CATEGORIA);
+            sb.append(Constants.CATEGORY_VEHICLE);
+            sb.append("'");
+            vehiclesTypes = (List<Entidades>) ejbEntidadesFacade.findByQueryArray(sb.toString()).result;
+        }
+        return vehiclesTypes;
     }
     
     @Lock(LockType.READ)

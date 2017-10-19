@@ -375,11 +375,5 @@ public class MovPersonas extends AbstractEntity{
     public void setDate(Date date) {
         fecha = date;
     }
-
-    @Override
-    public void setStatus(Integer STATUS_INACTIVE) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
     
 }

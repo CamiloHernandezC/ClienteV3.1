@@ -5,6 +5,7 @@
  */
 package com.clienteV31.facades;
 
+import com.clienteV31.entities.Estados;
 import com.clienteV31.entities.Personas;
 import com.clienteV31.querys.Querys;
 import com.clienteV31.utils.Constants;
@@ -44,7 +45,7 @@ public class PersonasFacade extends AbstractPersistenceFacade<Personas> {
 
     @Override
     public void prepareCreate() {
-        entity.setStatus(Constants.STATUS_ACTIVE);
+        entity.setEstado(new Estados(Constants.STATUS_ACTIVE));
         calculatePrimaryKey(Querys.PERSONA_CLI_LAST_PRIMARY_KEY);
         prepareUpdate();
     }

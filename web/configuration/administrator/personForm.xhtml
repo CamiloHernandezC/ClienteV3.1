@@ -9,15 +9,12 @@
 
     <ui:define name="content">
 
-        <p:dialog modal="true" appendTo="@(body)" id="dialogConfirmCancel" widgetVar="dialogConfirmCancel" header="#{bundle.Confirm_Cancel}">
+        <p:confirmDialog id="dialogConfirmCancel" appendTo="@(body)" message="#{bundle.Confirm_Cancel_Message}" severity="alert" showEffect="fade" hideEffect="fade" widgetVar="dialogConfirmCancel" closable="false">
             <h:form>
-                <h:panelGrid columns="1">
-                    <h:outputText value="#{bundle.Confirm_Cancel_Message}"/>
-                </h:panelGrid>
-                <p:commandButton id="accept" value="#{bundle.Accept}" action="#{configFormsAdminBean.cancel()}" style="margin-top: 2%"/>
-                <p:commandButton id="decline" value="#{bundle.Cancel}" onclick="PF('dialogConfirmCancel').hide();"/>
+                <p:commandButton id="accept" value="#{bundle.Yes}" action="#{configFormsAdminBean.cancel()}" style="margin-top: 2%"/>
+                <p:commandButton id="decline" value="#{bundle.No}" onclick="PF('dialogConfirmCancel').hide();"/>
             </h:form>
-        </p:dialog>
+        </p:confirmDialog>
         
         <p:dialog id="dialogBranchOffice" widgetVar="dialogBranchOffice" header="#{bundle.VerificationDialog}"
                   closable="false" showEffect="fade" hideEffect="fade" modal="true" appendTo="body"
@@ -92,8 +89,8 @@
                 <p:selectBooleanCheckbox value="#{configFormsAdminBean.showOtherID}"/>
                 
             </h:panelGrid>    
-            <p:commandButton action="#{configFormsAdminBean.save}" value="#{bundle.Save}" ajax="false" style="margin-top: 2%"/>
-            <p:commandButton action="PF('dialogConfirmCancel').show();" value="#{bundle.Cancel}" immediate="true" ajax="false"/>
+            <p:commandButton class="green" action="#{configFormsAdminBean.save}" value="#{bundle.Save}" ajax="false" style="margin-top: 2%"/>
+            <p:commandButton class="red" onclick="PF('dialogConfirmCancel').show();" value="#{bundle.Cancel}" immediate="true"/>
             </h:form>
         </h:form>
     </ui:define>

@@ -14,16 +14,16 @@
                 <h:panelGrid columns="1">
                     <h:outputText value="#{bundle.Confirm_Cancel_Message}"/>
                 </h:panelGrid>
-                <p:commandButton id="accept" value="#{bundle.Accept}" action="#{masterDataPersonBean.cancel()}"/>
-                <p:commandButton id="decline" value="#{bundle.Cancel}" onclick="PF('dialogConfirmCancel').hide();"/>
+                <p:commandButton class="green" id="accept" value="#{bundle.Yes}" action="#{masterDataPersonBean.cancel()}"/>
+                <p:commandButton class="red" id="decline" value="#{bundle.No}" onclick="PF('dialogConfirmCancel').hide();"/>
             </h:form>
         </p:dialog>
 
         <h:form>
             <h1>#{bundle.CreatePersonasCliTitle}</h1>
             <ui:include src="formTemplate.xhtml"/>
-            <p:commandButton action="#{masterDataPersonBean.create}" value="#{bundle.Save}" ajax="false"/>
-            <p:commandButton onclick="PF('dialogConfirmCancel').show();" value="#{bundle.Cancel}" immediate="true" ajax="true"/>
+            <p:commandButton class="green" action="#{masterDataPersonBean.create}" value="#{bundle.Save}" ajax="false"/>
+            <p:commandButton class="red" onclick="PF('dialogConfirmCancel').show();" value="#{bundle.Cancel}" immediate="true" ajax="true"/>
         </h:form>
     </ui:define>
 

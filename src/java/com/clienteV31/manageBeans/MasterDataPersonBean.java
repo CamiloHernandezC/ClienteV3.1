@@ -53,7 +53,6 @@ public class MasterDataPersonBean implements Serializable {
     private BranchOfficeBean branchOfficeBean;
     @EJB
     private PersonasSucursalFacade personaSucurcalFacade;
-    private List<PersonasSucursal> persons;
     @EJB
     private AreasControl areasControl;
     @EJB
@@ -116,7 +115,6 @@ public class MasterDataPersonBean implements Serializable {
 
     public void handleFileUpload(FileUploadEvent event) {
         uploadedFileErrorList = null;
-        String[][] values;//here just valid data will be stored
         Result result = fileUploadHandler.handleUploadedFile(event.getFile(),Constants.PERSON_EXCEL_COLUMNS);
         if(result.errorCode==Constants.PARTIAL_UPLOADED_FILE_ERROR){
             uploadedFileErrorList = (ArrayList<PersonasSucursal>) result.result;
@@ -145,6 +143,7 @@ public class MasterDataPersonBean implements Serializable {
                     JsfUtil.showModal("inactiveDialog");
                     return null;
                 }
+                clean();
                 JsfUtil.addErrorMessage(BundleUtils.getBundleProperty("RepeatedRecord"));
                 return null;
             }
@@ -230,14 +229,15 @@ public class MasterDataPersonBean implements Serializable {
      * @return List of people belonging to selected branch office
      *
      */
-    public List<PersonasSucursal> getPersonsByBranchOffice() {//TODO LOAD ITEMS ONCE BECAUSE WHEN CHANGE PAGE TO SEE MORE PERSONS IT WILL RELOAD, SO MAKE A BUTTON TO RELOAD OR TRY WITH C:IF WHEN PAGE IS REALOADED, MAKE C:IF ACTION SET BOOLEAN VALUE TO FALSE AND USE THAT BOOLEAN TO ASK IF RELOAD IS NEEDED LIKE VALID SESSION METHOD
-        persons = null;
-        if (branchOfficeBean.getSelectedBranchOffice() != null) {
-            String squery = Querys.PERSONAS_SUCURSAL_CLI_ALL + "WHERE" + Querys.PERSONAS_SUCURSAL_CLI_SUCURSAL + branchOfficeBean.getSelectedBranchOffice().getIdSucursal()
-                    + "' AND" + Querys.PERSONAS_SUCURSAL_CLI_NO_ESTADO + Constants.STATUS_INACTIVE + "'";
-            persons = (List<PersonasSucursal>) personaSucurcalFacade.findByQueryArray(squery).result;
+    public List<PersonasSucursal> getPersonsByBranchOffice() {
+        if (branchOfficeBean.getSelectedBranchOffice() == null) {
+            return null;
         }
-        return persons;
+        StringBuilder sb = new StringBuilder();
+        sb.append(Querys.PERSONAS_SUCURSAL_CLI_ALL);sb.append("WHERE");sb.append(Querys.PERSONAS_SUCURSAL_CLI_SUCURSAL);
+        sb.append(branchOfficeBean.getSelectedBranchOffice().getIdSucursal());sb.append("' AND");
+        sb.append(Querys.PERSONAS_SUCURSAL_CLI_NO_ESTADO);sb.append(Constants.STATUS_INACTIVE);sb.append("'");
+        return (List<PersonasSucursal>) personaSucurcalFacade.findByQueryArray(sb.toString()).result;
     }
 
     public String preEdit(PersonasSucursal editablePerson) {

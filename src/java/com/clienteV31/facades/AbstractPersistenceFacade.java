@@ -32,22 +32,6 @@ public abstract class AbstractPersistenceFacade<T> extends AbstractQueryFacade<T
         super(entityClass);
     }
     
-    /*protected abstract void setEmbeddableKeys();
-
-    protected abstract void initializeEmbeddableKey();
-
-    protected abstract void prepareCreate();
-
-    protected abstract void prepareUpdate();*/
-    
-    @Override
-    public void prepareDisable(){
-        AbstractEntity aEntity = (AbstractEntity) entity;
-        aEntity.setStatus(Constants.STATUS_INACTIVE);
-        entity = (T) aEntity;
-        prepareUpdate();
-    }
-    
     @Override
     public void calculatePrimaryKey(String squery) {
         Result result = findByQuery(squery, true);//Only need the first resul
@@ -85,14 +69,6 @@ public abstract class AbstractPersistenceFacade<T> extends AbstractQueryFacade<T
         return persist(JsfUtil.PersistAction.UPDATE);
     }
 
-    @Override
-    public Result disable(T pEntity) {
-        entity = pEntity;
-        prepareDisable();
-        return persist(JsfUtil.PersistAction.UPDATE);
-    }
-    
-    
     @Override
     public Result delete(T pEntity) {
         entity = pEntity;

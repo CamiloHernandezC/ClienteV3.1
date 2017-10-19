@@ -10,6 +10,8 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -33,13 +35,13 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "ConfigForm.findByFormulario", query = "SELECT c FROM ConfigForm c WHERE c.formulario = :formulario"),
     @NamedQuery(name = "ConfigForm.findByCampo", query = "SELECT c FROM ConfigForm c WHERE c.campo = :campo"),
     @NamedQuery(name = "ConfigForm.findByMostrar", query = "SELECT c FROM ConfigForm c WHERE c.mostrar = :mostrar")})
-public class ConfigForm implements Serializable {
+public class ConfigForm extends AbstractConfigForm implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @NotNull
     @Column(name = "Id_Config_Form")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idConfigForm;
     @Basic(optional = false)
     @NotNull
@@ -85,14 +87,17 @@ public class ConfigForm implements Serializable {
         return formulario;
     }
 
+    @Override
     public void setFormulario(String formulario) {
         this.formulario = formulario;
     }
 
+    @Override
     public String getCampo() {
         return campo;
     }
 
+    @Override
     public void setCampo(String campo) {
         this.campo = campo;
     }

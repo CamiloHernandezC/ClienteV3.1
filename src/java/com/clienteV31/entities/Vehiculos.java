@@ -41,7 +41,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Vehiculos.findByColor1", query = "SELECT v FROM Vehiculos v WHERE v.color1 = :color1"),
     @NamedQuery(name = "Vehiculos.findByColor2", query = "SELECT v FROM Vehiculos v WHERE v.color2 = :color2"),
     @NamedQuery(name = "Vehiculos.findByFecha", query = "SELECT v FROM Vehiculos v WHERE v.fecha = :fecha")})
-public class Vehiculos implements Serializable {
+public class Vehiculos extends AbstractEntity{
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -80,7 +80,7 @@ public class Vehiculos implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     private Paises pais;
     @JoinColumn(name = "Departamento", referencedColumnName = "Id_Departamento")
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     private Departamentos departamento;
     @JoinColumn(name = "Municipio", referencedColumnName = "Id_Municipio")
     @ManyToOne(fetch = FetchType.LAZY)
@@ -251,5 +251,25 @@ public class Vehiculos implements Serializable {
     public String toString() {
         return "Entities.Vehiculos[ placa=" + placa + " ]";
     }
-    
+
+    @Override
+    public int getPrimaryKey() {
+        //Nothing to do here
+        return 0;
+    }
+
+    @Override
+    public void setPrimaryKey(int primaryKey) {
+        //Nothing to do here
+    }
+
+    @Override
+    public void setUser(Personas user) {
+        usuario = user;
+    }
+
+    @Override
+    public void setDate(Date date) {
+        fecha = date;
+    }
 }

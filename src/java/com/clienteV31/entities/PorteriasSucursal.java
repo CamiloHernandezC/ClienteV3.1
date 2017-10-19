@@ -39,7 +39,7 @@ public class PorteriasSucursal implements Serializable {
     @Column(name = "Campo")
     private String campo;
     @JoinColumn(name = "Porteria", referencedColumnName = "Id_Porteria", insertable = false, updatable = false)
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = false, fetch = FetchType.EAGER)
     private Porterias porterias;
     @JoinColumn(name = "Sucursal", referencedColumnName = "Id_Sucursal", insertable = false, updatable = false)
     @ManyToOne(optional = false, fetch = FetchType.LAZY)

@@ -436,9 +436,4 @@ public class Horarios extends AbstractEntity{
         fecha = date;
     }
 
-    @Override
-    public void setStatus(Integer STATUS_INACTIVE) {
-        //Nothing to do here
-    }
-
 }

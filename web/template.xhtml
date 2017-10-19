@@ -9,6 +9,7 @@
         <h:head>
             <f:facet name="first">
                 <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <link rel="stylesheet" type="text/css" href="#{resource['/css/styleTemplate.css']}"/>
                 <title>ACTIV-ONE</title>
             </f:facet>
         </h:head>
@@ -36,30 +37,29 @@
             <!--*************************************************************-->
 
             <p:layout fullPage="true">
-
-                <p:layoutUnit position="north" size="10%" id="top">
+                
+                <p:layoutUnit position="north" size="10%" id="top" style="background: #023859">
                     <p:growl id="growl" sticky="true" />
+                    
                     <p:menubar model="#{menuBean.menu}" style="display: inline-block"/>
+                    
 
                     <div style="float: right">
 
                         <h:form id="formBranchOffice">
                             <h:panelGrid columns="2">
-                                <p:outputLabel value="#{bundle.CreatePersonasCliLabel_idSucursal}" for="branchOffice" rendered="#{branchOfficeBean.showBranchOffice}"/>
-                                <p:selectOneMenu id="branchOffice" value="#{branchOfficeBean.selectedBranchOffice}" rendered="#{branchOfficeBean.showBranchOffice}" disabled="#{branchOfficeBean.disableBranchOffice}" requiredMessage="#{bundle.EditPersonasCliRequiredMessage_idSucursal}" widgetVar="branchOffice" onchange="submit()">
+                                <h:panelGrid columns="2" style="padding-right: 10%">
+                                    <p:outputLabel style="color: white" value="#{bundle.CreatePersonasCliLabel_idSucursal}" for="branchOffice" rendered="#{branchOfficeBean.showBranchOffice}"/>
+                                    <p:selectOneMenu id="branchOffice" value="#{branchOfficeBean.selectedBranchOffice}" rendered="#{branchOfficeBean.showBranchOffice}" disabled="#{branchOfficeBean.disableBranchOffice}" requiredMessage="#{bundle.EditPersonasCliRequiredMessage_idSucursal}" widgetVar="branchOffice" onchange="submit()">
                                     <f:selectItem itemLabel="#{bundle.SelectOneMessage}" itemValue="#{null}"/>
                                     <f:selectItems value="#{branchOfficeBean.branchOffices}" var="branchOffice" itemValue="#{branchOffice}" itemLabel="#{branchOffice.nombre}"/>
                                 </p:selectOneMenu>
-                                <p:panelGrid/>
-                                <p:commandButton value="#{bundle.CloseSession}" action="#{loginBean.logout()}" immediate="true"/>
+                                </h:panelGrid>
+                                <p:commandButton class="red" value="#{bundle.CloseSession}" action="#{loginBean.logout()}" immediate="true"/>
                             </h:panelGrid>
                         </h:form>
                     </div>
 
-                </p:layoutUnit>
-
-                <p:layoutUnit position="south" size="10%" closable="true" collapsible="true">
-                    DEVELOPED BY MAILO INNOVATION
                 </p:layoutUnit>
 
                 <p:layoutUnit position="center" size="80%" id="centerLU">

@@ -5,8 +5,10 @@
  */
 package com.clienteV31.entities;
 
+import com.clienteV31.utils.Constants;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Objects;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
@@ -19,9 +21,11 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -37,7 +41,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "VehiculosSucursal.findByIdExterno", query = "SELECT v FROM VehiculosSucursal v WHERE v.idExterno = :idExterno"),
     @NamedQuery(name = "VehiculosSucursal.findByIngresoAutomatico", query = "SELECT v FROM VehiculosSucursal v WHERE v.ingresoAutomatico = :ingresoAutomatico"),
     @NamedQuery(name = "VehiculosSucursal.findByFecha", query = "SELECT v FROM VehiculosSucursal v WHERE v.fecha = :fecha")})
-public class VehiculosSucursal implements Serializable {
+public class VehiculosSucursal extends AbstractEntity{
 
     private static final long serialVersionUID = 1L;
     @EmbeddedId
@@ -66,6 +70,19 @@ public class VehiculosSucursal implements Serializable {
     @JoinColumn(name = "Placa", referencedColumnName = "Placa", insertable = false, updatable = false)
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Vehiculos vehiculos;
+    
+    @Transient
+    private String errorObservation;
+
+    @XmlTransient
+    public String getErrorObservation() {
+        return errorObservation;
+    }
+    
+    @XmlTransient
+    public void setErrorObservation(String errorObservation) {
+        this.errorObservation = errorObservation;
+    }    
 
     public VehiculosSucursal() {
     }
@@ -171,6 +188,34 @@ public class VehiculosSucursal implements Serializable {
     @Override
     public String toString() {
         return "Entities.VehiculosSucursal[ vehiculosSucursalPK=" + vehiculosSucursalPK + " ]";
+    }
+    
+    public boolean isLocked() {
+        if (Objects.equals(estado.getIdEstado(), Constants.STATUS_BLOCKED)) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public int getPrimaryKey() {
+        //Primary key is not autoincremental
+        return 0;
+    }
+
+    @Override
+    public void setPrimaryKey(int primaryKey) {
+        //Nothing to do here
+    }
+
+    @Override
+    public void setUser(Personas user) {
+        usuario = user;
+    }
+
+    @Override
+    public void setDate(Date date) {
+        fecha = date;
     }
     
 }

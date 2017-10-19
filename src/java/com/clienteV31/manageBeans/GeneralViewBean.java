@@ -46,8 +46,12 @@ public class GeneralViewBean {
         return generalDataControl.getTiposDocumento();
     }
     
-    public List<Entidades> getEntidades() {
-        return generalDataControl.getEntidades();
+    public List<Entidades> getPersonTypes() {
+        return generalDataControl.getPersonTypes();
+    }
+    
+    public List<Entidades> getVehiclesTypes() {
+        return generalDataControl.getVehiclesTypes();
     }
     
     public List<AreasEmpresa> getAreasBySelectedBranchOffice(){

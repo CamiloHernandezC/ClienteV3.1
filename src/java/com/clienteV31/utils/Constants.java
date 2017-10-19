@@ -51,6 +51,8 @@ public class Constants {
     //NOMBRE DEL CAMPO FORMULARIO EN LA TABLA CONFIG DE LA BASE DE DATOS
     // <editor-fold desc="FORMULARIO CONFIGURACION" defaultstate="collapsed">
     public static String CONFIGPERSONSFORM ="PERSONA";
+    public static final String CONFIG_FORM_GERENCIA_PERSONA="PERSONA";
+    public static final String CONFIG_FORM_GERENCIA_VEHICLE="VEHICULO";
     //</editor-fold>
     
     // <editor-fold desc="ENTITIES" defaultstate="collapsed">
@@ -71,6 +73,11 @@ public class Constants {
     // <editor-fold desc="ORIGIN ENTERPRISE" defaultstate="collapsed">
     public static final String ORIGIN_ENTERPRISE_OTHER = "1";
     //</editor-fold>
+    
+    // <editor-fold desc="CATEGORIES" defaultstate="collapsed">
+    public static final String CATEGORY_PERSON="1";
+    public static final String CATEGORY_VEHICLE="2";
+    //</editor-fold>
     //</editor-fold>
     
     // <editor-fold desc="HTTP SESSION VARIABLES" defaultstate="collapsed">
@@ -81,12 +88,7 @@ public class Constants {
     public static int MENU_TYPE_CHILDREN = 2;
     
     public static int PERSON_EXCEL_COLUMNS = 25;
-    
-    
-    
-    
-    
-    
+    public static int VEHICLE_EXCEL_COLUMNS = 7;
     
     
     public static String getMonthName(int monthNumber){

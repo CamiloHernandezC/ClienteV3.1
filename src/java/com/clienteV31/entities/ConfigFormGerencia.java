@@ -35,7 +35,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "ConfigFormGerencia.findByFormulario", query = "SELECT c FROM ConfigFormGerencia c WHERE c.formulario = :formulario"),
     @NamedQuery(name = "ConfigFormGerencia.findByCampo", query = "SELECT c FROM ConfigFormGerencia c WHERE c.campo = :campo"),
     @NamedQuery(name = "ConfigFormGerencia.findByMostrar", query = "SELECT c FROM ConfigFormGerencia c WHERE c.mostrar = :mostrar")})
-public class ConfigFormGerencia implements Serializable {
+public class ConfigFormGerencia extends AbstractConfigForm implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -87,14 +87,17 @@ public class ConfigFormGerencia implements Serializable {
         return formulario;
     }
 
+    @Override
     public void setFormulario(String formulario) {
         this.formulario = formulario;
     }
 
+    @Override
     public String getCampo() {
         return campo;
     }
 
+    @Override
     public void setCampo(String campo) {
         this.campo = campo;
     }

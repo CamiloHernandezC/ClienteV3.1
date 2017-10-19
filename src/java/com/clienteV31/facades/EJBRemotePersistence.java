@@ -21,17 +21,10 @@ public interface EJBRemotePersistence<T> {
     public abstract void initializeEmbeddableKey();
     public abstract void prepareCreate();
     public abstract void prepareUpdate();
-    public void prepareDisable();
     public void calculatePrimaryKey(String squery);
     public void assignParametersToUpdate();
     public Result create(T pEntity);
     public Result update(T pEntity);
-    /**
-     * Set status to disable
-     * @param pEntity
-     * @return 
-     */
-    public Result disable(T pEntity);
     /**
      * Delete from database, ¡confirm if you should use this method or disable!
      * @param pEntity

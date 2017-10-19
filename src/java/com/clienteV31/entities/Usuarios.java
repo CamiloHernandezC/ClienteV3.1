@@ -296,9 +296,5 @@ public class Usuarios extends AbstractEntity{
     public void setDate(Date date) {
         fecha = date;
     }
-
-    @Override
-    public void setStatus(Integer Status) {
-        estado = new Estados(Status);
-    }
+    
 }

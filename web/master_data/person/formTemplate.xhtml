@@ -28,7 +28,7 @@
         <p:outputLabel for="personType" value="#{bundle.CreatePersonasCliLabel_idEntidad}" />
         <p:selectOneMenu id="personType" value="#{masterDataPersonBean.specificPerson.entidad}"  required="true" requiredMessage="#{bundle.CreatePersonasCliRequiredMessage_idEntidad}" filter="true" filterMatchMode="contains" autoWidth="false" style=" width: 170px" widgetVar="personType">
             <f:selectItem itemLabel="#{bundle.SelectOneMessage}" itemValue="#{null}"/>
-            <f:selectItems  value="#{generalViewBean.entidades}" var="entity" itemLabel="#{entity.descripcion}" itemValue="#{entity}" />
+            <f:selectItems  value="#{generalViewBean.personTypes}" var="entity" itemLabel="#{entity.descripcion}" itemValue="#{entity}" />
         </p:selectOneMenu>
 
         <p:outputLabel for="areaEmpresa" value="#{bundle.CreatePersonasCliLabel_area}" />

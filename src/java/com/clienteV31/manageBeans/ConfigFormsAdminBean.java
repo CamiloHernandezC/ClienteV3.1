@@ -5,23 +5,15 @@
  */
 package com.clienteV31.manageBeans;
 
-import com.clienteV31.bussiness.ConfigFormsAdminControl;
+import com.clienteV31.entities.AbstractConfigForm;
 import com.clienteV31.entities.ConfigFormGerencia;
-import com.clienteV31.utils.BundleUtils;
+import com.clienteV31.facades.AbstractPersistenceFacade;
+import com.clienteV31.facades.ConfigFormGerenciaFacade;
+import com.clienteV31.querys.Querys;
 import com.clienteV31.utils.Constants;
-import com.clienteV31.utils.JsfUtil;
-import com.clienteV31.utils.Navigation;
-import com.clienteV31.utils.Result;
-import java.io.Serializable;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Observable;
-import java.util.Observer;
-import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
 import javax.ejb.EJB;
 import javax.faces.view.ViewScoped;
-import javax.inject.Inject;
 import javax.inject.Named;
 
 /**
@@ -30,20 +22,17 @@ import javax.inject.Named;
  */
 @Named
 @ViewScoped
-public class ConfigFormsAdminBean implements Serializable, Observer{
+public class ConfigFormsAdminBean extends AbstracConfigFormsBean<ConfigFormGerencia>{
     
-    @Inject
-    private BranchOfficeBean branchOfficeBean;
-    private List<ConfigFormGerencia> fields;
-    private HashMap<String,ConfigFormGerencia> fieldsEntities;
-    private boolean changed;
-    @EJB
-    private ConfigFormsAdminControl configFormsAdminControl;
-    
-    // <editor-fold desc="Render booleans" defaultstate="collapsed">
+    // <editor-fold desc="Person Render booleans" defaultstate="collapsed">
     public boolean isShowARL() {
         ConfigFormGerencia entity = fieldsEntities.get("Arl");
-        return entity != null && entity.getMostrar();
+        if(entity==null){
+            entity = new ConfigFormGerencia();
+            initEntity(entity,Constants.CONFIG_FORM_GERENCIA_PERSONA,"Arl");
+            fieldsEntities.put("Arl", entity);
+        }
+        return entity.getMostrar();
     }
 
     public void setShowARL(boolean show) {
@@ -53,7 +42,12 @@ public class ConfigFormsAdminBean implements Serializable, Observer{
 
     public boolean isShowCellphone() {
         ConfigFormGerencia entity = fieldsEntities.get("Celular");
-        return entity != null && entity.getMostrar();
+        if(entity==null){
+            entity = new ConfigFormGerencia();
+            initEntity(entity,Constants.CONFIG_FORM_GERENCIA_PERSONA,"Celular");
+            fieldsEntities.put("Celular", entity);
+        }
+        return entity.getMostrar();
     }
 
     public void setShowCellphone(boolean show) {
@@ -63,7 +57,12 @@ public class ConfigFormsAdminBean implements Serializable, Observer{
 
     public boolean isShowDepartment() {
         ConfigFormGerencia entity = fieldsEntities.get("Departamento");
-        return entity != null && entity.getMostrar();
+        if(entity==null){
+            entity = new ConfigFormGerencia();
+            initEntity(entity,Constants.CONFIG_FORM_GERENCIA_PERSONA,"Departamento");
+            fieldsEntities.put("Departamento", entity);
+        }
+        return entity.getMostrar();
     }
 
     public void setShowDepartment(boolean show) {
@@ -73,7 +72,12 @@ public class ConfigFormsAdminBean implements Serializable, Observer{
 
     public boolean isShowAddress() {
         ConfigFormGerencia entity = fieldsEntities.get("Direccion");
-        return entity != null && entity.getMostrar();
+        if(entity==null){
+            entity = new ConfigFormGerencia();
+            initEntity(entity,Constants.CONFIG_FORM_GERENCIA_PERSONA,"Direccion");
+            fieldsEntities.put("Direccion", entity);
+        }
+        return entity.getMostrar();
     }
 
     public void setShowAddress(boolean show) {
@@ -83,7 +87,12 @@ public class ConfigFormsAdminBean implements Serializable, Observer{
 
     public boolean isShowMail() {
         ConfigFormGerencia entity = fieldsEntities.get("Email");
-        return entity != null && entity.getMostrar();
+        if(entity==null){
+            entity = new ConfigFormGerencia();
+            initEntity(entity,Constants.CONFIG_FORM_GERENCIA_PERSONA,"Email");
+            fieldsEntities.put("Email", entity);
+        }
+        return entity.getMostrar();
     }
 
     public void setShowMail(boolean show) {
@@ -93,7 +102,12 @@ public class ConfigFormsAdminBean implements Serializable, Observer{
 
     public boolean isShowEnterprise() {
         ConfigFormGerencia entity = fieldsEntities.get("Empresa");
-        return entity != null && entity.getMostrar();
+        if(entity==null){
+            entity = new ConfigFormGerencia();
+            initEntity(entity,Constants.CONFIG_FORM_GERENCIA_PERSONA,"Empresa");
+            fieldsEntities.put("Empresa", entity);
+        }
+        return entity.getMostrar();
     }
 
     public void setShowEnterprise(boolean show) {
@@ -103,7 +117,12 @@ public class ConfigFormsAdminBean implements Serializable, Observer{
 
     public boolean isShowEPS() {
         ConfigFormGerencia entity = fieldsEntities.get("Eps");
-        return entity != null && entity.getMostrar();
+        if(entity==null){
+            entity = new ConfigFormGerencia();
+            initEntity(entity,Constants.CONFIG_FORM_GERENCIA_PERSONA,"Eps");
+            fieldsEntities.put("Eps", entity);
+        }
+        return entity.getMostrar();
     }
 
     public void setShowEPS(boolean show) {
@@ -113,7 +132,12 @@ public class ConfigFormsAdminBean implements Serializable, Observer{
 
     public boolean isShowBirthDay() {
         ConfigFormGerencia entity = fieldsEntities.get("Fecha nacimiento");
-        return entity != null && entity.getMostrar();
+        if(entity==null){
+            entity = new ConfigFormGerencia();
+            initEntity(entity,Constants.CONFIG_FORM_GERENCIA_PERSONA,"Fecha nacimiento");
+            fieldsEntities.put("Fecha nacimiento", entity);
+        }
+        return entity.getMostrar();
     }
 
     public void setShowBirthDay(boolean show) {
@@ -123,7 +147,12 @@ public class ConfigFormsAdminBean implements Serializable, Observer{
 
     public boolean isShowFuncionario() {
         ConfigFormGerencia entity = fieldsEntities.get("Funcionario");
-        return entity != null && entity.getMostrar();
+        if(entity==null){
+            entity = new ConfigFormGerencia();
+            initEntity(entity,Constants.CONFIG_FORM_GERENCIA_PERSONA,"Funcionario");
+            fieldsEntities.put("Funcionario", entity);
+        }
+        return entity.getMostrar();
     }
 
     public void setShowFuncionario(boolean show) {
@@ -133,7 +162,12 @@ public class ConfigFormsAdminBean implements Serializable, Observer{
 
     public boolean isShowOtherID() {
         ConfigFormGerencia entity = fieldsEntities.get("Id externo");
-        return entity != null && entity.getMostrar();
+        if(entity==null){
+            entity = new ConfigFormGerencia();
+            initEntity(entity,Constants.CONFIG_FORM_GERENCIA_PERSONA,"Id externo");
+            fieldsEntities.put("Id externo", entity);
+        }
+        return entity.getMostrar();
     }
 
     public void setShowOtherID(boolean show) {
@@ -143,7 +177,12 @@ public class ConfigFormsAdminBean implements Serializable, Observer{
 
     public boolean isShowMunicipaly() {
         ConfigFormGerencia entity = fieldsEntities.get("Municipio");
-        return entity != null && entity.getMostrar();
+        if(entity==null){
+            entity = new ConfigFormGerencia();
+            initEntity(entity,Constants.CONFIG_FORM_GERENCIA_PERSONA,"Municipio");
+            fieldsEntities.put("Municipio", entity);
+        }
+        return entity.getMostrar();
     }
 
     public void setShowMunicipaly(boolean show) {
@@ -153,7 +192,12 @@ public class ConfigFormsAdminBean implements Serializable, Observer{
 
     public boolean isShowCountry() {
         ConfigFormGerencia entity = fieldsEntities.get("Pais");
-        return entity != null && entity.getMostrar();
+        if(entity==null){
+            entity = new ConfigFormGerencia();
+            initEntity(entity,Constants.CONFIG_FORM_GERENCIA_PERSONA,"Pais");
+            fieldsEntities.put("Pais", entity);
+        }
+        return entity.getMostrar();
     }
 
     public void setShowCountry(boolean show) {
@@ -163,7 +207,12 @@ public class ConfigFormsAdminBean implements Serializable, Observer{
 
     public boolean isShowEmergencyContact() {
         ConfigFormGerencia entity = fieldsEntities.get("Persona contacto");
-        return entity != null && entity.getMostrar();
+        if(entity==null){
+            entity = new ConfigFormGerencia();
+            initEntity(entity,Constants.CONFIG_FORM_GERENCIA_PERSONA,"Persona contacto");
+            fieldsEntities.put("Persona contacto", entity);
+        }
+        return entity.getMostrar();
     }
 
     public void setShowEmergencyContact(boolean show) {
@@ -173,7 +222,12 @@ public class ConfigFormsAdminBean implements Serializable, Observer{
 
     public boolean isShowRH() {
         ConfigFormGerencia entity = fieldsEntities.get("Rh");
-        return entity != null && entity.getMostrar();
+        if(entity==null){
+            entity = new ConfigFormGerencia();
+            initEntity(entity,Constants.CONFIG_FORM_GERENCIA_PERSONA,"Rh");
+            fieldsEntities.put("Rh", entity);
+        }
+        return entity.getMostrar();
     }
 
     public void setShowRH(boolean show) {
@@ -183,7 +237,12 @@ public class ConfigFormsAdminBean implements Serializable, Observer{
 
     public boolean isShowGender() {
         ConfigFormGerencia entity = fieldsEntities.get("Sexo");
-        return entity != null && entity.getMostrar();
+        if(entity==null){
+            entity = new ConfigFormGerencia();
+            initEntity(entity,Constants.CONFIG_FORM_GERENCIA_PERSONA,"Sexo");
+            fieldsEntities.put("Sexo", entity);
+        }
+        return entity.getMostrar();
     }
 
     public void setShowGender(boolean show) {
@@ -193,7 +252,12 @@ public class ConfigFormsAdminBean implements Serializable, Observer{
 
     public boolean isShowEmergencyPhone() {
         ConfigFormGerencia entity = fieldsEntities.get("Tel persona contacto");
-        return entity != null && entity.getMostrar();
+        if(entity==null){
+            entity = new ConfigFormGerencia();
+            initEntity(entity,Constants.CONFIG_FORM_GERENCIA_PERSONA,"Tel persona contacto");
+            fieldsEntities.put("Tel persona contacto", entity);
+        }
+        return entity.getMostrar();
     }
 
     public void setShowEmergencyPhone(boolean show) {
@@ -203,7 +267,12 @@ public class ConfigFormsAdminBean implements Serializable, Observer{
 
     public boolean isShowPhone() {
         ConfigFormGerencia entity = fieldsEntities.get("Telefono");
-        return entity != null && entity.getMostrar();
+        if(entity==null){
+            entity = new ConfigFormGerencia();
+            initEntity(entity,Constants.CONFIG_FORM_GERENCIA_PERSONA,"Telefono");
+            fieldsEntities.put("Telefono", entity);
+        }
+        return entity.getMostrar();
     }
 
     public void setShowPhone(boolean show) {
@@ -213,7 +282,12 @@ public class ConfigFormsAdminBean implements Serializable, Observer{
 
     public boolean isShowVigencySS() {
         ConfigFormGerencia entity = fieldsEntities.get("Vigencia SS");
-        return entity != null && entity.getMostrar();
+        if(entity==null){
+            entity = new ConfigFormGerencia();
+            initEntity(entity,Constants.CONFIG_FORM_GERENCIA_PERSONA,"Vigencia SS");
+            fieldsEntities.put("Vigencia SS", entity);
+        }
+        return entity.getMostrar();
     }
 
     public void setShowVigencySS(boolean show) {
@@ -221,50 +295,38 @@ public class ConfigFormsAdminBean implements Serializable, Observer{
         changed = true;
     }
     //</editor-fold>
+    
+    @EJB
+    private ConfigFormGerenciaFacade configFormGerenciaFacade;
 
-    public void ConfigFormsBean(){}
+    public void ConfigFormsAdminBean(){}
     
-    @PostConstruct
-    public void init(){
-        branchOfficeBean.addObserver(this);
-        loadFieldsPerson();
-    }
-    
-    public void loadFieldsPerson() {
+    @Override
+    public void loadFields() {
+        fieldsEntities = new HashMap<>();
         if(branchOfficeBean.getSelectedBranchOffice()==null){
            return;
         }
-        fieldsEntities = new HashMap<>();
-        fields = branchOfficeBean.getSelectedBranchOffice().getConfigFormGerenciaList();
-        for (int i = 0; i < fields.size(); i++) {
-            ConfigFormGerencia modelo = fields.get(i);
-            fieldsEntities.put(modelo.getCampo(), modelo);
-        }
+        StringBuilder sb = new StringBuilder();
+        sb.append(Querys.CONFIG_FORM_GERENCIA_ALL);
+        sb.append(" WHERE");
+        sb.append(Querys.CONFIG_FORM_GERENCIA_FORMULARIO);
+        sb.append("PERSONA' AND");
+        sb.append(Querys.CONFIG_FORM_GERENCIA_SUCURSAL);
+        sb.append(branchOfficeBean.getSelectedBranchOffice().getIdSucursal());
+        sb.append("'");
+        super.loadFields(sb.toString());
     }
 
     @Override
-    public void update(Observable o, Object arg) {//Observer interface method. Different from update in persistence
-        loadFieldsPerson();
+    protected AbstractPersistenceFacade getFacade() {
+        return configFormGerenciaFacade;
     }
-    
-    @PreDestroy
-    public void destroy(){
-        branchOfficeBean.deleteObserver(this);
+
+    @Override
+    public void initEntity(AbstractConfigForm entity, String form, String field) {
+        super.initEntity(entity, form, field); //To change body of generated methods, choose Tools | Templates.
+        ((ConfigFormGerencia) entity).setSucursal(branchOfficeBean.getSelectedBranchOffice());
     }
-    
-    public String save(){
-        if(changed){
-            Result result = configFormsAdminControl.update(fieldsEntities);
-            if(result.errorCode!=Constants.OK){
-                JsfUtil.addErrorMessage((String) result.result);
-                return "";
-            }
-        }
-        JsfUtil.addSuccessMessage(BundleUtils.getBundleProperty("SuccessfullyConfigured"));
-        return Navigation.PAGE_INDEX;
-    }
-    
-    public String cancel(){
-        return Navigation.PAGE_INDEX;
-    }
+
 }

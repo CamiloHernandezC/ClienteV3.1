@@ -1,0 +1,106 @@
+.ui-layout-north .ui-layout-unit-content {
+    background: #023859 center center;
+}
+
+.ui-layout-center .ui-layout-unit-content {
+    background: white center center;
+}
+
+.ui-button.green.ui-state-default{
+    border-radius: 20px;
+    box-shadow: 0px 2px 4px rgba(34,62,66,.25);
+    color: #fff;
+    font-size: 15px;
+    letter-spacing: 1px;
+    padding: 1px 10px;
+    text-decoration: none;
+    text-transform: uppercase;
+    -webkit-transition: box-shadow 1s ease;
+    transition: box-shadow 1s ease;
+    margin-top:5px;
+    margin-bottom:5px;
+    background:  linear-gradient(to right, rgba(30,20,97,1) 0%, rgba(30,18,89,1) 55%, rgba(30,17,85,1) 81%);
+    
+}
+
+.ui-button.green.ui-state-hover{
+    box-shadow: 0px 4px 4px rgba(34,62,66,.5);
+    -webkit-transition: box-shadow 1s ease;
+    transition: box-shadow 1s ease;
+    background:  linear-gradient(to right, rgba(4,83,5,1) 0%, rgba(4,83,5,1) 0%, rgba(4,83,5,1) 100%);
+}
+
+
+
+.ui-button.red.ui-state-default{
+    border-radius: 20px;
+    box-shadow: 0px 2px 4px rgba(34,62,66,.25);
+    color: #fff;
+    font-size: 15px;
+    letter-spacing: 1px;
+    padding: 1px 10px;
+    text-decoration: none;
+    text-transform: uppercase;
+    -webkit-transition: box-shadow 1s ease;
+    transition: box-shadow 1s ease;
+    margin-top:5px;
+    margin-bottom:5px;
+    background:  linear-gradient(to right, rgba(30,20,97,1) 0%, rgba(30,18,89,1) 55%, rgba(30,17,85,1) 81%);
+    
+}
+
+.ui-button.red.ui-state-hover{
+    box-shadow: 0px 4px 4px rgba(34,62,66,.5);
+    -webkit-transition: box-shadow 1s ease;
+    transition: box-shadow 1s ease;
+    background: linear-gradient(to right, rgba(248,80,50,1) 0%, rgba(246,41,12,1) 8%, rgba(244,43,16,1) 28%, rgba(240,47,23,1) 63%, rgba(231,56,39,1) 100%);
+}
+
+/*Menu Principal*/
+.ui-menubar{
+    border: 1px solid #aed0ea !important;
+    background: #023859 50% 50% repeat-x !important;
+    color: #ffffff !important;
+    font-weight: bolder !important;
+    display:inline-block;
+    position: relative;
+    width: 80%;
+    position: fixed;
+    border-color: #023859;
+    -webkit-box-shadow: 0px 0px 8px #85b2cb;
+    box-shadow: 0px 0px 8px #85b2cb;
+
+}
+/*Menu Principal en evento de hover*/
+.ui-menubar .ui-menuitem .ui-state-hover{
+color : white;
+background: #85b2cb;
+}
+
+ui.menuitem{
+    padding-left: 20%;
+}
+
+/*Texto en el barMenu prinicipal*/
+.ui-menuitem-text{
+color : white;
+}
+
+/*SubMenu*/
+.ui-menu-child {
+    background:linear-gradient(to right, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
+}
+/*Letra del subMenu*/
+.ui-menu-child .ui-menuitem-text{
+    color: #011826;
+}
+
+li.ui-menuitem-active>a{
+    background-color:#E6344A !important;    
+}
+
+li ul li.ui-menuitem-active>a{
+    background-image: none !important;
+    background-color:#E6344A !important;    
+}
+

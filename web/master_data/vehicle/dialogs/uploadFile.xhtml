@@ -1,0 +1,19 @@
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <!-- Search To Create -->
+
+        <!-- Upload File -->
+        <h:form id="formLoadFile">
+            <p:dialog id="load" widgetVar="dialogLoad" header="#{bundle.LoadFile}"
+                      closable="true" showEffect="fade" hideEffect="fade" modal="true" appendTo="body"
+                      resizable="false">
+                <p:fileUpload fileUploadListener="#{masterDataVehicleBean.handleFileUpload}"
+                              mode="advanced" dragDropSupport="false"  update="@this,:PersonasCliListForm, growl, :formActions, :dialogErrorList"
+                              sizeLimit="1000000" fileLimit="1"
+                              allowTypes="/(\.|\/)(txt|xlsx)$/" label="#{constantes.CHOOSE}" cancelLabel="#{constantes.CANCEL}" uploadLabel="#{constantes.UPLOAD}"/>
+            </p:dialog>
+        </h:form>
+
+</ui:composition>

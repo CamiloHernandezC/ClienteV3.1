@@ -56,7 +56,7 @@ public class Sucursales implements Serializable {
     @Size(max = 20)
     @Column(name = "Telefono")
     private String telefono;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "sucursales", fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "sucursales", fetch = FetchType.EAGER)
     private List<PorteriasSucursal> porteriasSucursalList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "sucursales", fetch = FetchType.LAZY)
     private List<VisitasEsperadas> visitasEsperadasList;

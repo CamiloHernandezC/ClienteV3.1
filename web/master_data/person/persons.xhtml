@@ -25,8 +25,8 @@
         <p:confirmDialog id="inactiveDialog" appendTo="@(body)" message="#{bundle.ActivePerson}" severity="alert" showEffect="fade" hideEffect="fade" widgetVar="inactiveDialog" closable="false">
             <h:form>
                 <h:panelGrid columns="2">
-                    <p:commandButton id="confirm" value="#{bundle.Accept}" onclick="PF('dialogDelete').hide();" action="#{masterDataPersonBean.activePerson}" ajax="false"/>
-                    <p:commandButton id="decline" value="#{bundle.Cancel}" onclick="PF('dialogDelete').hide();"/>
+                    <p:commandButton id="confirm" value="#{bundle.Accept}" onclick="PF('inactiveDialog').hide();" action="#{masterDataPersonBean.activePerson}" ajax="false"/>
+                    <p:commandButton id="decline" value="#{bundle.Cancel}" onclick="PF('inactiveDialog').hide();" actionListener="#{masterDataPersonBean.clean()}"/>
                 </h:panelGrid>
             </h:form>
         </p:confirmDialog>
@@ -49,13 +49,13 @@
                     <p:inputText id="numDocum" value="#{masterDataPersonBean.person.numeroDocumento}" required="true" requiredMessage="#{bundle.CreatePersonasCliRequiredMessage_numDocumento}" style="text-transform:uppercase;width: 200px" maxlength="20"/>
 
                     <p:outputLabel value="#{bundle.CreatePersonasCliLabel_idSucursal}" for="branchOffice" rendered="#{branchOfficeBean.showBranchOffice}"/>
-                    <p:selectOneMenu id="branchOffice" value="#{branchOfficeBean.selectedBranchOffice}" rendered="#{branchOfficeBean.showBranchOffice}" required="true" requiredMessage="#{bundle.EditPersonasCliRequiredMessage_idSucursal}">
+                    <p:selectOneMenu style="width: 170px" id="branchOffice" value="#{branchOfficeBean.selectedBranchOffice}" rendered="#{branchOfficeBean.showBranchOffice}" required="true" requiredMessage="#{bundle.EditPersonasCliRequiredMessage_idSucursal}">
                         <f:selectItem itemLabel="#{bundle.SelectOneMessage}" itemValue="#{null}"/>
                         <f:selectItems value="#{branchOfficeBean.branchOffices}" var="branchOffice" itemValue="#{branchOffice}" itemLabel="#{branchOffice.nombre}"/>
                     </p:selectOneMenu>
                 </h:panelGrid>
-                <p:commandButton action="#{masterDataPersonBean.searchToCreate()}"  value="#{bundle.Save}" update=":growl formSearchToCreate"/>
-                <p:commandButton value="#{bundle.Cancel}" immediate="true" ajax="false" onclick="PF('dialogSearchToCreate').hide();"/>
+                <p:commandButton class="green" action="#{masterDataPersonBean.searchToCreate()}"  value="#{bundle.Save}" update=":growl formSearchToCreate"/>
+                <p:commandButton class="red" value="#{bundle.Cancel}" immediate="true" ajax="false" onclick="PF('dialogSearchToCreate').hide();"/>
             </h:form>
         </p:dialog>
 
@@ -82,20 +82,30 @@
         <!--Top Menu-->
         <h:form id="formActions" style="margin: 0px;">            
             #{bundle.MasterDataPersonTitle}
-            <h:panelGrid columns="5" cellpadding="50">	
-
-                <p:commandLink action="#{masterDataPersonBean.selectBranchOfficeToDownload()}" ajax="false">
-                    <h:outputText value="#{bundle.DownloadTemplate}" />                   
-                </p:commandLink>
-
-                <p:commandLink onsuccess="PF('dialogLoad').show();">
-                    <h:outputText value="#{bundle.MasterDataLoadFromFile}" />                   
-                </p:commandLink>
-
-                <p:commandLink onsuccess="PF('dialogSearchToCreate').show();">
+            <h:panelGrid columns="5" style="padding-bottom: 2% ;padding-left: 30%;padding-right: 25%">
+                
+                <h:panelGrid columns="1" style="padding-left: 5px">
+                    <p:commandLink action="#{masterDataPersonBean.selectBranchOfficeToDownload()}" ajax="false">
+                        <p:graphicImage style="padding-left: 25%" url="#{resource['/images/downTemp.png']}"/>
+                    </p:commandLink>
+                    <p:outputLabel value="Descargar Plantilla"/>    
+                </h:panelGrid>
+                
+                <h:panelGrid columns="1" style="padding-left: 100px;padding-right: 100px">
+                    <p:commandLink onsuccess="PF('dialogLoad').show();">
+                        <p:graphicImage url="#{resource['/images/upFile.png']}"/>    
+                    </p:commandLink>
+                    <h:outputText value="#{bundle.MasterDataLoadFromFile}" />
+                </h:panelGrid>
+                
+                
+                <h:panelGrid columns="1">
+                    <p:commandLink onsuccess="PF('dialogSearchToCreate').show();">
+                        <p:graphicImage style="padding-left: 10%" url="#{resource['/images/createForm.png']}"/>
+                    </p:commandLink>
                     <h:outputText value="#{bundle.MasterDataCreateFromForm}" />
-                </p:commandLink>
-
+                </h:panelGrid>
+                
                 <p:commandLink onsuccess="PF('dialogErrorList').show();" rendered="#{masterDataPersonBean.hasErrorLoadingFile}">
                     <h:outputText value="#{bundle.MaterDataShowError}"/>
                 </p:commandLink>
@@ -111,12 +121,13 @@
                          rowKey="#{item.personas.apellido1}"
                          rows="10"
                          rowsPerPageTemplate="10,20,30,40,50"
-                         tableStyle="width:auto"
+                         tableStyle="table-layout: auto;"
+                         emptyMessage="No hay registros para mostrar"
                          >
                 <f:facet name="header">
-                    List of Persons
+                    #{bunlde.LISTA_PERSONAS}
                     <div align="right">
-                        <p:commandButton id="toggler" type="button" value="Columns"
+                        <p:commandButton id="toggler" type="button" value="Columnas"
                                          icon="ui-icon-calculator" />
                         <p:columnToggler datasource="datalist" trigger="toggler" />
                     </div>

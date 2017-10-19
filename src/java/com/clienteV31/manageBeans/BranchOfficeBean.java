@@ -67,7 +67,7 @@ public class BranchOfficeBean extends Observable implements Serializable{
     }
 
     public Sucursales getSelectedBranchOffice() {
-        return selectedBranchOffice;
+        return selectedBranchOffice;//Don't put initialization because you can crash logic procedures if you do
     }
 
     public void setSelectedBranchOffice(Sucursales selectedBranchOffice) {

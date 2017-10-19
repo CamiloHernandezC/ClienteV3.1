@@ -666,9 +666,4 @@ public class Personas extends AbstractEntity{
         fecha = date;
     }
 
-    @Override
-    public void setStatus(Integer Status) {
-        estado = new Estados(Status);
-    }
-    
 }

@@ -245,11 +245,6 @@ public class PersonasSucursal extends AbstractEntity {
     public void setDate(Date date) {
         fecha = date;
     }
-    
-    @Override
-    public void setStatus(Integer STATUS_INACTIVE) {
-        estado = new Estados(STATUS_INACTIVE);
-    }
 
     @Override
     public void setPrimaryKey(int primaryKey) {

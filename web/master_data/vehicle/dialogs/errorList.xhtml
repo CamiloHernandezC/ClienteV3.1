@@ -1,0 +1,38 @@
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <!--ERROR UPLOADING FILE LIST-->
+        <p:dialog id="dialogErrorList" widgetVar="dialogErrorList" header="#{bundle.ErrorList}"
+                  closable="true" showEffect="fade" hideEffect="fade" modal="true" appendTo="body"
+                  resizable="false">
+
+            <h:form>
+
+                <p:dataTable id="datalist" value="#{masterDataVehicleBean.uploadedFileErrorList}" var="error"
+                             paginator="true"
+                             rowKey="#{error.vehiculos.placa}"
+                             rows="10"
+                             rowsPerPageTemplate="10,20,30,40,50"
+                             tableStyle="width:auto"
+                             >
+                    <f:facet name="header">
+                        List of Persons
+                    </f:facet>
+                    <p:column headerText="#{bundle.Placa}">
+                        <h:outputText value="#{error.vehiculos.placa}"/>
+                    </p:column>
+                    <p:column headerText="#{bundle.ErrorObservation}">
+                        <h:outputText value="#{error.errorObservation}"/>
+                    </p:column>
+                    <f:facet name="footer">
+                        <!--In total there are {fn:length(masterDataPersonBean.personsByBranchOffice)} persons.-->
+                    </f:facet>
+                </p:dataTable>
+            </h:form>
+        </p:dialog>
+</ui:composition>
+
+
+
+

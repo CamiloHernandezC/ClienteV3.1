@@ -15,7 +15,7 @@ import javax.persistence.PersistenceContext;
  * @author chernandez
  */
 @Stateless
-public class ConfigFormFacade extends AbstractQueryFacade<ConfigForm> {
+public class ConfigFormFacade extends AbstractPersistenceFacade<ConfigForm> {
 
     @PersistenceContext(unitName = "ClienteV3.1PU")
     private EntityManager em;
@@ -27,6 +27,26 @@ public class ConfigFormFacade extends AbstractQueryFacade<ConfigForm> {
 
     public ConfigFormFacade() {
         super(ConfigForm.class);
+    }
+
+    @Override
+    public void setEmbeddableKeys() {
+        //Nothing to do here
+    }
+
+    @Override
+    public void initializeEmbeddableKey() {
+        //Nothing to do here
+    }
+
+    @Override
+    public void prepareCreate() {
+        //Nothing to do here
+    }
+
+    @Override
+    public void prepareUpdate() {
+        //Nothing to do here
     }
     
 }
