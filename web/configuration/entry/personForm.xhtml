@@ -12,27 +12,7 @@
 
         <comps:confirmCancelDialog confirmCancelAction="#{configEntryPersonFormsBean.cancel()}"/>
 
-        <p:dialog id="dialogBranchOffice" widgetVar="dialogBranchOffice" header="#{bundle.VerificationDialog}"
-                  closable="false" showEffect="fade" hideEffect="fade" modal="true" appendTo="body"
-                  resizable="false" visible="#{branchOfficeBean.selectedBranchOffice == null or configEntryPersonFormsBean.selectedEntry == null}">
-            <h:form id="formSearchToCreate">
-                <h:panelGrid columns="2">
-                    <p:outputLabel value="#{bundle.BranchOffice}" for="branchOffice" rendered="#{branchOfficeBean.showBranchOffice}"/>
-                    <p:selectOneMenu id="branchOffice" value="#{branchOfficeBean.selectedBranchOffice}" rendered="#{branchOfficeBean.showBranchOffice}" required="true" requiredMessage="#{bundle.BranchOfficeRequiredMessage}">
-                        <f:selectItem itemLabel="#{bundle.SelectOne}" itemValue="#{null}"/>
-                        <f:selectItems value="#{branchOfficeBean.branchOffices}" var="branchOffice" itemValue="#{branchOffice}" itemLabel="#{branchOffice.nombre}"/>
-                        <p:ajax update="entry"/>
-                    </p:selectOneMenu>
-                    <p:outputLabel value="#{bundle.Entry}" for="entry"/>
-                    <p:selectOneMenu id="entry" value="#{configEntryPersonFormsBean.selectedEntry}" required="true" requiredMessage="#{bundle.EntryRequiredMessage}">
-                        <f:selectItem itemLabel="#{bundle.SelectOne}" itemValue="#{null}"/>
-                        <f:selectItems value="#{branchOfficeBean.selectedBranchOffice.porteriasSucursalList}" var="entries" itemValue="#{entries.porterias}" itemLabel="#{entries.porterias.descripcion}"/>
-                    </p:selectOneMenu>
-                </h:panelGrid>
-                <p:commandButton id="accept" value="#{bundle.Accept}" action="#{configEntryPersonFormsBean.loadFields()}" style="margin-top: 2%" ajax="false"/>
-                <p:commandButton id="decline" value="#{bundle.Cancel}" action="#{configEntryPersonFormsBean.cancel()}" immediate="true"/>
-            </h:form>
-        </p:dialog>
+        <comps:selectPlaceDialog showEntryDropList="true" selectedEntry="#{configEntryPersonFormsBean.selectedEntry}"/>
 
         <h:form>
             <h1>#{bundle.ConfigurationPersonFormEntryTitle}</h1>

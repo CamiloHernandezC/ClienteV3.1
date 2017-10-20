@@ -10,6 +10,8 @@
     <cc:interface>
         <cc:attribute name="showEntryDropList" required="true" type="java.lang.Boolean"/>
         <cc:attribute name="selectedEntry" required="#{cc.attrs.showEntryDropList}" type="com.clienteV31.entities.Porterias"/>
+        <cc:attribute name="acceptAction" required="#{cc.attrs.showEntryDropList}" method-signature="action()"/>
+        <cc:attribute name="cancelAction" required="#{cc.attrs.showEntryDropList}" method-signature="action()"/>
     </cc:interface>
 
     <!-- IMPLEMENTATION -->
@@ -20,19 +22,19 @@
             <h:form id="formSearchToCreate">
                 <h:panelGrid columns="2">
                     <p:outputLabel value="#{bundle.BranchOffice}" for="branchOffice" rendered="#{branchOfficeBean.showBranchOffice}"/>
-                    <p:selectOneMenu id="branchOffice" value="#{branchOfficeBean.selectedBranchOffice}" rendered="#{branchOfficeBean.showBranchOffice}" required="true" requiredMessage="#{bundle.EditPersonasCliRequiredMessage_idSucursal}">
+                    <p:selectOneMenu id="branchOffice" value="#{branchOfficeBean.selectedBranchOffice}" rendered="#{branchOfficeBean.showBranchOffice}" required="true" requiredMessage="#{bundle.BranchOfficeRequiredMessage}">
                         <f:selectItem itemLabel="#{bundle.SelectOne}" itemValue="#{null}"/>
                         <f:selectItems value="#{branchOfficeBean.branchOffices}" var="branchOffice" itemValue="#{branchOffice}" itemLabel="#{branchOffice.nombre}"/>
                         <p:ajax update="entry"/>
                     </p:selectOneMenu>
-                    <p:outputLabel value="#{bundle.Entry}" for="entry"/>
-                    <p:selectOneMenu id="entry" value="#{configEntryVehicleFormsBean.selectedEntry}" required="true" requiredMessage="#{bundle.required_entry}">
+                    <p:outputLabel value="#{bundle.Entry}" for="entry" rendered="#{cc.attrs.showEntryDropList}"/>
+                    <p:selectOneMenu id="entry" value="#{cc.attrs.selectedEntry}" required="true" requiredMessage="#{bundle.EntryRequiredMessage}" rendered="#{cc.attrs.showEntryDropList}">
                         <f:selectItem itemLabel="#{bundle.SelectOne}" itemValue="#{null}"/>
                         <f:selectItems value="#{branchOfficeBean.selectedBranchOffice.porteriasSucursalList}" var="entries" itemValue="#{entries.porterias}" itemLabel="#{entries.porterias.descripcion}"/>
                     </p:selectOneMenu>
                 </h:panelGrid>
-                <p:commandButton id="accept" value="#{bundle.Accept}" action="#{configEntryVehicleFormsBean.loadFields()}" style="margin-top: 2%" ajax="false"/>
-                <p:commandButton id="decline" value="#{bundle.Cancel}" action="#{configEntryVehicleFormsBean.cancel()}" immediate="true"/>
+                <p:commandButton id="accept" value="#{bundle.Accept}" action="#{cc.attrs.acceptAction}" style="margin-top: 2%" ajax="false"/>
+                <p:commandButton id="decline" value="#{bundle.Cancel}" action="#{cc.attrs.cancelAction}" immediate="true"/>
             </h:form>
         </p:dialog>
     </cc:implementation>
