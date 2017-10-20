@@ -28,35 +28,35 @@
                         <p:calendar id="fecha" pattern="MM/dd/yyyy HH:mm:ss" value="#{movMaterialesController.selected.fecha}" title="#{bundle.EditMovMaterialesTitle_fecha}" required="true" requiredMessage="#{bundle.EditMovMaterialesRequiredMessage_fecha}" showOn="button"/>
                         <p:outputLabel value="#{bundle.EditMovMaterialesLabel_usuario}" for="usuario" />
                         <p:selectOneMenu id="usuario" value="#{movMaterialesController.selected.usuario}" required="true" requiredMessage="#{bundle.EditMovMaterialesRequiredMessage_usuario}">
-                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItem itemLabel="#{bundle.SelectOne}"/>
                             <f:selectItems value="#{personasController.itemsAvailableSelectOne}"
                                            var="usuarioItem"
                                            itemValue="#{usuarioItem}"/>
                         </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.EditMovMaterialesLabel_sucursal}" for="sucursal" />
                         <p:selectOneMenu id="sucursal" value="#{movMaterialesController.selected.sucursal}" required="true" requiredMessage="#{bundle.EditMovMaterialesRequiredMessage_sucursal}">
-                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItem itemLabel="#{bundle.SelectOne}"/>
                             <f:selectItems value="#{sucursalesController.itemsAvailableSelectOne}"
                                            var="sucursalItem"
                                            itemValue="#{sucursalItem}"/>
                         </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.EditMovMaterialesLabel_movimientoPersona}" for="movimientoPersona" />
                         <p:selectOneMenu id="movimientoPersona" value="#{movMaterialesController.selected.movimientoPersona}" required="true" requiredMessage="#{bundle.EditMovMaterialesRequiredMessage_movimientoPersona}">
-                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItem itemLabel="#{bundle.SelectOne}"/>
                             <f:selectItems value="#{movPersonasController.itemsAvailableSelectOne}"
                                            var="movimientoPersonaItem"
                                            itemValue="#{movimientoPersonaItem}"/>
                         </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.EditMovMaterialesLabel_idMaterial}" for="idMaterial" />
                         <p:selectOneMenu id="idMaterial" value="#{movMaterialesController.selected.idMaterial}" required="true" requiredMessage="#{bundle.EditMovMaterialesRequiredMessage_idMaterial}">
-                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItem itemLabel="#{bundle.SelectOne}"/>
                             <f:selectItems value="#{materialesController.itemsAvailableSelectOne}"
                                            var="idMaterialItem"
                                            itemValue="#{idMaterialItem}"/>
                         </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.EditMovMaterialesLabel_idMovimientoDocumento}" for="idMovimientoDocumento" />
                         <p:selectOneMenu id="idMovimientoDocumento" value="#{movMaterialesController.selected.idMovimientoDocumento}" required="true" requiredMessage="#{bundle.EditMovMaterialesRequiredMessage_idMovimientoDocumento}">
-                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItem itemLabel="#{bundle.SelectOne}"/>
                             <f:selectItems value="#{movDocumentosController.itemsAvailableSelectOne}"
                                            var="idMovimientoDocumentoItem"
                                            itemValue="#{idMovimientoDocumentoItem}"/>

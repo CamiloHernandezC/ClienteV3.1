@@ -5,31 +5,27 @@
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
-                xmlns="http://www.w3.org/1999/xhtml">
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:comps="http://xmlns.jcp.org/jsf/composite/comps">
 
     <ui:define name="content">
 
-        <p:confirmDialog id="dialogConfirmCancel" appendTo="@(body)" message="#{bundle.Confirm_Cancel_Message}" severity="alert" showEffect="fade" hideEffect="fade" widgetVar="dialogConfirmCancel" closable="false">
-            <h:form>
-                <p:commandButton id="accept" value="#{bundle.Yes}" action="#{configEntryVehicleFormsBean.cancel()}" style="margin-top: 2%"/>
-                <p:commandButton id="decline" value="#{bundle.No}" onclick="PF('dialogConfirmCancel').hide();"/>
-            </h:form>
-        </p:confirmDialog>
+        <comps:confirmCancelDialog confirmCancelAction="#{configEntryVehicleFormsBean.cancel()}"/>
         
         <p:dialog id="dialogBranchOffice" widgetVar="dialogBranchOffice" header="#{bundle.VerificationDialog}"
                   closable="false" showEffect="fade" hideEffect="fade" modal="true" appendTo="body"
                   resizable="false" visible="#{branchOfficeBean.selectedBranchOffice == null or configEntryVehicleFormsBean.selectedEntry == null}">
             <h:form id="formSearchToCreate">
                 <h:panelGrid columns="2">
-                    <p:outputLabel value="#{bundle.CreatePersonasCliLabel_idSucursal}" for="branchOffice" rendered="#{branchOfficeBean.showBranchOffice}"/>
+                    <p:outputLabel value="#{bundle.BranchOffice}" for="branchOffice" rendered="#{branchOfficeBean.showBranchOffice}"/>
                     <p:selectOneMenu id="branchOffice" value="#{branchOfficeBean.selectedBranchOffice}" rendered="#{branchOfficeBean.showBranchOffice}" required="true" requiredMessage="#{bundle.EditPersonasCliRequiredMessage_idSucursal}">
-                        <f:selectItem itemLabel="#{bundle.SelectOneMessage}" itemValue="#{null}"/>
+                        <f:selectItem itemLabel="#{bundle.SelectOne}" itemValue="#{null}"/>
                         <f:selectItems value="#{branchOfficeBean.branchOffices}" var="branchOffice" itemValue="#{branchOffice}" itemLabel="#{branchOffice.nombre}"/>
                         <p:ajax update="entry"/>
                     </p:selectOneMenu>
                     <p:outputLabel value="#{bundle.Entry}" for="entry"/>
                     <p:selectOneMenu id="entry" value="#{configEntryVehicleFormsBean.selectedEntry}" required="true" requiredMessage="#{bundle.required_entry}">
-                        <f:selectItem itemLabel="#{bundle.SelectOneMessage}" itemValue="#{null}"/>
+                        <f:selectItem itemLabel="#{bundle.SelectOne}" itemValue="#{null}"/>
                         <f:selectItems value="#{branchOfficeBean.selectedBranchOffice.porteriasSucursalList}" var="entries" itemValue="#{entries.porterias}" itemLabel="#{entries.porterias.descripcion}"/>
                     </p:selectOneMenu>
                 </h:panelGrid>

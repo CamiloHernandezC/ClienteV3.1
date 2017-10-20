@@ -18,7 +18,7 @@
                         <p:inputText id="nombre" value="#{clientesController.selected.nombre}" title="#{bundle.EditClientesTitle_nombre}" required="true" requiredMessage="#{bundle.EditClientesRequiredMessage_nombre}"/>
                         <p:outputLabel value="#{bundle.EditClientesLabel_estado}" for="estado" />
                         <p:selectOneMenu id="estado" value="#{clientesController.selected.estado}" required="true" requiredMessage="#{bundle.EditClientesRequiredMessage_estado}">
-                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItem itemLabel="#{bundle.SelectOne}"/>
                             <f:selectItems value="#{estadosController.itemsAvailableSelectOne}"
                                            var="estadoItem"
                                            itemValue="#{estadoItem}"/>

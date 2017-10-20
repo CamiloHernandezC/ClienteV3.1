@@ -20,7 +20,7 @@
                         <p:inputText id="codigoDane" value="#{municipiosController.selected.codigoDane}" title="#{bundle.EditMunicipiosTitle_codigoDane}" required="true" requiredMessage="#{bundle.EditMunicipiosRequiredMessage_codigoDane}"/>
                         <p:outputLabel value="#{bundle.EditMunicipiosLabel_departamento}" for="departamento" />
                         <p:selectOneMenu id="departamento" value="#{municipiosController.selected.departamento}" required="true" requiredMessage="#{bundle.EditMunicipiosRequiredMessage_departamento}">
-                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItem itemLabel="#{bundle.SelectOne}"/>
                             <f:selectItems value="#{departamentosController.itemsAvailableSelectOne}"
                                            var="departamentoItem"
                                            itemValue="#{departamentoItem}"/>

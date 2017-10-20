@@ -12,7 +12,7 @@
     }
     </script>
     
-    <p:fieldset id="availableMessagesField" legend="#{bundle.AvailableMessage}" style="margin-top: 2%;">
+    <p:fieldset id="availableMessagesField" legend="#{bundle.AvailableMessages}" style="margin-top: 2%;">
         <p:dataGrid id="availableMessages" var="message" value="#{notificationsBean.availableMessages}" columns="3">
             <p:panel id="pnl" header="#{message}" style="text-align:center">
                 
@@ -24,7 +24,7 @@
     
     <p:fieldset id="selectedMessage" legend="#{bundle.Message}">
         <p:outputPanel id="dropArea" style="height: 10%;">
-            <h:outputText value="#{bundle.dropAMessage}" rendered="#{notificationsBean.emptyDropArea}" style="font-size:100%;" />
+            <h:outputText value="#{bundle.DropAMessage}" rendered="#{notificationsBean.emptyDropArea}" style="font-size:100%;" />
             <h:outputText value="#{notificationsBean.exampleMessage}" rendered="#{!notificationsBean.emptyDropArea}" style="font-size:100%;" />
         </p:outputPanel>
     </p:fieldset>

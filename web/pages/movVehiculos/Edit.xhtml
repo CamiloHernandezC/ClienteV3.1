@@ -40,35 +40,35 @@
                         <p:calendar id="momentoSalida" pattern="MM/dd/yyyy HH:mm:ss" value="#{movVehiculosController.selected.momentoSalida}" title="#{bundle.EditMovVehiculosTitle_momentoSalida}"  showOn="button"/>
                         <p:outputLabel value="#{bundle.EditMovVehiculosLabel_usuario}" for="usuario" />
                         <p:selectOneMenu id="usuario" value="#{movVehiculosController.selected.usuario}" required="true" requiredMessage="#{bundle.EditMovVehiculosRequiredMessage_usuario}">
-                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItem itemLabel="#{bundle.SelectOne}"/>
                             <f:selectItems value="#{personasController.itemsAvailableSelectOne}"
                                            var="usuarioItem"
                                            itemValue="#{usuarioItem}"/>
                         </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.EditMovVehiculosLabel_sucursal}" for="sucursal" />
                         <p:selectOneMenu id="sucursal" value="#{movVehiculosController.selected.sucursal}" required="true" requiredMessage="#{bundle.EditMovVehiculosRequiredMessage_sucursal}">
-                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItem itemLabel="#{bundle.SelectOne}"/>
                             <f:selectItems value="#{sucursalesController.itemsAvailableSelectOne}"
                                            var="sucursalItem"
                                            itemValue="#{sucursalItem}"/>
                         </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.EditMovVehiculosLabel_movPersonaEntrada}" for="movPersonaEntrada" />
                         <p:selectOneMenu id="movPersonaEntrada" value="#{movVehiculosController.selected.movPersonaEntrada}" required="true" requiredMessage="#{bundle.EditMovVehiculosRequiredMessage_movPersonaEntrada}">
-                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItem itemLabel="#{bundle.SelectOne}"/>
                             <f:selectItems value="#{movPersonasController.itemsAvailableSelectOne}"
                                            var="movPersonaEntradaItem"
                                            itemValue="#{movPersonaEntradaItem}"/>
                         </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.EditMovVehiculosLabel_movPersonaSalida}" for="movPersonaSalida" />
                         <p:selectOneMenu id="movPersonaSalida" value="#{movVehiculosController.selected.movPersonaSalida}" >
-                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItem itemLabel="#{bundle.SelectOne}"/>
                             <f:selectItems value="#{movPersonasController.itemsAvailableSelectOne}"
                                            var="movPersonaSalidaItem"
                                            itemValue="#{movPersonaSalidaItem}"/>
                         </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.EditMovVehiculosLabel_placa}" for="placa" />
                         <p:selectOneMenu id="placa" value="#{movVehiculosController.selected.placa}" required="true" requiredMessage="#{bundle.EditMovVehiculosRequiredMessage_placa}">
-                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItem itemLabel="#{bundle.SelectOne}"/>
                             <f:selectItems value="#{vehiculosController.itemsAvailableSelectOne}"
                                            var="placaItem"
                                            itemValue="#{placaItem}"/>

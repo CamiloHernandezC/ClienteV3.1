@@ -28,35 +28,35 @@
                         <p:calendar id="fecha" pattern="MM/dd/yyyy HH:mm:ss" value="#{empresaOrigenController.selected.fecha}" title="#{bundle.EditEmpresaOrigenTitle_fecha}" required="true" requiredMessage="#{bundle.EditEmpresaOrigenRequiredMessage_fecha}" showOn="button"/>
                         <p:outputLabel value="#{bundle.EditEmpresaOrigenLabel_usuario}" for="usuario" />
                         <p:selectOneMenu id="usuario" value="#{empresaOrigenController.selected.usuario}" required="true" requiredMessage="#{bundle.EditEmpresaOrigenRequiredMessage_usuario}">
-                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItem itemLabel="#{bundle.SelectOne}"/>
                             <f:selectItems value="#{personasController.itemsAvailableSelectOne}"
                                            var="usuarioItem"
                                            itemValue="#{usuarioItem}"/>
                         </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.EditEmpresaOrigenLabel_pais}" for="pais" />
                         <p:selectOneMenu id="pais" value="#{empresaOrigenController.selected.pais}" >
-                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItem itemLabel="#{bundle.SelectOne}"/>
                             <f:selectItems value="#{paisesController.itemsAvailableSelectOne}"
                                            var="paisItem"
                                            itemValue="#{paisItem}"/>
                         </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.EditEmpresaOrigenLabel_departamento}" for="departamento" />
                         <p:selectOneMenu id="departamento" value="#{empresaOrigenController.selected.departamento}" >
-                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItem itemLabel="#{bundle.SelectOne}"/>
                             <f:selectItems value="#{departamentosController.itemsAvailableSelectOne}"
                                            var="departamentoItem"
                                            itemValue="#{departamentoItem}"/>
                         </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.EditEmpresaOrigenLabel_municipio}" for="municipio" />
                         <p:selectOneMenu id="municipio" value="#{empresaOrigenController.selected.municipio}" >
-                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItem itemLabel="#{bundle.SelectOne}"/>
                             <f:selectItems value="#{municipiosController.itemsAvailableSelectOne}"
                                            var="municipioItem"
                                            itemValue="#{municipioItem}"/>
                         </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.EditEmpresaOrigenLabel_estado}" for="estado" />
                         <p:selectOneMenu id="estado" value="#{empresaOrigenController.selected.estado}" required="true" requiredMessage="#{bundle.EditEmpresaOrigenRequiredMessage_estado}">
-                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItem itemLabel="#{bundle.SelectOne}"/>
                             <f:selectItems value="#{estadosController.itemsAvailableSelectOne}"
                                            var="estadoItem"
                                            itemValue="#{estadoItem}"/>

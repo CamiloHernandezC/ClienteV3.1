@@ -12,7 +12,7 @@
             <h:panelGrid columns="3">
                 <p:outputLabel value="#{bundle.CreatePersonasCliLabel_idSucursal}" for="branchOffice"/>
                 <p:selectOneMenu id="branchOffice" value="#{branchOfficeBean.selectedBranchOffice}" required="true" requiredMessage="#{bundle.EditPersonasCliRequiredMessage_idSucursal}">
-                    <f:selectItem itemLabel="#{bundle.SelectOneMessage}" itemValue="#{null}"/>
+                    <f:selectItem itemLabel="#{bundle.SelectOne}" itemValue="#{null}"/>
                     <f:selectItems value="#{branchOfficeBean.branchOffices}" var="branchOffice" itemValue="#{branchOffice}" itemLabel="#{branchOffice.nombre}"/>
                 </p:selectOneMenu>
                 <p:commandButton value="#{bundle.Download}" action="#{masterDataVehicleBean.downloadTemplate()}" ajax="false" onclick="PF('dialogDownloadTemplate').hide();"/>

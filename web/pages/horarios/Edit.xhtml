@@ -62,14 +62,14 @@
                         <p:calendar id="fecha" pattern="MM/dd/yyyy HH:mm:ss" value="#{horariosController.selected.fecha}" title="#{bundle.EditHorariosTitle_fecha}" required="true" requiredMessage="#{bundle.EditHorariosRequiredMessage_fecha}" showOn="button"/>
                         <p:outputLabel value="#{bundle.EditHorariosLabel_usuario}" for="usuario" />
                         <p:selectOneMenu id="usuario" value="#{horariosController.selected.usuario}" required="true" requiredMessage="#{bundle.EditHorariosRequiredMessage_usuario}">
-                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItem itemLabel="#{bundle.SelectOne}"/>
                             <f:selectItems value="#{personasController.itemsAvailableSelectOne}"
                                            var="usuarioItem"
                                            itemValue="#{usuarioItem}"/>
                         </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.EditHorariosLabel_sucursal}" for="sucursal" />
                         <p:selectOneMenu id="sucursal" value="#{horariosController.selected.sucursal}" required="true" requiredMessage="#{bundle.EditHorariosRequiredMessage_sucursal}">
-                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItem itemLabel="#{bundle.SelectOne}"/>
                             <f:selectItems value="#{sucursalesController.itemsAvailableSelectOne}"
                                            var="sucursalItem"
                                            itemValue="#{sucursalItem}"/>

@@ -36,28 +36,28 @@
                         <p:calendar id="fecha" pattern="MM/dd/yyyy HH:mm:ss" value="#{movObjetosController.selected.fecha}" title="#{bundle.EditMovObjetosTitle_fecha}" required="true" requiredMessage="#{bundle.EditMovObjetosRequiredMessage_fecha}" showOn="button"/>
                         <p:outputLabel value="#{bundle.EditMovObjetosLabel_usuario}" for="usuario" />
                         <p:selectOneMenu id="usuario" value="#{movObjetosController.selected.usuario}" required="true" requiredMessage="#{bundle.EditMovObjetosRequiredMessage_usuario}">
-                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItem itemLabel="#{bundle.SelectOne}"/>
                             <f:selectItems value="#{personasController.itemsAvailableSelectOne}"
                                            var="usuarioItem"
                                            itemValue="#{usuarioItem}"/>
                         </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.EditMovObjetosLabel_sucursal}" for="sucursal" />
                         <p:selectOneMenu id="sucursal" value="#{movObjetosController.selected.sucursal}" required="true" requiredMessage="#{bundle.EditMovObjetosRequiredMessage_sucursal}">
-                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItem itemLabel="#{bundle.SelectOne}"/>
                             <f:selectItems value="#{sucursalesController.itemsAvailableSelectOne}"
                                            var="sucursalItem"
                                            itemValue="#{sucursalItem}"/>
                         </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.EditMovObjetosLabel_movPersonaEntrada}" for="movPersonaEntrada" />
                         <p:selectOneMenu id="movPersonaEntrada" value="#{movObjetosController.selected.movPersonaEntrada}" required="true" requiredMessage="#{bundle.EditMovObjetosRequiredMessage_movPersonaEntrada}">
-                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItem itemLabel="#{bundle.SelectOne}"/>
                             <f:selectItems value="#{movPersonasController.itemsAvailableSelectOne}"
                                            var="movPersonaEntradaItem"
                                            itemValue="#{movPersonaEntradaItem}"/>
                         </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.EditMovObjetosLabel_movPersonaSalida}" for="movPersonaSalida" />
                         <p:selectOneMenu id="movPersonaSalida" value="#{movObjetosController.selected.movPersonaSalida}" >
-                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItem itemLabel="#{bundle.SelectOne}"/>
                             <f:selectItems value="#{movPersonasController.itemsAvailableSelectOne}"
                                            var="movPersonaSalidaItem"
                                            itemValue="#{movPersonaSalidaItem}"/>

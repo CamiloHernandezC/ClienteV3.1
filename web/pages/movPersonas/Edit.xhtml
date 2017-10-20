@@ -38,42 +38,42 @@
                         <p:calendar id="horaSalida" pattern="HH:mm:ss" value="#{movPersonasController.selected.horaSalida}" title="#{bundle.EditMovPersonasTitle_horaSalida}"  showOn="button"/>
                         <p:outputLabel value="#{bundle.EditMovPersonasLabel_usuario}" for="usuario" />
                         <p:selectOneMenu id="usuario" value="#{movPersonasController.selected.usuario}" required="true" requiredMessage="#{bundle.EditMovPersonasRequiredMessage_usuario}">
-                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItem itemLabel="#{bundle.SelectOne}"/>
                             <f:selectItems value="#{personasController.itemsAvailableSelectOne}"
                                            var="usuarioItem"
                                            itemValue="#{usuarioItem}"/>
                         </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.EditMovPersonasLabel_area}" for="area" />
                         <p:selectOneMenu id="area" value="#{movPersonasController.selected.area}" required="true" requiredMessage="#{bundle.EditMovPersonasRequiredMessage_area}">
-                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItem itemLabel="#{bundle.SelectOne}"/>
                             <f:selectItems value="#{areasEmpresaController.itemsAvailableSelectOne}"
                                            var="areaItem"
                                            itemValue="#{areaItem}"/>
                         </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.EditMovPersonasLabel_personaAutoriza}" for="personaAutoriza" />
                         <p:selectOneMenu id="personaAutoriza" value="#{movPersonasController.selected.personaAutoriza}" >
-                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItem itemLabel="#{bundle.SelectOne}"/>
                             <f:selectItems value="#{personasController.itemsAvailableSelectOne}"
                                            var="personaAutorizaItem"
                                            itemValue="#{personaAutorizaItem}"/>
                         </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.EditMovPersonasLabel_idPersona}" for="idPersona" />
                         <p:selectOneMenu id="idPersona" value="#{movPersonasController.selected.idPersona}" required="true" requiredMessage="#{bundle.EditMovPersonasRequiredMessage_idPersona}">
-                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItem itemLabel="#{bundle.SelectOne}"/>
                             <f:selectItems value="#{personasSucursalController.itemsAvailableSelectOne}"
                                            var="idPersonaItem"
                                            itemValue="#{idPersonaItem}"/>
                         </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.EditMovPersonasLabel_sucursal}" for="sucursal" />
                         <p:selectOneMenu id="sucursal" value="#{movPersonasController.selected.sucursal}" required="true" requiredMessage="#{bundle.EditMovPersonasRequiredMessage_sucursal}">
-                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItem itemLabel="#{bundle.SelectOne}"/>
                             <f:selectItems value="#{personasSucursalController.itemsAvailableSelectOne}"
                                            var="sucursalItem"
                                            itemValue="#{sucursalItem}"/>
                         </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.EditMovPersonasLabel_porteria}" for="porteria" />
                         <p:selectOneMenu id="porteria" value="#{movPersonasController.selected.porteria}" required="true" requiredMessage="#{bundle.EditMovPersonasRequiredMessage_porteria}">
-                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItem itemLabel="#{bundle.SelectOne}"/>
                             <f:selectItems value="#{porteriasController.itemsAvailableSelectOne}"
                                            var="porteriaItem"
                                            itemValue="#{porteriaItem}"/>

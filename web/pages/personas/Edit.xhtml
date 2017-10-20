@@ -50,56 +50,56 @@
                         <p:calendar id="fecha" pattern="MM/dd/yyyy HH:mm:ss" value="#{personasController.selected.fecha}" title="#{bundle.EditPersonasTitle_fecha}" required="true" requiredMessage="#{bundle.EditPersonasRequiredMessage_fecha}" showOn="button"/>
                         <p:outputLabel value="#{bundle.EditPersonasLabel_tipoDocumento}" for="tipoDocumento" />
                         <p:selectOneMenu id="tipoDocumento" value="#{personasController.selected.tipoDocumento}" required="true" requiredMessage="#{bundle.EditPersonasRequiredMessage_tipoDocumento}">
-                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItem itemLabel="#{bundle.SelectOne}"/>
                             <f:selectItems value="#{tiposDocumentoController.itemsAvailableSelectOne}"
                                            var="tipoDocumentoItem"
                                            itemValue="#{tipoDocumentoItem}"/>
                         </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.EditPersonasLabel_empresaOrigen}" for="empresaOrigen" />
                         <p:selectOneMenu id="empresaOrigen" value="#{personasController.selected.empresaOrigen}" >
-                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItem itemLabel="#{bundle.SelectOne}"/>
                             <f:selectItems value="#{empresaOrigenController.itemsAvailableSelectOne}"
                                            var="empresaOrigenItem"
                                            itemValue="#{empresaOrigenItem}"/>
                         </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.EditPersonasLabel_pais}" for="pais" />
                         <p:selectOneMenu id="pais" value="#{personasController.selected.pais}" >
-                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItem itemLabel="#{bundle.SelectOne}"/>
                             <f:selectItems value="#{paisesController.itemsAvailableSelectOne}"
                                            var="paisItem"
                                            itemValue="#{paisItem}"/>
                         </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.EditPersonasLabel_departamento}" for="departamento" />
                         <p:selectOneMenu id="departamento" value="#{personasController.selected.departamento}" >
-                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItem itemLabel="#{bundle.SelectOne}"/>
                             <f:selectItems value="#{departamentosController.itemsAvailableSelectOne}"
                                            var="departamentoItem"
                                            itemValue="#{departamentoItem}"/>
                         </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.EditPersonasLabel_municipio}" for="municipio" />
                         <p:selectOneMenu id="municipio" value="#{personasController.selected.municipio}" >
-                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItem itemLabel="#{bundle.SelectOne}"/>
                             <f:selectItems value="#{municipiosController.itemsAvailableSelectOne}"
                                            var="municipioItem"
                                            itemValue="#{municipioItem}"/>
                         </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.EditPersonasLabel_eps}" for="eps" />
                         <p:selectOneMenu id="eps" value="#{personasController.selected.eps}" >
-                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItem itemLabel="#{bundle.SelectOne}"/>
                             <f:selectItems value="#{epsController.itemsAvailableSelectOne}"
                                            var="epsItem"
                                            itemValue="#{epsItem}"/>
                         </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.EditPersonasLabel_arl}" for="arl" />
                         <p:selectOneMenu id="arl" value="#{personasController.selected.arl}" >
-                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItem itemLabel="#{bundle.SelectOne}"/>
                             <f:selectItems value="#{arlController.itemsAvailableSelectOne}"
                                            var="arlItem"
                                            itemValue="#{arlItem}"/>
                         </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.EditPersonasLabel_estado}" for="estado" />
                         <p:selectOneMenu id="estado" value="#{personasController.selected.estado}" required="true" requiredMessage="#{bundle.EditPersonasRequiredMessage_estado}">
-                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItem itemLabel="#{bundle.SelectOne}"/>
                             <f:selectItems value="#{estadosController.itemsAvailableSelectOne}"
                                            var="estadoItem"
                                            itemValue="#{estadoItem}"/>

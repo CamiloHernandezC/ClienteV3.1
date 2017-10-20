@@ -16,14 +16,14 @@
                         <p:inputText id="IDAccesoUsuario" value="#{accesoUsuarioController.selected.IDAccesoUsuario}" title="#{bundle.EditAccesoUsuarioTitle_IDAccesoUsuario}" required="true" requiredMessage="#{bundle.EditAccesoUsuarioRequiredMessage_IDAccesoUsuario}"/>
                         <p:outputLabel value="#{bundle.EditAccesoUsuarioLabel_usuario}" for="usuario" />
                         <p:selectOneMenu id="usuario" value="#{accesoUsuarioController.selected.usuario}" required="true" requiredMessage="#{bundle.EditAccesoUsuarioRequiredMessage_usuario}">
-                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItem itemLabel="#{bundle.SelectOne}"/>
                             <f:selectItems value="#{usuariosController.itemsAvailableSelectOne}"
                                            var="usuarioItem"
                                            itemValue="#{usuarioItem}"/>
                         </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.EditAccesoUsuarioLabel_sucursal}" for="sucursal" />
                         <p:selectOneMenu id="sucursal" value="#{accesoUsuarioController.selected.sucursal}" required="true" requiredMessage="#{bundle.EditAccesoUsuarioRequiredMessage_sucursal}">
-                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItem itemLabel="#{bundle.SelectOne}"/>
                             <f:selectItems value="#{sucursalesController.itemsAvailableSelectOne}"
                                            var="sucursalItem"
                                            itemValue="#{sucursalItem}"/>

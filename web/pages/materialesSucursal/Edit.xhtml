@@ -18,21 +18,21 @@
                         <p:calendar id="fecha" pattern="MM/dd/yyyy HH:mm:ss" value="#{materialesSucursalController.selected.fecha}" title="#{bundle.EditMaterialesSucursalTitle_fecha}" required="true" requiredMessage="#{bundle.EditMaterialesSucursalRequiredMessage_fecha}" showOn="button"/>
                         <p:outputLabel value="#{bundle.EditMaterialesSucursalLabel_usuario}" for="usuario" />
                         <p:selectOneMenu id="usuario" value="#{materialesSucursalController.selected.usuario}" required="true" requiredMessage="#{bundle.EditMaterialesSucursalRequiredMessage_usuario}">
-                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItem itemLabel="#{bundle.SelectOne}"/>
                             <f:selectItems value="#{personasController.itemsAvailableSelectOne}"
                                            var="usuarioItem"
                                            itemValue="#{usuarioItem}"/>
                         </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.EditMaterialesSucursalLabel_materiales}" for="materiales" />
                         <p:selectOneMenu id="materiales" value="#{materialesSucursalController.selected.materiales}" required="true" requiredMessage="#{bundle.EditMaterialesSucursalRequiredMessage_materiales}">
-                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItem itemLabel="#{bundle.SelectOne}"/>
                             <f:selectItems value="#{materialesController.itemsAvailableSelectOne}"
                                            var="materialesItem"
                                            itemValue="#{materialesItem}"/>
                         </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.EditMaterialesSucursalLabel_sucursales}" for="sucursales" />
                         <p:selectOneMenu id="sucursales" value="#{materialesSucursalController.selected.sucursales}" required="true" requiredMessage="#{bundle.EditMaterialesSucursalRequiredMessage_sucursales}">
-                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItem itemLabel="#{bundle.SelectOne}"/>
                             <f:selectItems value="#{sucursalesController.itemsAvailableSelectOne}"
                                            var="sucursalesItem"
                                            itemValue="#{sucursalesItem}"/>

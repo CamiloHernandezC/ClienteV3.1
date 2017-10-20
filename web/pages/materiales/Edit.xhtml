@@ -22,14 +22,14 @@
                         <p:calendar id="fecha" pattern="MM/dd/yyyy HH:mm:ss" value="#{materialesController.selected.fecha}" title="#{bundle.EditMaterialesTitle_fecha}" required="true" requiredMessage="#{bundle.EditMaterialesRequiredMessage_fecha}" showOn="button"/>
                         <p:outputLabel value="#{bundle.EditMaterialesLabel_usuario}" for="usuario" />
                         <p:selectOneMenu id="usuario" value="#{materialesController.selected.usuario}" required="true" requiredMessage="#{bundle.EditMaterialesRequiredMessage_usuario}">
-                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItem itemLabel="#{bundle.SelectOne}"/>
                             <f:selectItems value="#{personasController.itemsAvailableSelectOne}"
                                            var="usuarioItem"
                                            itemValue="#{usuarioItem}"/>
                         </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.EditMaterialesLabel_unidad}" for="unidad" />
                         <p:selectOneMenu id="unidad" value="#{materialesController.selected.unidad}" required="true" requiredMessage="#{bundle.EditMaterialesRequiredMessage_unidad}">
-                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItem itemLabel="#{bundle.SelectOne}"/>
                             <f:selectItems value="#{unidadesController.itemsAvailableSelectOne}"
                                            var="unidadItem"
                                            itemValue="#{unidadItem}"/>

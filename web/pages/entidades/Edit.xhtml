@@ -18,7 +18,7 @@
                         <p:inputText id="descripcion" value="#{entidadesController.selected.descripcion}" title="#{bundle.EditEntidadesTitle_descripcion}" required="true" requiredMessage="#{bundle.EditEntidadesRequiredMessage_descripcion}"/>
                         <p:outputLabel value="#{bundle.EditEntidadesLabel_categoria}" for="categoria" />
                         <p:selectOneMenu id="categoria" value="#{entidadesController.selected.categoria}" required="true" requiredMessage="#{bundle.EditEntidadesRequiredMessage_categoria}">
-                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItem itemLabel="#{bundle.SelectOne}"/>
                             <f:selectItems value="#{categoriasController.itemsAvailableSelectOne}"
                                            var="categoriaItem"
                                            itemValue="#{categoriaItem}"/>
