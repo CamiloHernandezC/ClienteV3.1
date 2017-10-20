@@ -16,14 +16,14 @@
                         <p:inputText id="campo" value="#{porteriasSucursalController.selected.campo}" title="#{bundle.EditPorteriasSucursalTitle_campo}" />
                         <p:outputLabel value="#{bundle.EditPorteriasSucursalLabel_porterias}" for="porterias" />
                         <p:selectOneMenu id="porterias" value="#{porteriasSucursalController.selected.porterias}" required="true" requiredMessage="#{bundle.EditPorteriasSucursalRequiredMessage_porterias}">
-                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItem itemLabel="#{bundle.SelectOne}"/>
                             <f:selectItems value="#{porteriasController.itemsAvailableSelectOne}"
                                            var="porteriasItem"
                                            itemValue="#{porteriasItem}"/>
                         </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.EditPorteriasSucursalLabel_sucursales}" for="sucursales" />
                         <p:selectOneMenu id="sucursales" value="#{porteriasSucursalController.selected.sucursales}" required="true" requiredMessage="#{bundle.EditPorteriasSucursalRequiredMessage_sucursales}">
-                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItem itemLabel="#{bundle.SelectOne}"/>
                             <f:selectItems value="#{sucursalesController.itemsAvailableSelectOne}"
                                            var="sucursalesItem"
                                            itemValue="#{sucursalesItem}"/>

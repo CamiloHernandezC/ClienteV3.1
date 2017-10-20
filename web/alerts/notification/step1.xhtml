@@ -5,58 +5,58 @@
 
     <p:panelGrid columns="2" style="margin-bottom: 2%">
 
-        <p:outputLabel value="#{bundle.CreateNotificacionesCliLabel_tipoEvento}" for="tipoEvento" />
-        <p:selectOneMenu id="tipoEvento" value="#{notificationsBean.notification.tipoEvento}" required="true" requiredMessage="#{bundle.CreateNotificacionesRequiredMessage_tipoEvento}" style="width: 85%">
-            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+        <p:outputLabel value="#{bundle.EventType}" for="tipoEvento" />
+        <p:selectOneMenu id="tipoEvento" value="#{notificationsBean.notification.tipoEvento}" required="true" requiredMessage="#{bundle.EventTypeRequiredMessage}" style="width: 85%">
+            <f:selectItem itemLabel="#{bundle.SelectOne}"/>
             <f:selectItem itemLabel="#{bundle.Entry}" itemValue="E"/>
             <f:selectItem itemLabel="#{bundle.Exit}" itemValue="S"/>
             <f:selectItem itemLabel="#{bundle.Both}" itemValue="A"/>
         </p:selectOneMenu>
 
-        <p:outputLabel value="#{bundle.CreateNotificacionesCliLabel_fechaDesde}" for="fechaDesde" />
-        <p:calendar id="fechaDesde" pattern="MM/dd/yyyy" value="#{notificationsBean.notification.fechaDesde}" required="true" requiredMessage="#{bundle.EditNotificacionesRequiredMessage_fechaDesde}" showOn="button"/>
+        <p:outputLabel value="#{bundle.Since}" for="fechaDesde" />
+        <p:calendar id="fechaDesde" pattern="MM/dd/yyyy" value="#{notificationsBean.notification.fechaDesde}" required="true" requiredMessage="#{bundle.SinceRequiredMessage}" showOn="button"/>
 
-        <p:outputLabel value="#{bundle.CreateNotificacionesCliLabel_fechaHasta}" for="fechaHasta" />
-        <p:calendar id="fechaHasta" pattern="MM/dd/yyyy" value="#{notificationsBean.notification.fechaHasta}" required="true" requiredMessage="#{bundle.EditNotificacionesRequiredMessage_fechaHasta}" showOn="button"/>
+        <p:outputLabel value="#{bundle.Until}" for="fechaHasta" />
+        <p:calendar id="fechaHasta" pattern="MM/dd/yyyy" value="#{notificationsBean.notification.fechaHasta}" required="true" requiredMessage="#{bundle.UntilRequiredMessage}" showOn="button"/>
 
-        <p:outputLabel value="#{bundle.CreateNotificacionesCliLabel_horaDesde}" for="horaDesde" />
-        <p:calendar id="horaDesde" pattern="HH:mm" value="#{notificationsBean.notification.horaDesde}" required="true" requiredMessage="#{bundle.EditNotificacionesRequiredMessage_horaDesde}" showOn="button" timeOnly="true"/>
+        <p:outputLabel value="#{bundle.SinceHour}" for="horaDesde" />
+        <p:calendar id="horaDesde" pattern="HH:mm" value="#{notificationsBean.notification.horaDesde}" required="true" requiredMessage="#{bundle.SinceHourRequiredMessage}" showOn="button" timeOnly="true"/>
 
-        <p:outputLabel value="#{bundle.CreateNotificacionesCliLabel_horaHasta}" for="horaHasta" />
-        <p:calendar id="horaHasta" pattern="HH:mm" value="#{notificationsBean.notification.horaHasta}" required="true" requiredMessage="#{bundle.EditNotificacionesRequiredMessage_horaHasta}" showOn="button" timeOnly="true"/>
+        <p:outputLabel value="#{bundle.SinceHour}" for="horaHasta" />
+        <p:calendar id="horaHasta" pattern="HH:mm" value="#{notificationsBean.notification.horaHasta}" required="true" requiredMessage="#{bundle.UntilHourRequiredMessage}" showOn="button" timeOnly="true"/>
 
-        <p:outputLabel value="#{bundle.CreateNotificacionesCliLabel_mail}" for="mail" />
-        <p:inputText id="mail" value="#{notificationsBean.notification.mail}" required="true" requiredMessage="#{bundle.CreateNotificacionesRequiredMessage_mail}" style="width: 95%"/>
+        <p:outputLabel value="#{bundle.Mail}" for="mail" />
+        <p:inputText id="mail" value="#{notificationsBean.notification.mail}" required="true" requiredMessage="#{bundle.MailRequiredMessage}" style="width: 95%"/>
 
-        <p:outputLabel value="#{bundle.CreateNotificacionesCliLabel_asunto}" for="asunto" />
-        <p:inputText id="asunto" value="#{notificationsBean.notification.asunto}" required="true" requiredMessage="#{bundle.CreateNotificacionesRequiredMessage_asunto}" style="width: 95%"/>
+        <p:outputLabel value="#{bundle.Subject}" for="asunto" />
+        <p:inputText id="asunto" value="#{notificationsBean.notification.asunto}" required="true" requiredMessage="#{bundle.SubjectRequiredMessage}" style="width: 95%"/>
 
-        <p:outputLabel value="#{bundle.CreatePersonasCliLabel_idSucursal}" for="branchOffice" rendered="#{generalControl.showBranchOffice}"/>
+        <p:outputLabel value="#{bundle.BranchOffice}" for="branchOffice" rendered="#{generalControl.showBranchOffice}"/>
         <p:selectOneMenu id="branchOffice" value="#{notificationsBean.notification.sucursal}" rendered="#{generalControl.showBranchOffice}" style="width: 85%">
-            <f:selectItem itemLabel="#{bundle.SelectOneMessage}" itemValue="#{null}"/>
+            <f:selectItem itemLabel="#{bundle.SelectOne}" itemValue="#{null}"/>
             <f:selectItems value="#{generalControl.branchOffices}" var="branchOffice" itemValue="#{branchOffice}" itemLabel="#{branchOffice.nombre}"/>
         </p:selectOneMenu>
 
-        <p:outputLabel value="#{bundle.CreatePersonasCliLabel_idEmpresaOrigen}" for="empresaOrigen" />
+        <p:outputLabel value="#{bundle.Enterprise}" for="empresaOrigen" />
         <p:selectOneMenu id="empresaOrigen" value="#{notificationsBean.notification.empresaOrigen}" style="width: 85%">
-            <f:selectItem itemLabel="#{bundle.SelectOneMessage}" itemValue="#{null}"/>
+            <f:selectItem itemLabel="#{bundle.SelectOne}" itemValue="#{null}"/>
             <f:selectItems value="#{generalViewBean.enterprises}"
                            var="empresaOrigenItem"
                            itemLabel="#{empresaOrigenItem.nombre1}"
                            itemValue="#{empresaOrigenItem}"/>
         </p:selectOneMenu>
-        <p:outputLabel value="#{bundle.CreateNotificacionesCliLabel_categoria}" for="categoria" />
+        <p:outputLabel value="#{bundle.Type}" for="categoria" />
         <p:selectOneMenu id="categoria" value="#{notificationsBean.notification.categoria}" style="width: 85%">
-            <f:selectItem itemLabel="#{bundle.SelectOneMessage}" itemValue="#{null}"/>
+            <f:selectItem itemLabel="#{bundle.SelectOne}" itemValue="#{null}"/>
             <f:selectItems value="#{generalViewBean.categories}"
                            var="categoriaItem"
                            itemLabel="#{categoriaItem.descripcion}"
                            itemValue="#{categoriaItem}"/>
             <p:ajax update="entidad"/>
         </p:selectOneMenu>
-        <p:outputLabel value="#{bundle.CreateNotificacionesCliLabel_entidad}" for="entidad" />
+        <p:outputLabel value="#{bundle.Clasification}" for="entidad" />
         <p:selectOneMenu id="entidad" value="#{notificationsBean.notification.entidad}" style="width: 85%">
-            <f:selectItem itemLabel="#{bundle.SelectOneMessage}" itemValue="#{null}"/>
+            <f:selectItem itemLabel="#{bundle.SelectOne}" itemValue="#{null}"/>
             <f:selectItems value="#{notificationsBean.notification.categoria.entidadesList}"
                            var="entidadItem"
                            itemLabel="#{entidadItem.descripcion}"

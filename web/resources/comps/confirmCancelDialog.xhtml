@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:cc="http://xmlns.jcp.org/jsf/composite"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <!-- INTERFACE -->
+    <cc:interface>
+        <cc:attribute name="confirmCancelAction" method-signature="java.lang.String action()" required="true"/>
+    </cc:interface>
+
+    <!-- IMPLEMENTATION -->
+    <cc:implementation>
+        <p:dialog modal="true" appendTo="@(body)" id="dialogConfirmCancel" widgetVar="dialogConfirmCancel" header="#{bundle.ConfirmCancel}">
+            <h:form>
+                <h:panelGrid columns="1">
+                    <h:outputText value="#{bundle.ConfirmCancelMessage}"/>
+                </h:panelGrid>
+                <p:commandButton id="accept" value="#{bundle.Yes}" action="#{cc.attrs.confirmCancelAction}" style="margin-top: 2%"/>
+                <p:commandButton id="decline" value="#{bundle.No}" onclick="PF('dialogConfirmCancel').hide();"/>
+            </h:form>
+        </p:dialog>
+    </cc:implementation>
+</html>
+

@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:cc="http://xmlns.jcp.org/jsf/composite"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <!-- INTERFACE -->
+    <cc:interface>
+        <cc:attribute name="showEntryDropList" required="true" type="java.lang.Boolean"/>
+        <cc:attribute name="selectedEntry" required="#{cc.attrs.showEntryDropList}" type="com.clienteV31.entities.Porterias"/>
+    </cc:interface>
+
+    <!-- IMPLEMENTATION -->
+    <cc:implementation>
+        <p:dialog id="dialogBranchOffice" widgetVar="dialogBranchOffice" header="#{bundle.VerificationDialog}"
+                  closable="false" showEffect="fade" hideEffect="fade" modal="true" appendTo="body"
+                  resizable="false" visible="#{branchOfficeBean.selectedBranchOffice == null or configEntryVehicleFormsBean.selectedEntry == null}">
+            <h:form id="formSearchToCreate">
+                <h:panelGrid columns="2">
+                    <p:outputLabel value="#{bundle.BranchOffice}" for="branchOffice" rendered="#{branchOfficeBean.showBranchOffice}"/>
+                    <p:selectOneMenu id="branchOffice" value="#{branchOfficeBean.selectedBranchOffice}" rendered="#{branchOfficeBean.showBranchOffice}" required="true" requiredMessage="#{bundle.EditPersonasCliRequiredMessage_idSucursal}">
+                        <f:selectItem itemLabel="#{bundle.SelectOne}" itemValue="#{null}"/>
+                        <f:selectItems value="#{branchOfficeBean.branchOffices}" var="branchOffice" itemValue="#{branchOffice}" itemLabel="#{branchOffice.nombre}"/>
+                        <p:ajax update="entry"/>
+                    </p:selectOneMenu>
+                    <p:outputLabel value="#{bundle.Entry}" for="entry"/>
+                    <p:selectOneMenu id="entry" value="#{configEntryVehicleFormsBean.selectedEntry}" required="true" requiredMessage="#{bundle.required_entry}">
+                        <f:selectItem itemLabel="#{bundle.SelectOne}" itemValue="#{null}"/>
+                        <f:selectItems value="#{branchOfficeBean.selectedBranchOffice.porteriasSucursalList}" var="entries" itemValue="#{entries.porterias}" itemLabel="#{entries.porterias.descripcion}"/>
+                    </p:selectOneMenu>
+                </h:panelGrid>
+                <p:commandButton id="accept" value="#{bundle.Accept}" action="#{configEntryVehicleFormsBean.loadFields()}" style="margin-top: 2%" ajax="false"/>
+                <p:commandButton id="decline" value="#{bundle.Cancel}" action="#{configEntryVehicleFormsBean.cancel()}" immediate="true"/>
+            </h:form>
+        </p:dialog>
+    </cc:implementation>
+</html>

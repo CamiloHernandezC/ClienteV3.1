@@ -22,7 +22,7 @@
                         <p:selectBooleanCheckbox id="mostrar" value="#{configFormController.selected.mostrar}" required="true" requiredMessage="#{bundle.EditConfigFormRequiredMessage_mostrar}"/>
                         <p:outputLabel value="#{bundle.EditConfigFormLabel_porteria}" for="porteria" />
                         <p:selectOneMenu id="porteria" value="#{configFormController.selected.porteria}" required="true" requiredMessage="#{bundle.EditConfigFormRequiredMessage_porteria}">
-                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItem itemLabel="#{bundle.SelectOne}"/>
                             <f:selectItems value="#{porteriasController.itemsAvailableSelectOne}"
                                            var="porteriaItem"
                                            itemValue="#{porteriaItem}"/>

@@ -41,7 +41,7 @@
                 <h:panelGrid columns="2">
                     <p:outputLabel for="tipoDoc" value="#{bundle.CreatePersonasCliLabel_tipoDocumento}" />
                     <p:selectOneMenu id="tipoDoc" value="#{masterDataPersonBean.person.tipoDocumento}" disabled="#{personFormEntry.disableNoEditableField}" required="true" requiredMessage="#{bundle.CreatePersonasCliRequiredMessage_tipoDocumento}" filter="true" filterMatchMode="contains" autoWidth="false" style=" width: 170px" widgetVar="tipoDoc">
-                        <f:selectItem itemLabel="#{bundle.SelectOneMessage}" itemValue="#{null}"/>
+                        <f:selectItem itemLabel="#{bundle.SelectOne}" itemValue="#{null}"/>
                         <f:selectItems  value="#{generalViewBean.tiposDocumento}" var="tipoDocItem" itemLabel="#{tipoDocItem.descripcion}" itemValue="#{tipoDocItem}"/>
                     </p:selectOneMenu>
 
@@ -50,7 +50,7 @@
 
                     <p:outputLabel value="#{bundle.CreatePersonasCliLabel_idSucursal}" for="branchOffice" rendered="#{branchOfficeBean.showBranchOffice}"/>
                     <p:selectOneMenu style="width: 170px" id="branchOffice" value="#{branchOfficeBean.selectedBranchOffice}" rendered="#{branchOfficeBean.showBranchOffice}" required="true" requiredMessage="#{bundle.EditPersonasCliRequiredMessage_idSucursal}">
-                        <f:selectItem itemLabel="#{bundle.SelectOneMessage}" itemValue="#{null}"/>
+                        <f:selectItem itemLabel="#{bundle.SelectOne}" itemValue="#{null}"/>
                         <f:selectItems value="#{branchOfficeBean.branchOffices}" var="branchOffice" itemValue="#{branchOffice}" itemLabel="#{branchOffice.nombre}"/>
                     </p:selectOneMenu>
                 </h:panelGrid>
@@ -69,7 +69,7 @@
                 <h:panelGrid columns="3">
                     <p:outputLabel value="#{bundle.CreatePersonasCliLabel_idSucursal}" for="branchOffice"/>
                     <p:selectOneMenu id="branchOffice" value="#{branchOfficeBean.selectedBranchOffice}" required="true" requiredMessage="#{bundle.EditPersonasCliRequiredMessage_idSucursal}">
-                        <f:selectItem itemLabel="#{bundle.SelectOneMessage}" itemValue="#{null}"/>
+                        <f:selectItem itemLabel="#{bundle.SelectOne}" itemValue="#{null}"/>
                         <f:selectItems value="#{branchOfficeBean.branchOffices}" var="branchOffice" itemValue="#{branchOffice}" itemLabel="#{branchOffice.nombre}"/>
                     </p:selectOneMenu>
                     <p:commandButton value="#{bundle.Download}" action="#{masterDataPersonBean.downloadTemplate()}" ajax="false" onclick="PF('dialogDownloadTemplate').hide();"/>

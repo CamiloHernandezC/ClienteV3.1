@@ -5,25 +5,21 @@
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
-                xmlns="http://www.w3.org/1999/xhtml">
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:comps="http://xmlns.jcp.org/jsf/composite/comps">
 
     <ui:define name="content">
 
-        <p:confirmDialog id="dialogConfirmCancel" appendTo="@(body)" message="#{bundle.Confirm_Cancel_Message}" severity="alert" showEffect="fade" hideEffect="fade" widgetVar="dialogConfirmCancel" closable="false">
-            <h:form>
-                <p:commandButton id="accept" value="#{bundle.Yes}" action="#{configFormsAdminBean.cancel()}" style="margin-top: 2%"/>
-                <p:commandButton id="decline" value="#{bundle.No}" onclick="PF('dialogConfirmCancel').hide();"/>
-            </h:form>
-        </p:confirmDialog>
-        
+        <comps:confirmCancelDialog confirmCancelAction="#{configFormsAdminBean.cancel()}"/>
+
         <p:dialog id="dialogBranchOffice" widgetVar="dialogBranchOffice" header="#{bundle.VerificationDialog}"
                   closable="false" showEffect="fade" hideEffect="fade" modal="true" appendTo="body"
                   resizable="false" visible="#{branchOfficeBean.selectedBranchOffice == null}">
             <h:form id="formSearchToCreate">
                 <h:panelGrid columns="2">
-                    <p:outputLabel value="#{bundle.CreatePersonasCliLabel_idSucursal}" for="branchOffice" rendered="#{branchOfficeBean.showBranchOffice}"/>
+                    <p:outputLabel value="#{bundle.BranchOffice}" for="branchOffice" rendered="#{branchOfficeBean.showBranchOffice}"/>
                     <p:selectOneMenu id="branchOffice" value="#{branchOfficeBean.selectedBranchOffice}" rendered="#{branchOfficeBean.showBranchOffice}" required="true" requiredMessage="#{bundle.EditPersonasCliRequiredMessage_idSucursal}" onchange="submit()">
-                        <f:selectItem itemLabel="#{bundle.SelectOneMessage}" itemValue="#{null}"/>
+                        <f:selectItem itemLabel="#{bundle.SelectOne}" itemValue="#{null}"/>
                         <f:selectItems value="#{branchOfficeBean.branchOffices}" var="branchOffice" itemValue="#{branchOffice}" itemLabel="#{branchOffice.nombre}"/>
                     </p:selectOneMenu>
                 </h:panelGrid>
@@ -31,66 +27,71 @@
         </p:dialog>
 
         <h:form>
-            <h1>#{bundle.Configuration_Person_Form}</h1>
-            
+            <h1>#{bundle.ConfigurationPersonFormAdminTitle}</h1>
+
             <h:form rendered="#{branchOfficeBean.selectedBranchOffice != null}">
-            <h3>#{bundle.Select_Fields_Person_Form}</h3>
-            <h:panelGrid columns="4" cellpadding="5" >
+                <h3>#{bundle.SelectFieldsPersonFormAdmin}</h3>
+                <h:panelGrid columns="4" cellpadding="5" >
 
-                <h:outputText value="#{bundle.CreatePersonasCliLabel_sexo}"/>
-                <p:selectBooleanCheckbox value="#{configFormsAdminBean.showGender}"/>
+                    <h:outputText value="#{bundle.Gender}"/>
+                    <p:selectBooleanCheckbox value="#{configFormsAdminBean.showGender}"/>
 
-                <h:outputText value="#{bundle.CreatePersonasCliLabel_fechaNacimiento}"/>
-                <p:selectBooleanCheckbox value="#{configFormsAdminBean.showBirthDay}"/>
+                    <h:outputText value="#{bundle.BirthDay}"/>
+                    <p:selectBooleanCheckbox value="#{configFormsAdminBean.showBirthDay}"/>
 
-                <h:outputText value="#{bundle.CreatePersonasCliLabel_rh}"/>
-                <p:selectBooleanCheckbox value="#{configFormsAdminBean.showRH}"/>
+                    <h:outputText value="#{bundle.RH}"/>
+                    <p:selectBooleanCheckbox value="#{configFormsAdminBean.showRH}"/>
 
-                <h:outputText value="#{bundle.CreatePersonasCliLabel_idPais}"/>
-                <p:selectBooleanCheckbox value="#{configFormsAdminBean.showCountry}"/>
+                    <h:outputText value="#{bundle.Country}"/>
+                    <p:selectBooleanCheckbox value="#{configFormsAdminBean.showCountry}"/>
 
-                <h:outputText value="#{bundle.CreatePersonasCliLabel_celular}"/>
-                <p:selectBooleanCheckbox value="#{configFormsAdminBean.showCellphone}"/>
+                    <h:outputText value="#{bundle.CellPhone}"/>
+                    <p:selectBooleanCheckbox value="#{configFormsAdminBean.showCellphone}"/>
 
-                <h:outputText value="#{bundle.CreatePersonasCliLabel_personaContacto}"/>
-                <p:selectBooleanCheckbox value="#{configFormsAdminBean.showEmergencyContact}"/>
+                    <h:outputText value="#{bundle.EmergencyContactName}"/>
+                    <p:selectBooleanCheckbox value="#{configFormsAdminBean.showEmergencyContact}"/>
 
-                <h:outputText value="#{bundle.CreatePersonasCliLabel_telPersonaContacto}"/>
-                <p:selectBooleanCheckbox value="#{configFormsAdminBean.showEmergencyPhone}"/>
+                    <h:outputText value="#{bundle.EmergencyContactPhone}"/>
+                    <p:selectBooleanCheckbox value="#{configFormsAdminBean.showEmergencyPhone}"/>
 
-                <h:outputText style="width: 200px" value="#{bundle.CreatePersonasCliLabel_direccion}"/>
-                <p:selectBooleanCheckbox value="#{configFormsAdminBean.showAddress}"/>
+                    <h:outputText style="width: 200px" value="#{bundle.Address}"/>
+                    <p:selectBooleanCheckbox value="#{configFormsAdminBean.showAddress}"/>
 
-                <h:outputText value="#{bundle.CreatePersonasCliLabel_idDepartamento}"/>
-                <p:selectBooleanCheckbox value="#{configFormsAdminBean.showDepartment}"/>
+                    <h:outputText value="#{bundle.Department}"/>
+                    <p:selectBooleanCheckbox value="#{configFormsAdminBean.showDepartment}">
+                        <p:ajax update="selectMunicipaly"/>
+                    </p:selectBooleanCheckbox>
 
-                <h:outputText value="#{bundle.CreatePersonasCliLabel_municipiosCli}"/>
-                <p:selectBooleanCheckbox value="#{configFormsAdminBean.showMunicipaly}"/>
+                    <h:outputText value="#{bundle.Municipality}"/>
+                    <h:panelGroup id="selectMunicipaly" >
+                        <p:selectBooleanCheckbox value="#{configFormsAdminBean.showMunicipaly and configVehicleFormsAdminBean.showDepartment}" disabled="#{!configVehicleFormsAdminBean.showDepartment}" rendered="#{!configVehicleFormsAdminBean.showDepartment}"/>
+                        <p:selectBooleanCheckbox value="#{configFormsAdminBean.showMunicipaly}" rendered="#{configVehicleFormsAdminBean.showDepartment}"/>
+                    </h:panelGroup
 
-                <h:outputText value="#{bundle.CreatePersonasCliLabel_mail}"/>
-                <p:selectBooleanCheckbox value="#{configFormsAdminBean.showMail}"/>
+                    <h:outputText value="#{bundle.Mail}"/>
+                    <p:selectBooleanCheckbox value="#{configFormsAdminBean.showMail}"/>
 
-                <h:outputText value="#{bundle.CreatePersonasCliLabel_telefono}"/>
-                <p:selectBooleanCheckbox value="#{configFormsAdminBean.showPhone}"/>
+                    <h:outputText value="#{bundle.Phone}"/>
+                    <p:selectBooleanCheckbox value="#{configFormsAdminBean.showPhone}"/>
 
-                <h:outputText value="#{bundle.CreatePersonasCliLabel_idEmpresaOrigen}"/>
-                <p:selectBooleanCheckbox value="#{configFormsAdminBean.showEnterprise}"/>
+                    <h:outputText value="#{bundle.Enterprise}"/>
+                    <p:selectBooleanCheckbox value="#{configFormsAdminBean.showEnterprise}"/>
 
-                <h:outputText value="#{bundle.CreatePersonasCliLabel_eps}"/>
-                <p:selectBooleanCheckbox value="#{configFormsAdminBean.showEPS}"/>
+                    <h:outputText value="#{bundle.EPS}"/>
+                    <p:selectBooleanCheckbox value="#{configFormsAdminBean.showEPS}"/>
+                    
+                    <h:outputText value="#{bundle.ARL}"/>
+                    <p:selectBooleanCheckbox value="#{configFormsAdminBean.showARL}"/>
 
-                <h:outputText value="#{bundle.CreatePersonasCliLabel_fechavigenciaSS}"/>
-                <p:selectBooleanCheckbox value="#{configFormsAdminBean.showVigencySS}"/>
+                    <h:outputText value="#{bundle.SocialSecurityVigency}"/>
+                    <p:selectBooleanCheckbox value="#{configFormsAdminBean.showVigencySS}"/>
 
-                <h:outputText value="#{bundle.CreatePersonasCliLabel_arl}"/>
-                <p:selectBooleanCheckbox value="#{configFormsAdminBean.showARL}"/>
+                    <h:outputText value="#{bundle.ExternalID}"/>
+                    <p:selectBooleanCheckbox value="#{configFormsAdminBean.showOtherID}"/>
 
-                <h:outputText value="#{bundle.CreatePersonasCliLabel_idExterno}"/>
-                <p:selectBooleanCheckbox value="#{configFormsAdminBean.showOtherID}"/>
-                
-            </h:panelGrid>    
-            <p:commandButton class="green" action="#{configFormsAdminBean.save}" value="#{bundle.Save}" ajax="false" style="margin-top: 2%"/>
-            <p:commandButton class="red" onclick="PF('dialogConfirmCancel').show();" value="#{bundle.Cancel}" immediate="true"/>
+                </h:panelGrid>    
+                <p:commandButton class="green" action="#{configFormsAdminBean.save}" value="#{bundle.Save}" ajax="false" style="margin-top: 2%"/>
+                <p:commandButton class="red" onclick="PF('dialogConfirmCancel').show();" value="#{bundle.Cancel}" immediate="true"/>
             </h:form>
         </h:form>
     </ui:define>

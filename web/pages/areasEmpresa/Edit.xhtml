@@ -18,7 +18,7 @@
                         <p:inputText id="descripcion" value="#{areasEmpresaController.selected.descripcion}" title="#{bundle.EditAreasEmpresaTitle_descripcion}" required="true" requiredMessage="#{bundle.EditAreasEmpresaRequiredMessage_descripcion}"/>
                         <p:outputLabel value="#{bundle.EditAreasEmpresaLabel_sucursal}" for="sucursal" />
                         <p:selectOneMenu id="sucursal" value="#{areasEmpresaController.selected.sucursal}" required="true" requiredMessage="#{bundle.EditAreasEmpresaRequiredMessage_sucursal}">
-                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItem itemLabel="#{bundle.SelectOne}"/>
                             <f:selectItems value="#{sucursalesController.itemsAvailableSelectOne}"
                                            var="sucursalItem"
                                            itemValue="#{sucursalItem}"/>
