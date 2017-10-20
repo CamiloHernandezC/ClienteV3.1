@@ -35,6 +35,10 @@
             <!--Test for unique actived session******************************-->
             <c:if test="#{loginBean.validSession()}"/>
             <!--*************************************************************-->
+            
+            <!--Test for disable branch office selection******************************-->
+            <c:if test="#{branchOfficeBean.testDisableBranchOffice()}"/>
+            <!--*************************************************************-->
 
             <p:layout fullPage="true">
                 

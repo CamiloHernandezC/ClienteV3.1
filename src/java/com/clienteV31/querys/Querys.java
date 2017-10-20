@@ -77,6 +77,8 @@ public class Querys {
     public static final String AREAS_EMPRESA_LAST_PRIMARY_KEY = "SELECT a FROM AreasEmpresa a ORDER BY a.idareaemp DESC";
     public static final String EMPRESA_ORIGEN_LAST_PRIMARY_KEY = "SELECT e FROM EmpresaOrigen e ORDER BY e.idEmorigen DESC";
     public static final String MATERIALES_LAST_PRIMARY_KEY = "SELECT m FROM Materiales m ORDER BY m.idMaterial DESC";
+    public static final String NOTIFICACIONES_ALL="SELECT n FROM Notificaciones n";
+    public static final String NOTIFICACIONES_SUCURSAL=" n.sucursal.idSucursal = '";
     public static final String NOTIFICACIONES_LAST_PRIMARY_KEY = "SELECT n FROM Notificaciones n ORDER BY n.idNotificacion DESC";
     public static final String OBJETOS_LAST_PRIMARY_KEY = "SELECT o FROM Objetos o ORDER BY o.idObjeto DESC";
     public static final String ENTIDADES_ALL = "SELECT e FROM Entidades e";
@@ -108,6 +110,9 @@ public class Querys {
     public static final String VEHICULOS_SUCURSAL_CLI_PLACA = " a.vehiculosSucursalPK.placa = '";
     public static final String VEHICULOS_ALL = "SELECT a FROM Vehiculos a";
     public static final String VEHICULOS_PLACA = " a.placa = '";
+    
+    
+    
     
     
 

@@ -8,8 +8,6 @@ package com.clienteV31.manageBeans;
 import com.clienteV31.bussiness.VehicleFileUploadHandler;
 import com.clienteV31.bussiness.VehiculosControl;
 import com.clienteV31.bussiness.VehiculosSucursalControl;
-import com.clienteV31.entities.AreasEmpresa;
-import com.clienteV31.entities.PersonasSucursal;
 import com.clienteV31.entities.Vehiculos;
 import com.clienteV31.entities.VehiculosSucursal;
 import com.clienteV31.facades.VehiculosSucursalFacade;
@@ -34,9 +32,6 @@ import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.primefaces.event.FileUploadEvent;
 
@@ -173,7 +168,6 @@ public class MasterDataVehicleBean implements Serializable {
         if (specificVehicle == null) {//TODO erase this when automatic entry is rendered in form
             specificVehicle = new VehiculosSucursal();
         }
-        branchOfficeBean.setDisableBranchOffice(true);
         return Navigation.PAGE_VEHICLE_CREATE;
     }
 
@@ -181,7 +175,6 @@ public class MasterDataVehicleBean implements Serializable {
         specificVehicle = editableVehicle;
         vehicle = specificVehicle.getVehiculos();
         branchOfficeBean.setSelectedBranchOffice(specificVehicle.getSucursales());
-        branchOfficeBean.setDisableBranchOffice(true);
         return Navigation.PAGE_VEHICLES_EDIT;
     }
     
@@ -217,7 +210,6 @@ public class MasterDataVehicleBean implements Serializable {
     }
 
     public void clean() {
-        branchOfficeBean.setDisableBranchOffice(false);
         specificVehicle = null;
         vehicle = null;
     }

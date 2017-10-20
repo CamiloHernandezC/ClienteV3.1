@@ -5,8 +5,6 @@
  */
 package com.clienteV31.bussiness;
 
-import com.clienteV31.entities.Personas;
-import com.clienteV31.entities.PersonasSucursal;
 import com.clienteV31.entities.Vehiculos;
 import com.clienteV31.entities.VehiculosSucursal;
 import com.clienteV31.facades.VehiculosFacade;

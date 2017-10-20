@@ -7,10 +7,13 @@ package com.clienteV31.entities;
 
 import java.io.Serializable;
 import java.util.Date;
+import javax.annotation.Generated;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -47,12 +50,12 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Notificaciones.findByMostrarEmpresaOrigen", query = "SELECT n FROM Notificaciones n WHERE n.mostrarEmpresaOrigen = :mostrarEmpresaOrigen"),
     @NamedQuery(name = "Notificaciones.findByMostrarEntidad", query = "SELECT n FROM Notificaciones n WHERE n.mostrarEntidad = :mostrarEntidad"),
     @NamedQuery(name = "Notificaciones.findByMostrarEnte", query = "SELECT n FROM Notificaciones n WHERE n.mostrarEnte = :mostrarEnte")})
-public class Notificaciones implements Serializable {
+public class Notificaciones extends AbstractEntity{
 
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @NotNull
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "Id_Notificacion")
     private Integer idNotificacion;
     @Column(name = "Tipo_Evento")
@@ -392,6 +395,27 @@ public class Notificaciones implements Serializable {
     @Override
     public String toString() {
         return "Entities.Notificaciones[ idNotificacion=" + idNotificacion + " ]";
+    }
+
+    @Override
+    public int getPrimaryKey() {
+        //Nothign to do here
+        return 0;
+    }
+
+    @Override
+    public void setPrimaryKey(int primaryKey) {
+        //Nothign to do here
+    }
+
+    @Override
+    public void setUser(Personas user) {
+        usuario = user;
+    }
+
+    @Override
+    public void setDate(Date date) {
+        fecha = date;
     }
     
 }

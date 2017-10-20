@@ -7,6 +7,7 @@ package com.clienteV31.manageBeans;
 
 import com.clienteV31.bussiness.ConfigFormsControl;
 import com.clienteV31.entities.AbstractConfigForm;
+import com.clienteV31.entities.Porterias;
 import com.clienteV31.facades.AbstractPersistenceFacade;
 import com.clienteV31.utils.BundleUtils;
 import com.clienteV31.utils.Constants;
@@ -34,12 +35,20 @@ public abstract class AbstracConfigFormsBean<T> implements Serializable, Observe
     protected List<AbstractConfigForm> fields;
     protected HashMap<String,T> fieldsEntities;
     protected boolean changed;
-
-    public void ConfigFormsBean(){}
-    
+    protected Porterias selectedEntry;
     protected abstract AbstractPersistenceFacade getFacade();
     @EJB
     private ConfigFormsControl configFormsControl;
+
+    public void ConfigFormsBean(){}
+    
+     public Porterias getSelectedEntry() {
+        return selectedEntry;
+    }
+
+    public void setSelectedEntry(Porterias selectedEntry) {
+        this.selectedEntry = selectedEntry;
+    }
     
     @PostConstruct
     public void init(){
@@ -61,7 +70,8 @@ public abstract class AbstracConfigFormsBean<T> implements Serializable, Observe
 
     @Override
     public void update(Observable o, Object arg) {//Observer interface method. Different from update in persistence
-        loadFields();
+        selectedEntry = null;//Making selectedEntry null will show the modal in order to user select an entry
+        //loadFields();
     }
     
     @PreDestroy
