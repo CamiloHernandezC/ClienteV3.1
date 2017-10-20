@@ -13,7 +13,7 @@
     </script>
     
     <p:fieldset id="availableMessagesField" legend="#{bundle.AvailableMessage}" style="margin-top: 2%;">
-        <p:dataGrid id="availableMessages" var="message" value="#{notificacionesConverter.availableMessages}" columns="3">
+        <p:dataGrid id="availableMessages" var="message" value="#{notificationsBean.availableMessages}" columns="3">
             <p:panel id="pnl" header="#{message}" style="text-align:center">
                 
             </p:panel>
@@ -24,13 +24,13 @@
     
     <p:fieldset id="selectedMessage" legend="#{bundle.Message}">
         <p:outputPanel id="dropArea" style="height: 10%;">
-            <h:outputText value="#{bundle.dropAMessage}" rendered="#{notificacionesConverter.emptyDropArea}" style="font-size:100%;" />
-            <h:outputText value="#{notificacionesConverter.exampleMessage}" rendered="#{!notificacionesConverter.emptyDropArea}" style="font-size:100%;" />
+            <h:outputText value="#{bundle.dropAMessage}" rendered="#{notificationsBean.emptyDropArea}" style="font-size:100%;" />
+            <h:outputText value="#{notificationsBean.exampleMessage}" rendered="#{!notificationsBean.emptyDropArea}" style="font-size:100%;" />
         </p:outputPanel>
     </p:fieldset>
     
     <p:droppable for="selectedMessage" tolerance="touch" activeStyleClass="ui-state-highlight" datasource="availableMessages" onDrop="handleDrop">
-        <p:ajax listener="#{notificacionesConverter.onDrop}" update="dropArea availableMessages" />
+        <p:ajax listener="#{notificationsBean.onDrop}" update="dropArea availableMessages" />
     </p:droppable>
 
 </ui:composition>

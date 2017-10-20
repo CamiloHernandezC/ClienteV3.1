@@ -15,7 +15,7 @@ import javax.persistence.PersistenceContext;
  * @author chernandez
  */
 @Stateless
-public class NotificacionesFacade extends AbstractQueryFacade<Notificaciones> {
+public class NotificacionesFacade extends AbstractPersistenceFacade<Notificaciones> {
 
     @PersistenceContext(unitName = "ClienteV3.1PU")
     private EntityManager em;
@@ -27,6 +27,26 @@ public class NotificacionesFacade extends AbstractQueryFacade<Notificaciones> {
 
     public NotificacionesFacade() {
         super(Notificaciones.class);
+    }
+
+    @Override
+    public void setEmbeddableKeys() {
+        //Nothing to do here
+    }
+
+    @Override
+    public void initializeEmbeddableKey() {
+        //Nothing to do here
+    }
+
+    @Override
+    public void prepareCreate() {
+        prepareUpdate();
+    }
+
+    @Override
+    public void prepareUpdate() {
+        assignParametersToUpdate();
     }
     
 }
