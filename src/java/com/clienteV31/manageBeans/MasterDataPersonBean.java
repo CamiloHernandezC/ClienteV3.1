@@ -148,7 +148,7 @@ public class MasterDataPersonBean implements Serializable {
                 return null;
             }
         }
-        branchOfficeBean.setDisableBranchOffice(true);
+        //branchOfficeBean.setDisableBranchOffice(true);
         return Navigation.PAGE_PERSONAS_CREATE;
     }
 
@@ -244,7 +244,7 @@ public class MasterDataPersonBean implements Serializable {
         specificPerson = editablePerson;
         person = specificPerson.getPersonas();
         branchOfficeBean.setSelectedBranchOffice(specificPerson.getSucursales());
-        branchOfficeBean.setDisableBranchOffice(true);
+        //branchOfficeBean.setDisableBranchOffice(true);
         return Navigation.PAGE_PERSONAS_EDIT;
     }
 
@@ -302,7 +302,6 @@ public class MasterDataPersonBean implements Serializable {
     }
     
     public void clean(){
-        branchOfficeBean.setDisableBranchOffice(false);
         person = null;
         specificPerson = null;
     }

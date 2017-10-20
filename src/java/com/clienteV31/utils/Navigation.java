@@ -26,6 +26,7 @@ public class Navigation {
     public static String PAGE_MASTER_DATA_SCHEDULE="/master_data/schedules/schedules.xhtml?faces-redirect=true";
     public static String PAGE_SCHEDULE_EDIT="/master_data/schedules/editSchedule.xhtml?faces-redirect=true";
     public static String PAGE_NOTIFICATION_CREATE="/alerts/notification/create.xhtml?faces-redirect=true";
+    public static String PAGE_NOTIFICATION_EDIT="/alerts/notification/edit.xhtml?faces-redirect=true";
     public static String PAGE_MASTER_DATA_NOTIFICATION="/alerts/notification/notifications.xhtml?faces-redirect=true";
     public static String PAGE_MASTER_DATA_VEHICLE="/master_data/vehicle/vehicles.xhtml?faces-redirect=true";
     public static String PAGE_VEHICLE_CREATE="/master_data/vehicle/create.xhtml?faces-redirect=true";

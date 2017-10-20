@@ -6,12 +6,14 @@
 package com.clienteV31.bussiness;
 
 import com.clienteV31.entities.Arl;
+import com.clienteV31.entities.Categorias;
 import com.clienteV31.entities.Departamentos;
 import com.clienteV31.entities.Entidades;
 import com.clienteV31.entities.Eps;
 import com.clienteV31.entities.Paises;
 import com.clienteV31.entities.TiposDocumento;
 import com.clienteV31.facades.ArlFacade;
+import com.clienteV31.facades.CategoriasFacade;
 import com.clienteV31.facades.DepartamentosFacade;
 import com.clienteV31.facades.EntidadesFacade;
 import com.clienteV31.facades.EpsFacade;
@@ -38,7 +40,7 @@ public class GeneralDataControl {
     private List<TiposDocumento> tiposDocumento;
     
     @EJB
-    private EntidadesFacade ejbEntidadesFacade;
+    private EntidadesFacade entitiesFacade;
     private List<Entidades> personsTypes;
     private List<Entidades> vehiclesTypes;
     
@@ -59,6 +61,10 @@ public class GeneralDataControl {
     private ArlFacade arlFacade;
     private List<Arl> arl;
     private int lastArlID;
+    
+    @EJB
+    private CategoriasFacade categoriesFacade;
+    private List<Categorias> categories;
     
     @PostConstruct
     public void init(){
@@ -85,7 +91,7 @@ public class GeneralDataControl {
             sb.append(Querys.ENTIDADES_CATEGORIA);
             sb.append(Constants.CATEGORY_PERSON);
             sb.append("'");
-            personsTypes = (List<Entidades>) ejbEntidadesFacade.findByQueryArray(sb.toString()).result;
+            personsTypes = (List<Entidades>) entitiesFacade.findByQueryArray(sb.toString()).result;
         }
         return personsTypes;
     }
@@ -99,7 +105,7 @@ public class GeneralDataControl {
             sb.append(Querys.ENTIDADES_CATEGORIA);
             sb.append(Constants.CATEGORY_VEHICLE);
             sb.append("'");
-            vehiclesTypes = (List<Entidades>) ejbEntidadesFacade.findByQueryArray(sb.toString()).result;
+            vehiclesTypes = (List<Entidades>) entitiesFacade.findByQueryArray(sb.toString()).result;
         }
         return vehiclesTypes;
     }
@@ -148,6 +154,14 @@ public class GeneralDataControl {
             }
         }
         return arl;
+    }
+
+    @Lock(LockType.READ)
+    public List<Categorias> getCategories() {
+        if(categories==null){
+            categories = categoriesFacade.findAll();
+        }
+        return categories;
     }
 
 }

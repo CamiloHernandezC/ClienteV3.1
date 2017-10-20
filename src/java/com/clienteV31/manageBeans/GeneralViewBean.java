@@ -10,6 +10,7 @@ import com.clienteV31.bussiness.GeneralDataControl;
 import com.clienteV31.bussiness.MunicipalityControl;
 import com.clienteV31.entities.AreasEmpresa;
 import com.clienteV31.entities.Arl;
+import com.clienteV31.entities.Categorias;
 import com.clienteV31.entities.Departamentos;
 import com.clienteV31.entities.EmpresaOrigen;
 import com.clienteV31.entities.Entidades;
@@ -83,6 +84,10 @@ public class GeneralViewBean {
     
     public List<EmpresaOrigen> getEnterprises(){
         return empresaFacade.findAll();
+    }
+    
+    public List<Categorias> getCategories(){
+        return generalDataControl.getCategories();
     }
     
 }

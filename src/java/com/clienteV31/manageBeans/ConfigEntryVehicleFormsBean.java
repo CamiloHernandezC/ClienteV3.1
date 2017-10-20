@@ -25,7 +25,7 @@ import javax.inject.Named;
 @ViewScoped
 public class ConfigEntryVehicleFormsBean extends AbstracConfigFormsBean<ConfigForm>{
     
-    private Porterias selectedEntry;
+    
     @EJB
     private ConfigFormFacade facade;
     
@@ -135,14 +135,6 @@ public class ConfigEntryVehicleFormsBean extends AbstracConfigFormsBean<ConfigFo
         changed = true;
     }
     //</editor-fold>
-
-    public Porterias getSelectedEntry() {
-        return selectedEntry;
-    }
-
-    public void setSelectedEntry(Porterias selectedEntry) {
-        this.selectedEntry = selectedEntry;
-    }
     
     @Override
     public void loadFields() {

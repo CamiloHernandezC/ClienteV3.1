@@ -19,7 +19,9 @@ import java.util.List;
 import java.util.Observable;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  *
@@ -47,10 +49,6 @@ public class BranchOfficeBean extends Observable implements Serializable{
     
     public boolean isDisableBranchOffice() {
         return disableBranchOffice;
-    }
-
-    public void setDisableBranchOffice(boolean disableBranchOffice) {
-        this.disableBranchOffice = disableBranchOffice;
     }
 
     public boolean isShowBranchOffice() {
@@ -95,6 +93,12 @@ public class BranchOfficeBean extends Observable implements Serializable{
                 branchOffices.add(a.getSucursal());
             });
         }
+    }
+    
+    public void testDisableBranchOffice(){
+        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        String url = request.getRequestURL().toString();
+        disableBranchOffice = url.contains("create") || url.contains("edit");
     }
     
 }
