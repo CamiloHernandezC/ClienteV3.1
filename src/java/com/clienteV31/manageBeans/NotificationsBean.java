@@ -144,7 +144,7 @@ public class NotificationsBean implements Serializable {
         notification.setSucursal(branchOfficeBean.getSelectedBranchOffice());
         Result result = notificationsControl.create(notification);
         if (result.errorCode == Constants.OK) {
-            JsfUtil.addSuccessMessage(BundleUtils.getBundleProperty("SuccessfullyCreatedRegistry"));
+            JsfUtil.addSuccessMessage(BundleUtils.getBundleProperty("SuccessfullyCreated"));
             return Navigation.PAGE_MASTER_DATA_NOTIFICATION;
         }
         JsfUtil.addErrorMessage((String) result.result);

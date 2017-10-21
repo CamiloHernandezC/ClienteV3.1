@@ -12,19 +12,7 @@
 
         <comps:confirmCancelDialog confirmCancelAction="#{configVehicleFormsAdminBean.cancel()}"/>
 
-        <p:dialog id="dialogBranchOffice" widgetVar="dialogBranchOffice" header="#{bundle.VerificationDialog}"
-                  closable="false" showEffect="fade" hideEffect="fade" modal="true" appendTo="body"
-                  resizable="false" visible="#{branchOfficeBean.selectedBranchOffice == null}">
-            <h:form id="formSearchToCreate">
-                <h:panelGrid columns="2">
-                    <p:outputLabel value="#{bundle.BranchOffice}" for="branchOffice" rendered="#{branchOfficeBean.showBranchOffice}"/>
-                    <p:selectOneMenu id="branchOffice" value="#{branchOfficeBean.selectedBranchOffice}" rendered="#{branchOfficeBean.showBranchOffice}" required="true" requiredMessage="#{bundle.BranchOfficeRequiredMessage}" onchange="submit()">
-                        <f:selectItem itemLabel="#{bundle.SelectOne}" itemValue="#{null}"/>
-                        <f:selectItems value="#{branchOfficeBean.branchOffices}" var="branchOffice" itemValue="#{branchOffice}" itemLabel="#{branchOffice.nombre}"/>
-                    </p:selectOneMenu>
-                </h:panelGrid>
-            </h:form>
-        </p:dialog>
+        <ui:include src="../../resources/uiComponents/selectBranchOfficeDialog.xhtml"/>
 
         <h:form>
             <h1>#{bundle.ConfigurationVehicleFormAdminTitle}</h1>

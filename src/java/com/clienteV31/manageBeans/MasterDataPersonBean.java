@@ -310,7 +310,7 @@ public class MasterDataPersonBean implements Serializable {
         specificPerson.setSucursales(branchOfficeBean.getSelectedBranchOffice());
         Result result = personasControl.create(person, specificPerson);
         if(result.errorCode==Constants.OK){
-            JsfUtil.addSuccessMessage(BundleUtils.getBundleProperty("SuccessfullyCreatedRegistry"));
+            JsfUtil.addSuccessMessage(BundleUtils.getBundleProperty("SuccessfullyCreated"));
             clean();
             return Navigation.PAGE_MASTER_DATA_PERSON;
         }
