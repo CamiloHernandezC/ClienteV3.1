@@ -53,8 +53,8 @@
                         <h:form id="formBranchOffice">
                             <h:panelGrid columns="2">
                                 <h:panelGrid columns="2" style="padding-right: 10%">
-                                    <p:outputLabel style="color: white" value="#{bundle.CreatePersonasCliLabel_idSucursal}" for="branchOffice" rendered="#{branchOfficeBean.showBranchOffice}"/>
-                                    <p:selectOneMenu id="branchOffice" value="#{branchOfficeBean.selectedBranchOffice}" rendered="#{branchOfficeBean.showBranchOffice}" disabled="#{branchOfficeBean.disableBranchOffice}" requiredMessage="#{bundle.EditPersonasCliRequiredMessage_idSucursal}" widgetVar="branchOffice" onchange="submit()">
+                                    <p:outputLabel style="color: white" value="#{bundle.BranchOffice}" for="branchOffice" rendered="#{branchOfficeBean.showBranchOffice}"/>
+                                    <p:selectOneMenu id="branchOffice" value="#{branchOfficeBean.selectedBranchOffice}" rendered="#{branchOfficeBean.showBranchOffice}" disabled="#{branchOfficeBean.disableBranchOffice}" widgetVar="branchOffice" onchange="submit()">
                                     <f:selectItem itemLabel="#{bundle.SelectOne}" itemValue="#{null}"/>
                                     <f:selectItems value="#{branchOfficeBean.branchOffices}" var="branchOffice" itemValue="#{branchOffice}" itemLabel="#{branchOffice.nombre}"/>
                                 </p:selectOneMenu>

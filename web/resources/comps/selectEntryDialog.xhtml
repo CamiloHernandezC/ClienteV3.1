@@ -9,16 +9,16 @@
     <!-- INTERFACE -->
     <cc:interface>
         <cc:attribute name="showEntryDropList" required="true" type="java.lang.Boolean"/>
-        <cc:attribute name="selectedEntry" required="#{cc.attrs.showEntryDropList}" type="com.clienteV31.entities.Porterias"/>
-        <cc:attribute name="acceptAction" required="#{cc.attrs.showEntryDropList}" method-signature="action()"/>
-        <cc:attribute name="cancelAction" required="#{cc.attrs.showEntryDropList}" method-signature="action()"/>
+        <cc:attribute name="selectedEntry" required="true" type="com.clienteV31.entities.Porterias"/>
+        <cc:attribute name="acceptAction" required="true" method-signature="void action()"/>
+        <cc:attribute name="cancelAction" required="true" method-signature="java.lang.String action()"/>
     </cc:interface>
 
     <!-- IMPLEMENTATION -->
     <cc:implementation>
         <p:dialog id="dialogBranchOffice" widgetVar="dialogBranchOffice" header="#{bundle.VerificationDialog}"
                   closable="false" showEffect="fade" hideEffect="fade" modal="true" appendTo="body"
-                  resizable="false" visible="#{branchOfficeBean.selectedBranchOffice == null or configEntryVehicleFormsBean.selectedEntry == null}">
+                  resizable="false" visible="#{branchOfficeBean.selectedBranchOffice == null or cc.attrs.selectedEntry == null}">
             <h:form id="formSearchToCreate">
                 <h:panelGrid columns="2">
                     <p:outputLabel value="#{bundle.BranchOffice}" for="branchOffice" rendered="#{branchOfficeBean.showBranchOffice}"/>

@@ -13,7 +13,7 @@
         <comps:confirmCancelDialog confirmCancelAction="#{notificationsBean.cancel()}"/>
 
         <h:form>
-            <h1>#{bundle.Notifications}"></h1>
+            <h1>#{bundle.Notifications}</h1>
             <ui:include src="steps.xhtml"/>
             <h:panelGroup style="margin-top: 10%"/>
             <h:panelGroup rendered="#{notificationsBean.activeStep eq 0}">

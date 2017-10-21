@@ -197,7 +197,7 @@ public class MasterDataVehicleBean implements Serializable {
         specificVehicle.setSucursales(branchOfficeBean.getSelectedBranchOffice());//this should be doing here because when we create by excel file selected branch office is null
         Result result = vehiculosControl.create(vehicle, specificVehicle);
         if (result.errorCode == Constants.OK) {
-            JsfUtil.addSuccessMessage(BundleUtils.getBundleProperty("SuccessfullyCreatedRegistry"));
+            JsfUtil.addSuccessMessage(BundleUtils.getBundleProperty("SuccessfullyCreated"));
             clean();
             return Navigation.PAGE_MASTER_DATA_VEHICLE;
         }

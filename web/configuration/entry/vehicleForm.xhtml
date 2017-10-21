@@ -12,33 +12,13 @@
 
         <comps:confirmCancelDialog confirmCancelAction="#{configEntryVehicleFormsBean.cancel()}"/>
         
-        <p:dialog id="dialogBranchOffice" widgetVar="dialogBranchOffice" header="#{bundle.VerificationDialog}"
-                  closable="false" showEffect="fade" hideEffect="fade" modal="true" appendTo="body"
-                  resizable="false" visible="#{branchOfficeBean.selectedBranchOffice == null or configEntryVehicleFormsBean.selectedEntry == null}">
-            <h:form id="formSearchToCreate">
-                <h:panelGrid columns="2">
-                    <p:outputLabel value="#{bundle.BranchOffice}" for="branchOffice" rendered="#{branchOfficeBean.showBranchOffice}"/>
-                    <p:selectOneMenu id="branchOffice" value="#{branchOfficeBean.selectedBranchOffice}" rendered="#{branchOfficeBean.showBranchOffice}" required="true" requiredMessage="#{bundle.EditPersonasCliRequiredMessage_idSucursal}">
-                        <f:selectItem itemLabel="#{bundle.SelectOne}" itemValue="#{null}"/>
-                        <f:selectItems value="#{branchOfficeBean.branchOffices}" var="branchOffice" itemValue="#{branchOffice}" itemLabel="#{branchOffice.nombre}"/>
-                        <p:ajax update="entry"/>
-                    </p:selectOneMenu>
-                    <p:outputLabel value="#{bundle.Entry}" for="entry"/>
-                    <p:selectOneMenu id="entry" value="#{configEntryVehicleFormsBean.selectedEntry}" required="true" requiredMessage="#{bundle.required_entry}">
-                        <f:selectItem itemLabel="#{bundle.SelectOne}" itemValue="#{null}"/>
-                        <f:selectItems value="#{branchOfficeBean.selectedBranchOffice.porteriasSucursalList}" var="entries" itemValue="#{entries.porterias}" itemLabel="#{entries.porterias.descripcion}"/>
-                    </p:selectOneMenu>
-                </h:panelGrid>
-                <p:commandButton id="accept" value="#{bundle.Accept}" action="#{configEntryVehicleFormsBean.loadFields()}" style="margin-top: 2%" ajax="false"/>
-                <p:commandButton id="decline" value="#{bundle.Cancel}" action="#{configEntryVehicleFormsBean.cancel()}" immediate="true"/>
-            </h:form>
-        </p:dialog>
+        <comps:selectEntryDialog showEntryDropList="true" selectedEntry="#{configEntryVehicleFormsBean.selectedEntry}" acceptAction="#{configEntryVehicleFormsBean.loadFields()}" cancelAction="#{configEntryVehicleFormsBean.cancel()}"/>
 
         <h:form>
-            <h1>#{bundle.Configuration_Vehicle_Form}</h1>
+            <h1>#{bundle.ConfigurationVehicleFormAdminTitle}</h1>
 
             <h:form rendered="#{branchOfficeBean.selectedBranchOffice != null}">
-                <h3>#{bundle.Select_Fields_Person_Form}</h3>
+                <h3>#{bundle.SelectFieldsVehicleFormEtry}</h3>
                 <h:panelGrid columns="4" cellpadding="5" >
 
                     <h:outputText value="#{bundle.Color}"/>
@@ -53,15 +33,15 @@
                     <h:outputText value="#{bundle.Observation}"/>
                     <p:selectBooleanCheckbox value="#{configEntryVehicleFormsBean.showObservation}"/>
 
-                    <h:outputText value="#{bundle.CreatePersonasCliLabel_idPais}"/>
+                    <h:outputText value="#{bundle.Country}"/>
                     <p:selectBooleanCheckbox value="#{configEntryVehicleFormsBean.showCountry}"/>
 
-                    <h:outputText value="#{bundle.CreatePersonasCliLabel_idDepartamento}"/>
+                    <h:outputText value="#{bundle.Department}"/>
                     <p:selectBooleanCheckbox value="#{configEntryVehicleFormsBean.showDepartment}">
                         <p:ajax update="selectMunicipaly"/>
                     </p:selectBooleanCheckbox>
 
-                    <h:outputText value="#{bundle.CreatePersonasCliLabel_municipiosCli}"/>
+                    <h:outputText value="#{bundle.Municipality}"/>
                     <h:panelGroup id="selectMunicipaly" >
                         <p:selectBooleanCheckbox value="#{configEntryVehicleFormsBean.showMunicipaly and configEntryVehicleFormsBean.showDepartment}" disabled="#{!configEntryVehicleFormsBean.showDepartment}" rendered="#{!configEntryVehicleFormsBean.showDepartment}"/>
                         <p:selectBooleanCheckbox value="#{configEntryVehicleFormsBean.showMunicipaly}" rendered="#{configEntryVehicleFormsBean.showDepartment}"/>

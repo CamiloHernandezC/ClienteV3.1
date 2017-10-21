@@ -3,7 +3,7 @@
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
     <!-- Dialog to active person-->
-    <p:confirmDialog id="inactiveDialog" appendTo="@(body)" message="#{bundle.ActivePerson}" severity="alert" showEffect="fade" hideEffect="fade" widgetVar="inactiveDialog" closable="false">
+    <p:confirmDialog id="inactiveDialog" appendTo="@(body)" message="#{bundle.ActiveVehicle}" severity="alert" showEffect="fade" hideEffect="fade" widgetVar="inactiveDialog" closable="false">
         <h:form>
             <h:panelGrid columns="2">
                 <p:commandButton id="confirm" value="#{bundle.Accept}" onclick="PF('inactiveDialog').hide();" action="#{masterDataVehicleBean.activeVehicle}" ajax="false"/>

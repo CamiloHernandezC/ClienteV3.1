@@ -11,20 +11,8 @@
     <ui:define name="content">
 
         <comps:confirmCancelDialog confirmCancelAction="#{configFormsAdminBean.cancel()}"/>
-
-        <p:dialog id="dialogBranchOffice" widgetVar="dialogBranchOffice" header="#{bundle.VerificationDialog}"
-                  closable="false" showEffect="fade" hideEffect="fade" modal="true" appendTo="body"
-                  resizable="false" visible="#{branchOfficeBean.selectedBranchOffice == null}">
-            <h:form id="formSearchToCreate">
-                <h:panelGrid columns="2">
-                    <p:outputLabel value="#{bundle.BranchOffice}" for="branchOffice" rendered="#{branchOfficeBean.showBranchOffice}"/>
-                    <p:selectOneMenu id="branchOffice" value="#{branchOfficeBean.selectedBranchOffice}" rendered="#{branchOfficeBean.showBranchOffice}" required="true" requiredMessage="#{bundle.EditPersonasCliRequiredMessage_idSucursal}" onchange="submit()">
-                        <f:selectItem itemLabel="#{bundle.SelectOne}" itemValue="#{null}"/>
-                        <f:selectItems value="#{branchOfficeBean.branchOffices}" var="branchOffice" itemValue="#{branchOffice}" itemLabel="#{branchOffice.nombre}"/>
-                    </p:selectOneMenu>
-                </h:panelGrid>
-            </h:form>
-        </p:dialog>
+        
+        <ui:include src="../../resources/uiComponents/selectBranchOfficeDialog.xhtml"/>
 
         <h:form>
             <h1>#{bundle.ConfigurationPersonFormAdminTitle}</h1>
@@ -66,7 +54,7 @@
                     <h:panelGroup id="selectMunicipaly" >
                         <p:selectBooleanCheckbox value="#{configFormsAdminBean.showMunicipaly and configVehicleFormsAdminBean.showDepartment}" disabled="#{!configVehicleFormsAdminBean.showDepartment}" rendered="#{!configVehicleFormsAdminBean.showDepartment}"/>
                         <p:selectBooleanCheckbox value="#{configFormsAdminBean.showMunicipaly}" rendered="#{configVehicleFormsAdminBean.showDepartment}"/>
-                    </h:panelGroup
+                    </h:panelGroup>
 
                     <h:outputText value="#{bundle.Mail}"/>
                     <p:selectBooleanCheckbox value="#{configFormsAdminBean.showMail}"/>

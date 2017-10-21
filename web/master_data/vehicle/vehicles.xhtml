@@ -5,19 +5,20 @@
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns="http://www.w3.org/1999/xhtml"
-                xmlns:f="http://xmlns.jcp.org/jsf/core">
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:comps="http://xmlns.jcp.org/jsf/composite/comps">
 
     <ui:define name="masterData">
         
         <ui:include src="dialogs/search.xhtml"/>
         <ui:include src="dialogs/inactive.xhtml"/>
-        <ui:include src="dialogs/downloadTemplate.xhtml"/>
-        <ui:include src="dialogs/uploadFile.xhtml"/>
+        <comps:downloadExcelTemplateDialog downloadAction="#{masterDataVehicleBean.downloadTemplate()}"/>
+        <comps:handleUploadedFileDialog UploadedFileHandler="#{masterDataVehicleBean.handleFileUpload}"/>
         <ui:include src="dialogs/errorList.xhtml"/>
         
         <!--Top Menu-->
         <h:form id="formActions" style="margin: 0px;">            
-            #{bundle.MasterDataPersonTitle}
+            #{bundle.Vehicles}
             <h:panelGrid columns="5" style="padding-bottom: 2% ;padding-left: 30%;padding-right: 25%">
                 
                 <h:panelGrid columns="1" style="padding-left: 5px">
@@ -31,7 +32,7 @@
                     <p:commandLink onsuccess="PF('dialogLoad').show();">
                         <p:graphicImage url="#{resource['/images/upFile.png']}"/>    
                     </p:commandLink>
-                    <h:outputText value="#{bundle.MasterDataLoadFromFile}" />
+                    <h:outputText value="#{bundle.LoadFromFile}" />
                 </h:panelGrid>
                 
                 
@@ -39,11 +40,11 @@
                     <p:commandLink onsuccess="PF('dialogSearchToCreate').show();">
                         <p:graphicImage style="padding-left: 10%" url="#{resource['/images/createForm.png']}"/>
                     </p:commandLink>
-                    <h:outputText value="#{bundle.MasterDataCreateFromForm}" />
+                    <h:outputText value="#{bundle.CreateFromForm}" />
                 </h:panelGrid>
                 
                 <p:commandLink onsuccess="PF('dialogErrorList').show();" rendered="#{masterDataVehicleBean.hasErrorLoadingFile}">
-                    <h:outputText value="#{bundle.MaterDataShowError}"/>
+                    <h:outputText value="#{bundle.ShowErrors}"/>
                 </p:commandLink>
 
             </h:panelGrid>           
@@ -61,7 +62,7 @@
                          emptyMessage="No hay registros para mostrar"
                          >
                 <f:facet name="header">
-                    #{bundle.LISTA_VEHICULOS}
+                    #{bundle.Vehicles}
                     <div align="right">
                         <p:commandButton id="toggler" type="button" value="Columnas"
                                          icon="ui-icon-calculator" />
@@ -69,33 +70,33 @@
                     </div>
                 </f:facet>
 
-                <p:column filterBy="#{item.vehiculos.placa}" headerText="#{bundle.ListVehiculosCliTitle_placa}" filterMatchMode="contains">
+                <p:column filterBy="#{item.vehiculos.placa}" headerText="#{bundle.Plate}" filterMatchMode="contains">
                     <h:outputText value="#{item.vehiculos.placa}"/>
                 </p:column>
                 <p:column>
                     <f:facet name="header">
-                        <h:outputText value="#{bundle.ListVehiculosCliTitle_tipo}"/>
+                        <h:outputText value="#{bundle.Classification}"/>
                     </f:facet>
                     <h:outputText value="#{item.vehiculos.entidad.descripcion}"/>
                 </p:column>
                 <p:column rendered="#{configVehicleFormsAdminBean.showColor}">
                     <f:facet name="header">
-                        <h:outputText value="#{bundle.ListVehiculosCliTitle_color1}"/>
+                        <h:outputText value="#{bundle.Color}"/>
                     </f:facet>
                     <h:outputText value="#{item.vehiculos.color1}"/>
                 </p:column>
                 <p:column rendered="#{configVehicleFormsAdminBean.showCountry}">
                     <f:facet name="header">
-                        <h:outputText value="#{bundle.ListVehiculosCliTitle_pais}"/>
+                        <h:outputText value="#{bundle.Country}"/>
                     </f:facet>
                     <h:outputText value="#{item.vehiculos.pais.nombre}"/>
                 </p:column>
-                <p:column rendered="#{configVehicleFormsAdminBean.showDepartment}" headerText="#{bundle.ListVehiculosCliTitle_departamento}">
+                <p:column rendered="#{configVehicleFormsAdminBean.showDepartment}" headerText="#{bundle.Department}">
                     <h:outputText value="#{item.vehiculos.departamento.nombre}"/>
                 </p:column>
                 <p:column rendered="#{configVehicleFormsAdminBean.showMunicipaly}">
                     <f:facet name="header">
-                        <h:outputText value="#{bundle.ListVehiculosCliTitle_municipiosCli}"/>
+                        <h:outputText value="#{bundle.Municipality}"/>
                     </f:facet>
                     <h:outputText value="#{item.vehiculos.municipio.nombre}"/>
                 </p:column>

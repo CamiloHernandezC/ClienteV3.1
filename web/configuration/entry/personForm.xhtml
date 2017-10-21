@@ -12,7 +12,7 @@
 
         <comps:confirmCancelDialog confirmCancelAction="#{configEntryPersonFormsBean.cancel()}"/>
 
-        <comps:selectPlaceDialog showEntryDropList="true" selectedEntry="#{configEntryPersonFormsBean.selectedEntry}"/>
+        <comps:selectEntryDialog showEntryDropList="true" selectedEntry="#{configEntryPersonFormsBean.selectedEntry}" acceptAction="#{configEntryPersonFormsBean.loadFields()}" cancelAction="#{configEntryPersonFormsBean.cancel()}"/>
 
         <h:form>
             <h1>#{bundle.ConfigurationPersonFormEntryTitle}</h1>

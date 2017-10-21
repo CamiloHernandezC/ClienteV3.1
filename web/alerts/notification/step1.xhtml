@@ -54,7 +54,7 @@
                            itemValue="#{categoriaItem}"/>
             <p:ajax update="entidad"/>
         </p:selectOneMenu>
-        <p:outputLabel value="#{bundle.Clasification}" for="entidad" />
+        <p:outputLabel value="#{bundle.Classification}" for="entidad" />
         <p:selectOneMenu id="entidad" value="#{notificationsBean.notification.entidad}" style="width: 85%">
             <f:selectItem itemLabel="#{bundle.SelectOne}" itemValue="#{null}"/>
             <f:selectItems value="#{notificationsBean.notification.categoria.entidadesList}"

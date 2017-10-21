@@ -53,9 +53,7 @@ public abstract class AbstracConfigFormsBean<T> implements Serializable, Observe
     @PostConstruct
     public void init(){
         branchOfficeBean.addObserver(this);
-        if(branchOfficeBean.getSelectedBranchOffice()!=null){
-            loadFields();//This method is called when user has assigned a default branch office, so dialog to chose it will not appear and field will be load inmediate
-        }
+        loadFields();//We need to load field even if branch office is null to avoid null pointer exeptions for example at persons list view
     }
     
     public abstract void loadFields();
